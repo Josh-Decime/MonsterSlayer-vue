@@ -12,9 +12,12 @@
   <section class="container-fluid">
     <section class="row">
       <div>
-        <h1>{{ bossHealth }} / {{ bossMaxHealth }}</h1>
+        <h1>{{ bossName }}</h1>
+        <h3>{{ bossHealth }} / {{ bossMaxHealth }}</h3>
         <img v-if="bossImg" :src="bossImg" :alt="bossName">
       </div>
+      <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
+        {{ attack.emoji }}{{ attack.damage }}</button>
     </section>
   </section>
 </template>
@@ -29,14 +32,23 @@ export default {
     const bossMaxHealth = AppState.activeMonster.maxHealth
     const bossImg = AppState.activeMonster.img
     const bossName = AppState.activeMonster.name
+
+    function damageBoss(damage) {
+      bossHealth.value -= damage
+    }
+
+    const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
+
     console.log('👹 active monster:', AppState.activeMonster)
-    console.log('👹➕ boss health:', bossHealth)
-    console.log('👹➕🔝 boss max health', bossMaxHealth)
+    // console.log('👹➕ boss health:', bossHealth)
+    // console.log('👹➕🔝 boss max health', bossMaxHealth)
     return {
       bossHealth,
       bossMaxHealth,
       bossImg,
-      bossName
+      bossName,
+      attacks,
+      damageBoss
 
     }
   }
