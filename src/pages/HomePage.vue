@@ -11,6 +11,7 @@
 
   <section class="container-fluid">
     <section class="row">
+      <!-- :key="componentKey"    goes inside that div-->
       <div>
         <h1>{{ bossName }}</h1>
         <h3>{{ bossHealth }} / {{ bossMaxHealth }}</h3>
@@ -29,20 +30,19 @@ export default {
   setup() {
     AppState.activeMonster = ref(AppState.monsters[0])
     const bossHealth = ref(AppState.activeMonster.health)
-    const bossMaxHealth = AppState.activeMonster.maxHealth
-    const bossImg = AppState.activeMonster.img
-    const bossName = AppState.activeMonster.name
+    const bossMaxHealth = ref(AppState.activeMonster.maxHealth)
+    const bossImg = ref(AppState.activeMonster.img)
+    const bossName = ref(AppState.activeMonster.name)
 
     function damageBoss(damage) {
       bossHealth.value -= damage
     }
 
+
     // const componentKey = ref(0);
-
-
     // const forceRerender = () => {
     //   componentKey.value += 1;
-
+    // }
 
     function killBoss() {
       console.log('killing the boss')
@@ -62,11 +62,13 @@ export default {
     // })
 
     watch(bossHealth, (theirHealth) => {
-      console.log('recognizing health is below 0')
       if (theirHealth <= 0) {
+        console.log('recognizing health is below 0')
         killBoss()
       }
     })
+
+
 
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
 
@@ -81,6 +83,7 @@ export default {
       attacks,
       damageBoss,
       // bossDies
+      // componentKey
     }
   }
 }
