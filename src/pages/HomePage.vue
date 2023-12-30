@@ -24,10 +24,10 @@
 
 <script>
 import { AppState } from '../AppState.js';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 export default {
   setup() {
-    AppState.activeMonster = AppState.monsters[0]
+    AppState.activeMonster = ref(AppState.monsters[0])
     const bossHealth = ref(AppState.activeMonster.health)
     const bossMaxHealth = AppState.activeMonster.maxHealth
     const bossImg = AppState.activeMonster.img
@@ -36,6 +36,37 @@ export default {
     function damageBoss(damage) {
       bossHealth.value -= damage
     }
+
+    // const componentKey = ref(0);
+
+
+    // const forceRerender = () => {
+    //   componentKey.value += 1;
+
+
+    function killBoss() {
+      console.log('killing the boss')
+      AppState.activeMonster.level++
+      AppState.activeMonster.maxHealth = Math.round(AppState.activeMonster.maxHealth * 1.5)
+      AppState.activeMonster.health = AppState.activeMonster.maxHealth
+      AppState.monsters.push(AppState.activeMonster)
+      AppState.activeMonster = AppState.monsters.shift()
+      // forceRerender()
+      console.log('the new boss is:', AppState.activeMonster)
+    }
+
+    // const bossDies = computed(() => {
+    //   if (bossHealth.value <= 0) {
+    //     killBoss()
+    //   }
+    // })
+
+    watch(bossHealth, (theirHealth) => {
+      console.log('recognizing health is below 0')
+      if (theirHealth <= 0) {
+        killBoss()
+      }
+    })
 
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
 
@@ -48,8 +79,8 @@ export default {
       bossImg,
       bossName,
       attacks,
-      damageBoss
-
+      damageBoss,
+      // bossDies
     }
   }
 }
