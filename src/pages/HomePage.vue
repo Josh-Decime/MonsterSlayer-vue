@@ -30,14 +30,19 @@ export default {
   setup() {
     AppState.activeMonster = ref(AppState.monsters[0])
     const boss = computed(() => {
-      const monster = AppState.activeMonster.value
-      return {
-        name: monster.name,
-        img: monster.img,
-        damage: monster.damage,
-        health: monster.health,
-        maxHealth: monster.maxHealth,
-        level: monster.level,
+      const monster = AppState.activeMonster
+      if (monster) {
+        return {
+          name: monster.name,
+          img: monster.img,
+          damage: monster.damage,
+          health: monster.health,
+          maxHealth: monster.maxHealth,
+          level: monster.level,
+        }
+
+      } else {
+        console.log('oooohhhh noooo it broke 😭')
       }
     })
 
