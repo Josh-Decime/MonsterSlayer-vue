@@ -1,17 +1,6 @@
 <template>
-  <!-- <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
-    </div>
-  </div> -->
-
   <section class="container-fluid">
     <section class="row">
-      <!-- :key="componentKey"    goes inside that div-->
       <div>
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
@@ -28,7 +17,7 @@ import { AppState } from '../AppState.js';
 import { computed, ref, watch } from 'vue';
 export default {
   setup() {
-    AppState.activeMonster = ref(AppState.monsters[0])
+    AppState.activeMonster = ref(AppState.monsters.shift())
     const boss = computed(() => {
       const monster = AppState.activeMonster
       if (monster) {
@@ -40,17 +29,10 @@ export default {
           maxHealth: monster.maxHealth,
           level: monster.level,
         }
-
       } else {
-        console.log('oooohhhh noooo it broke 😭')
+        console.log('Boss not found')
       }
     })
-
-    // const bossHealth = ref(AppState.activeMonster.health)
-    // const bossMaxHealth = ref(AppState.activeMonster.maxHealth)
-    // const bossImg = ref(AppState.activeMonster.img)
-    // const bossName = ref(AppState.activeMonster.name)
-
 
 
     function damageBoss(damage) {
@@ -58,10 +40,7 @@ export default {
     }
 
 
-    // const componentKey = ref(0);
-    // const forceRerender = () => {
-    //   componentKey.value += 1;
-    // }
+
 
     function killBoss() {
       console.log('killing the boss')
@@ -70,15 +49,10 @@ export default {
       AppState.activeMonster.health = AppState.activeMonster.maxHealth
       AppState.monsters.push(AppState.activeMonster)
       AppState.activeMonster = AppState.monsters.shift()
-      // forceRerender()
       console.log('the new boss is:', AppState.activeMonster)
     }
 
-    // const bossDies = computed(() => {
-    //   if (bossHealth.value <= 0) {
-    //     killBoss()
-    //   }
-    // })
+
 
     watch(() => AppState.activeMonster.health, (theirHealth) => {
       if (theirHealth <= 0) {
@@ -92,17 +66,9 @@ export default {
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
 
     console.log('👹 active monster:', AppState.activeMonster)
-    // console.log('👹➕ boss health:', bossHealth)
-    // console.log('👹➕🔝 boss max health', bossMaxHealth)
     return {
-      // bossHealth,
-      // bossMaxHealth,
-      // bossImg,
-      // bossName,
       attacks,
       damageBoss,
-      // bossDies
-      // componentKey
       boss,
     }
   }
