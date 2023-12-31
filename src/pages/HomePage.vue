@@ -13,9 +13,9 @@
     <section class="row">
       <!-- :key="componentKey"    goes inside that div-->
       <div>
-        <h1>{{ bossName }}</h1>
-        <h3>{{ bossHealth }} / {{ bossMaxHealth }}</h3>
-        <img v-if="bossImg" :src="bossImg" :alt="bossName">
+        <h1>{{ boss.name }}</h1>
+        <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
+        <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
       <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
         {{ attack.emoji }}{{ attack.damage }}</button>
@@ -29,13 +29,27 @@ import { computed, ref, watch } from 'vue';
 export default {
   setup() {
     AppState.activeMonster = ref(AppState.monsters[0])
-    const bossHealth = ref(AppState.activeMonster.health)
-    const bossMaxHealth = ref(AppState.activeMonster.maxHealth)
-    const bossImg = ref(AppState.activeMonster.img)
-    const bossName = ref(AppState.activeMonster.name)
+    const boss = computed(() => {
+      const monster = AppState.activeMonster.value
+      return {
+        name: monster.name,
+        img: monster.img,
+        damage: monster.damage,
+        health: monster.health,
+        maxHealth: monster.maxHealth,
+        level: monster.level,
+      }
+    })
+
+    // const bossHealth = ref(AppState.activeMonster.health)
+    // const bossMaxHealth = ref(AppState.activeMonster.maxHealth)
+    // const bossImg = ref(AppState.activeMonster.img)
+    // const bossName = ref(AppState.activeMonster.name)
+
+
 
     function damageBoss(damage) {
-      bossHealth.value -= damage
+      AppState.activeMonster.health -= damage
     }
 
 
@@ -61,10 +75,10 @@ export default {
     //   }
     // })
 
-    watch(bossHealth, (theirHealth) => {
+    watch(() => AppState.activeMonster.health, (theirHealth) => {
       if (theirHealth <= 0) {
-        console.log('recognizing health is below 0')
-        killBoss()
+        console.log('recognizing health is below 0');
+        killBoss();
       }
     })
 
@@ -76,14 +90,15 @@ export default {
     // console.log('👹➕ boss health:', bossHealth)
     // console.log('👹➕🔝 boss max health', bossMaxHealth)
     return {
-      bossHealth,
-      bossMaxHealth,
-      bossImg,
-      bossName,
+      // bossHealth,
+      // bossMaxHealth,
+      // bossImg,
+      // bossName,
       attacks,
       damageBoss,
       // bossDies
       // componentKey
+      boss,
     }
   }
 }
