@@ -1,13 +1,17 @@
 <template>
   <section class="container-fluid">
     <section class="row">
-      <div>
+      <div class="col-6">
+        <button @click="equipTeam()">Start!</button>
+        <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
+          {{ attack.emoji }}{{ attack.damage }}</button>
+
+      </div>
+      <div class="col-6">
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
-      <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
-        {{ attack.emoji }}{{ attack.damage }}</button>
     </section>
   </section>
 </template>
@@ -34,6 +38,14 @@ export default {
         console.log('Boss not found')
       }
     })
+
+    function equipTeam() {
+      AppState.Characters.forEach(person => {
+        if (person.equip == true)
+          AppState.equippedCharacters.push(person)
+      })
+      console.log('Equipped characters', AppState.equippedCharacters)
+    }
 
 
     function damageBoss(damage) {
@@ -71,6 +83,7 @@ export default {
       attacks,
       damageBoss,
       boss,
+      equipTeam,
     }
   }
 }

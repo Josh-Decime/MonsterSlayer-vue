@@ -23,7 +23,7 @@ export const AppState = reactive({
     new Monster({
       name: 'Fungal Fred',
       img: 'src/assets/img/FungalFred.png',
-      damage: 10,
+      damage: 5,
       health: 50,
       maxHealth: 50,
       level: 1,
@@ -32,7 +32,7 @@ export const AppState = reactive({
     new Monster({
       name: 'Cold Carl',
       img: 'src/assets/img/ColdCarl.png',
-      damage: 15,
+      damage: 10,
       health: 75,
       maxHealth: 75,
       level: 1,
@@ -41,7 +41,7 @@ export const AppState = reactive({
     new Monster({
       name: 'Tick Terry',
       img: 'src/assets/img/TickTerry.png',
-      damage: 25,
+      damage: 15,
       health: 100,
       maxHealth: 100,
       level: 1,
@@ -50,7 +50,7 @@ export const AppState = reactive({
     new Monster({
       name: 'Influenza Phil',
       img: 'src/assets/img/InfluenzaPhil.png',
-      damage: 30,
+      damage: 20,
       health: 150,
       maxHealth: 150,
       level: 1,
@@ -69,6 +69,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: true,
+      equip: true,
     }),
     new Character({
       name: 'Bell',
@@ -78,6 +79,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: false,
+      equip: false,
     }),
     new Character({
       name: 'Dorthy',
@@ -87,6 +89,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: false,
+      equip: false,
     }),
     new Character({
       name: 'Jack',
@@ -96,6 +99,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: false,
+      equip: false,
     }),
     new Character({
       name: 'Monii',
@@ -105,6 +109,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: false,
+      equip: false,
     }),
     new Character({
       name: 'Walter',
@@ -114,9 +119,12 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       unlocked: false,
+      equip: false,
     }),
+  ],
 
-  ]
+  /**@type{Character[]} */
+  equippedCharacters: [],
 
 
 
