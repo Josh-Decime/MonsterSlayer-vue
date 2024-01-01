@@ -3,6 +3,7 @@
     <section class="row">
       <div class="col-6">
         <button @click="equipTeam()">Start!</button>
+        <h3>{{ yourCoins }}</h3>
         <div v-for="hero in heroes">
           <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
           <h3>{{ hero.name }}</h3>
@@ -65,14 +66,23 @@ export default {
       AppState.activeMonster.health -= damage
     }
 
+    function payPlayer() {
+      console.log('player coins before:', AppState.playerCoins)
+      console.log('boss coins:', boss.coins)
+      AppState.playerCoins += AppState.activeMonster.coins
+      console.log('player is paid:', AppState.playerCoins)
+    }
 
 
 
     function killBoss() {
       console.log('killing the boss')
+      payPlayer()
       AppState.activeMonster.level++
       AppState.activeMonster.maxHealth = Math.round(AppState.activeMonster.maxHealth * 1.5)
       AppState.activeMonster.health = AppState.activeMonster.maxHealth
+      AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * 1.5)
+      AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
       AppState.monsters.push(AppState.activeMonster)
       AppState.activeMonster = AppState.monsters.shift()
       console.log('the new boss is:', AppState.activeMonster)
@@ -87,17 +97,24 @@ export default {
       }
     })
 
+    const yourCoins = computed(() => {
+      return AppState.playerCoins
+    })
+
 
 
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
 
     console.log('👹 active monster:', AppState.activeMonster)
+
+
     return {
       attacks,
       damageBoss,
       boss,
       equipTeam,
       heroes,
+      yourCoins,
     }
   }
 }

@@ -68,8 +68,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: true,
       equip: true,
+      upgradeCost: 100,
     }),
     new Character({
       name: 'Bell',
@@ -78,8 +80,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: false,
       equip: false,
+      upgradeCost: 100,
     }),
     new Character({
       name: 'Dorthy',
@@ -88,8 +92,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: false,
       equip: false,
+      upgradeCost: 100,
     }),
     new Character({
       name: 'Jack',
@@ -98,8 +104,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: false,
       equip: false,
+      upgradeCost: 100,
     }),
     new Character({
       name: 'Monii',
@@ -108,8 +116,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: false,
       equip: true,
+      upgradeCost: 100,
     }),
     new Character({
       name: 'Walter',
@@ -118,8 +128,10 @@ export const AppState = reactive({
       health: 25,
       maxHealth: 25,
       level: 1,
+      purchasePrice: 250,
       unlocked: false,
       equip: true,
+      upgradeCost: 100,
     }),
   ],
 
@@ -127,7 +139,7 @@ export const AppState = reactive({
   equippedCharacters: [],
 
 
-
+  playerCoins: 250,
 
 
 

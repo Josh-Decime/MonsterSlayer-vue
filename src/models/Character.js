@@ -12,7 +12,9 @@ export class Character {
         this.health = data.health
         this.maxHealth = data.maxHealth
         this.level = data.level
+        this.purchasePrice = data.level
         this.unlocked = data.unlocked
         this.equip = data.equip
+        this.upgradeCost = data.upgradeCost
     }
 }
