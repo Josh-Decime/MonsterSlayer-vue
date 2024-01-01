@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { Monster } from './models/Monster.js'
+import { Character } from './models/Character.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -16,7 +17,8 @@ export const AppState = reactive({
       damage: 1,
       health: 25,
       maxHealth: 25,
-      level: 1
+      level: 1,
+      coins: 10,
     }),
     new Monster({
       name: 'Fungal Fred',
@@ -24,7 +26,8 @@ export const AppState = reactive({
       damage: 10,
       health: 50,
       maxHealth: 50,
-      level: 1
+      level: 1,
+      coins: 25,
     }),
     new Monster({
       name: 'Cold Carl',
@@ -32,7 +35,8 @@ export const AppState = reactive({
       damage: 15,
       health: 75,
       maxHealth: 75,
-      level: 1
+      level: 1,
+      coins: 50,
     }),
     new Monster({
       name: 'Tick Terry',
@@ -40,7 +44,8 @@ export const AppState = reactive({
       damage: 25,
       health: 100,
       maxHealth: 100,
-      level: 1
+      level: 1,
+      coins: 75,
     }),
     new Monster({
       name: 'Influenza Phil',
@@ -48,18 +53,78 @@ export const AppState = reactive({
       damage: 30,
       health: 150,
       maxHealth: 150,
-      level: 1
+      level: 1,
+      coins: 100,
     }),
   ],
-
-  // let activeMonster = monsters.shift()
-
   /**@type{Monster} */
   activeMonster: null,
 
-  // setActiveMonster(){
+  Characters: [
+    new Character({
+      name: 'Mr. Kleen',
+      img: 'src/assets/img/MrKleen',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: true,
+    }),
+    new Character({
+      name: 'Bell',
+      img: 'src/assets/img/Bell',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: false,
+    }),
+    new Character({
+      name: 'Dorthy',
+      img: 'src/assets/img/Dorthy',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: false,
+    }),
+    new Character({
+      name: 'Jack',
+      img: 'src/assets/img/Jack',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: false,
+    }),
+    new Character({
+      name: 'Monii',
+      img: 'src/assets/img/Monii',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: false,
+    }),
+    new Character({
+      name: 'Walter',
+      img: 'src/assets/img/Walter',
+      damage: 1,
+      health: 25,
+      maxHealth: 25,
+      level: 1,
+      unlocked: false,
+    }),
 
-  // }
+  ]
+
+
+
+
+
+
+
+
 
 
 })

@@ -3,7 +3,7 @@ import { generateId } from "../utils/GenerateId.js";
 
 
 
-export class Monster {
+export class Character {
     constructor(data) {
         this.id = data.id || generateId()
         this.name = data.name
@@ -12,6 +12,6 @@ export class Monster {
         this.health = data.health
         this.maxHealth = data.maxHealth
         this.level = data.level
-        this.coins = data.coins
+        this.unlocked = data.unlocked
     }
 }

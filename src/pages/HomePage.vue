@@ -28,6 +28,7 @@ export default {
           health: monster.health,
           maxHealth: monster.maxHealth,
           level: monster.level,
+          coins: monster.coins
         }
       } else {
         console.log('Boss not found')
