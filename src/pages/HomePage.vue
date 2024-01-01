@@ -3,6 +3,10 @@
     <section class="row">
       <div class="col-6">
         <button @click="equipTeam()">Start!</button>
+        <div v-for="hero in heroes">
+          <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
+          <h3>{{ hero.name }}</h3>
+        </div>
         <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
           {{ attack.emoji }}{{ attack.damage }}</button>
 
@@ -37,6 +41,15 @@ export default {
       } else {
         console.log('Boss not found')
       }
+    })
+
+    const heroes = computed(() => {
+      return AppState.equippedCharacters.map(character => {
+        return {
+          name: character.name,
+          img: character.img,
+        }
+      })
     })
 
     function equipTeam() {
@@ -84,6 +97,7 @@ export default {
       damageBoss,
       boss,
       equipTeam,
+      heroes,
     }
   }
 }
@@ -108,5 +122,11 @@ export default {
       object-position: center;
     }
   }
+
+}
+
+.character-img {
+  height: 20vh;
+
 }
 </style>

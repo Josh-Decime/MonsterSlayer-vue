@@ -63,7 +63,7 @@ export const AppState = reactive({
   Characters: [
     new Character({
       name: 'Mr. Kleen',
-      img: 'src/assets/img/MrKleen',
+      img: 'src/assets/img/MrKleen.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
@@ -73,7 +73,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Bell',
-      img: 'src/assets/img/Bell',
+      img: 'src/assets/img/Bell.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
@@ -83,7 +83,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Dorthy',
-      img: 'src/assets/img/Dorthy',
+      img: 'src/assets/img/Dorthy.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
@@ -93,7 +93,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Jack',
-      img: 'src/assets/img/Jack',
+      img: 'src/assets/img/Jack.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
@@ -103,23 +103,23 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Monii',
-      img: 'src/assets/img/Monii',
+      img: 'src/assets/img/Monii.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
       level: 1,
       unlocked: false,
-      equip: false,
+      equip: true,
     }),
     new Character({
       name: 'Walter',
-      img: 'src/assets/img/Walter',
+      img: 'src/assets/img/Walter.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
       level: 1,
       unlocked: false,
-      equip: false,
+      equip: true,
     }),
   ],
 
