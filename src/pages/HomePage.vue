@@ -2,8 +2,7 @@
   <section class="container-fluid">
     <section class="row">
       <div class="col-6">
-        <button @click="equipTeam()">Start!</button>
-        <h3>{{ yourCoins }}</h3>
+        <h3>Your Coins: {{ yourCoins }}</h3>
         <div v-for="hero in heroes">
           <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
           <h3>{{ hero.name }}</h3>
@@ -23,7 +22,7 @@
 
 <script>
 import { AppState } from '../AppState.js';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onMounted } from 'vue';
 export default {
   setup() {
     AppState.activeMonster = ref(AppState.monsters.shift())
@@ -60,6 +59,9 @@ export default {
       })
       console.log('Equipped characters', AppState.equippedCharacters)
     }
+    onMounted(() => {
+      equipTeam()
+    })
 
 
     function damageBoss(damage) {

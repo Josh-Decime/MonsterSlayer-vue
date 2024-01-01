@@ -13,13 +13,14 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            About
+            Store
           </router-link>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <div>
-        <button class="btn text-light" @click="toggleTheme"><i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i></button>
+        <button class="btn text-light" @click="toggleTheme"><i class="mdi"
+            :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i></button>
       </div>
       <Login />
     </div>
