@@ -105,7 +105,7 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       purchasePrice: 250,
-      unlocked: false,
+      unlocked: true,
       equip: false,
       upgradeCost: 100,
     }),
