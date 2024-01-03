@@ -62,6 +62,9 @@ export default {
     onMounted(() => {
       equipTeam()
     })
+    computed(() => {
+      equipTeam()
+    })
 
 
     function damageBoss(damage) {

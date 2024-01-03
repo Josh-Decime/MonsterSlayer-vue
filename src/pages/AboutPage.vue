@@ -11,7 +11,8 @@
         <h3>{{ hero.name }}</h3>
         <button v-if="hero.unlocked" class="btn btn-primary"> {{ hero.upgradeCost }} Upgrade</button>
         <button v-else="" class="btn btn-primary" @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
-        <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success">Equip</button>
+        <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
+          @click="equipCharacter(hero)">Equip</button>
         <button v-if="hero.unlocked && hero.equip" class="btn btn-secondary">Un-equip</button>
       </div>
     </section>
@@ -20,8 +21,9 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, ref, watch, reactive } from 'vue';
+import { computed, ref, watch, reactive, popScopeId } from 'vue';
 import HomePage from './HomePage.vue';
+import Pop from '../utils/Pop.js';
 export default {
   components: {
     HomePage,
@@ -48,14 +50,34 @@ export default {
     })
 
     function buyCharacter(hero) {
-      hero.unlocked = true
-      console.log('hero being purchased', hero)
+      if (AppState.playerCoins >= hero.purchasePrice) {
+        AppState.playerCoins -= hero.purchasePrice
+        hero.unlocked = true
+        console.log('you bought:', hero)
+      } else {
+        Pop.error('You do not have enough coins!')
+      }
     }
+
+
+    function equipCharacter(hero) {
+      if (AppState.equippedCharacters.length < 2) {
+        hero.equip = !hero.equip
+        AppState.equippedCharacters.push(hero)
+        console.log('your team', AppState.equippedCharacters)
+        console.log('hero added', hero)
+      } else {
+        Pop.error('Your team is full! Un-equip someone to make room first')
+      }
+    }
+
+
     console.log('hero for sale', heroesForSale)
     return {
       heroesForSale,
       buyCharacter,
-      yourCoins
+      yourCoins,
+      equipCharacter
     }
   }
 }

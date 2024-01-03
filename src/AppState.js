@@ -118,7 +118,7 @@ export const AppState = reactive({
       level: 1,
       purchasePrice: 250,
       unlocked: false,
-      equip: true,
+      equip: false,
       upgradeCost: 100,
     }),
     new Character({
@@ -130,7 +130,7 @@ export const AppState = reactive({
       level: 1,
       purchasePrice: 250,
       unlocked: false,
-      equip: true,
+      equip: false,
       upgradeCost: 100,
     }),
   ],
