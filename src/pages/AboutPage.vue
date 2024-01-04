@@ -82,8 +82,11 @@ export default {
 
     function buyCharacter(hero) {
       if (AppState.playerCoins >= hero.purchasePrice) {
+        const characterToUpdate = AppState.Characters.find(
+          character => character.name == hero.name
+        )
         AppState.playerCoins -= hero.purchasePrice
-        hero.unlocked = true
+        characterToUpdate.unlocked = true
         console.log('you bought:', hero)
       } else {
         Pop.error('You do not have enough coins!')
@@ -94,7 +97,8 @@ export default {
     function equipCharacter(hero) {
       if (AppState.equippedCharacters.length < 3) {
         const characterToUpdate = AppState.Characters.find(
-          character => character.name == hero.name)
+          character => character.name == hero.name
+        )
         characterToUpdate.equip = true
         AppState.equippedCharacters.push(hero)
         console.log('your team', AppState.equippedCharacters)
