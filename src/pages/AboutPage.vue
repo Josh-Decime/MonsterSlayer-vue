@@ -13,7 +13,8 @@
         <button v-else="" class="btn btn-primary" @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
         <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
           @click="equipCharacter(hero)">Equip</button>
-        <button v-if="hero.unlocked && hero.equip" class="btn btn-secondary">Un-equip</button>
+        <button v-if="hero.unlocked && hero.equip" class="btn btn-secondary"
+          @click="unEquipCharacter(hero)">Un-equip</button>
       </div>
     </section>
   </section>
@@ -60,21 +61,7 @@ export default {
       equipTeam()
     })
 
-    // const boughtHeroes = computed(() => {
-    //   return AppState.equippedCharacters.map(ownedCharacter => {
-    //     console.log('owned character', ownedCharacter)
-    //     return reactive({
-    //       name: ownedCharacter.name,
-    //       img: ownedCharacter.img,
-    //       damage: ownedCharacter.damage,
-    //       maxHealth: ownedCharacter.maxHealth,
-    //       purchasePrice: ownedCharacter.purchasePrice,
-    //       unlocked: ownedCharacter.unlocked,
-    //       equip: ownedCharacter.equip,
-    //       upgradeCost: ownedCharacter.upgradeCost,
-    //     })
-    //   })
-    // })
+
 
     const yourCoins = computed(() => {
       return AppState.playerCoins
@@ -108,15 +95,22 @@ export default {
       }
     }
 
+    function unEquipCharacter(hero) {
+      const characterToUpdate = AppState.Characters.find(
+        character => character.name == hero.name
+      )
+      characterToUpdate.equip = false
+    }
+
 
     console.log('hero for sale', heroesForSale)
     return {
       heroesForSale,
-      // boughtHeroes,
+      equipTeam,
       buyCharacter,
       yourCoins,
       equipCharacter,
-      equipTeam
+      unEquipCharacter,
     }
   }
 }
