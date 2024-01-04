@@ -45,6 +45,22 @@ export default {
       })
     })
 
+    const boughtHeroes = computed(() => {
+      return AppState.equippedCharacters.map(ownedCharacter => {
+        console.log('owned character', ownedCharacter)
+        return reactive({
+          name: ownedCharacter.name,
+          img: ownedCharacter.img,
+          damage: ownedCharacter.damage,
+          maxHealth: ownedCharacter.maxHealth,
+          purchasePrice: ownedCharacter.purchasePrice,
+          unlocked: ownedCharacter.unlocked,
+          equip: ownedCharacter.equip,
+          upgradeCost: ownedCharacter.upgradeCost,
+        })
+      })
+    })
+
     const yourCoins = computed(() => {
       return AppState.playerCoins
     })
@@ -61,8 +77,9 @@ export default {
 
 
     function equipCharacter(hero) {
-      if (AppState.equippedCharacters.length < 2) {
-        hero.equip = !hero.equip
+      if (AppState.equippedCharacters.length < 3) {
+        hero.equip = true
+        AppState
         AppState.equippedCharacters.push(hero)
         console.log('your team', AppState.equippedCharacters)
         console.log('hero added', hero)
@@ -75,6 +92,7 @@ export default {
     console.log('hero for sale', heroesForSale)
     return {
       heroesForSale,
+      boughtHeroes,
       buyCharacter,
       yourCoins,
       equipCharacter

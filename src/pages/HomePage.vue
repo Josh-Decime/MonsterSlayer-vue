@@ -3,13 +3,20 @@
     <section class="row">
       <div class="col-6">
         <h3>Your Coins: {{ yourCoins }}</h3>
-        <div v-for="hero in heroes">
-          <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
-          <h3>{{ hero.name }}</h3>
+        <div v-if="equipCheck">
+          <div v-for="hero in heroes">
+            <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
+            <h3>{{ hero.name }}</h3>
+          </div>
         </div>
+
+        <div v-else>
+          <p class="fs-1 bolder">No team equipped!</p>
+          <p class="fs-2 bolder">Go to store to equip your team!</p>
+        </div>
+
         <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
           {{ attack.emoji }}{{ attack.damage }}</button>
-
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
@@ -52,19 +59,19 @@ export default {
       })
     })
 
-    function equipTeam() {
-      AppState.Characters.forEach(person => {
-        if (person.equip == true)
-          AppState.equippedCharacters.push(person)
-      })
-      console.log('Equipped characters', AppState.equippedCharacters)
-    }
-    onMounted(() => {
-      equipTeam()
-    })
-    computed(() => {
-      equipTeam()
-    })
+    // function equipTeam() {
+    //   AppState.Characters.forEach(person => {
+    //     if (person.equip == true)
+    //       AppState.equippedCharacters.push(person)
+    //   })
+    //   console.log('Equipped characters', AppState.equippedCharacters)
+    // }
+    // onMounted(() => {
+    //   equipTeam()
+    // })
+    // computed(() => {
+    //   equipTeam()
+    // })
 
 
     function damageBoss(damage) {
@@ -106,6 +113,11 @@ export default {
       return AppState.playerCoins
     })
 
+    const equipCheck = computed(() => {
+      const areEquipped = AppState.equippedCharacters
+      return areEquipped.length > 0
+    })
+
 
 
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
@@ -117,9 +129,10 @@ export default {
       attacks,
       damageBoss,
       boss,
-      equipTeam,
+      // equipTeam,
       heroes,
       yourCoins,
+      equipCheck,
     }
   }
 }
