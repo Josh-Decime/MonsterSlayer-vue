@@ -59,19 +59,20 @@ export default {
       })
     })
 
-    // function equipTeam() {
-    //   AppState.Characters.forEach(person => {
-    //     if (person.equip == true)
-    //       AppState.equippedCharacters.push(person)
-    //   })
-    //   console.log('Equipped characters', AppState.equippedCharacters)
-    // }
-    // onMounted(() => {
-    //   equipTeam()
-    // })
-    // computed(() => {
-    //   equipTeam()
-    // })
+    function equipTeam() {
+      AppState.equippedCharacters.length = 0
+      AppState.Characters.forEach(person => {
+        if (person.equip == true)
+          AppState.equippedCharacters.push(person)
+      })
+      console.log('Equipped characters', AppState.equippedCharacters)
+    }
+    onMounted(() => {
+      equipTeam()
+    })
+    computed(() => {
+      equipTeam()
+    })
 
 
     function damageBoss(damage) {
@@ -129,7 +130,7 @@ export default {
       attacks,
       damageBoss,
       boss,
-      // equipTeam,
+      equipTeam,
       heroes,
       yourCoins,
       equipCheck,

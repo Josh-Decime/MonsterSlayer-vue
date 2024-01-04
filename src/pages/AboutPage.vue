@@ -21,7 +21,7 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { computed, ref, watch, reactive, popScopeId } from 'vue';
+import { computed, ref, watch, reactive, popScopeId, onMounted } from 'vue';
 import HomePage from './HomePage.vue';
 import Pop from '../utils/Pop.js';
 export default {
@@ -45,21 +45,36 @@ export default {
       })
     })
 
-    const boughtHeroes = computed(() => {
-      return AppState.equippedCharacters.map(ownedCharacter => {
-        console.log('owned character', ownedCharacter)
-        return reactive({
-          name: ownedCharacter.name,
-          img: ownedCharacter.img,
-          damage: ownedCharacter.damage,
-          maxHealth: ownedCharacter.maxHealth,
-          purchasePrice: ownedCharacter.purchasePrice,
-          unlocked: ownedCharacter.unlocked,
-          equip: ownedCharacter.equip,
-          upgradeCost: ownedCharacter.upgradeCost,
-        })
+    function equipTeam() {
+      AppState.equippedCharacters.length = 0
+      AppState.Characters.forEach(person => {
+        if (person.equip == true)
+          AppState.equippedCharacters.push(person)
       })
+      console.log('Equipped characters', AppState.equippedCharacters)
+    }
+    onMounted(() => {
+      equipTeam()
     })
+    computed(() => {
+      equipTeam()
+    })
+
+    // const boughtHeroes = computed(() => {
+    //   return AppState.equippedCharacters.map(ownedCharacter => {
+    //     console.log('owned character', ownedCharacter)
+    //     return reactive({
+    //       name: ownedCharacter.name,
+    //       img: ownedCharacter.img,
+    //       damage: ownedCharacter.damage,
+    //       maxHealth: ownedCharacter.maxHealth,
+    //       purchasePrice: ownedCharacter.purchasePrice,
+    //       unlocked: ownedCharacter.unlocked,
+    //       equip: ownedCharacter.equip,
+    //       upgradeCost: ownedCharacter.upgradeCost,
+    //     })
+    //   })
+    // })
 
     const yourCoins = computed(() => {
       return AppState.playerCoins
@@ -78,8 +93,9 @@ export default {
 
     function equipCharacter(hero) {
       if (AppState.equippedCharacters.length < 3) {
-        hero.equip = true
-        AppState
+        const characterToUpdate = AppState.Characters.find(
+          character => character.name == hero.name)
+        characterToUpdate.equip = true
         AppState.equippedCharacters.push(hero)
         console.log('your team', AppState.equippedCharacters)
         console.log('hero added', hero)
@@ -92,10 +108,11 @@ export default {
     console.log('hero for sale', heroesForSale)
     return {
       heroesForSale,
-      boughtHeroes,
+      // boughtHeroes,
       buyCharacter,
       yourCoins,
-      equipCharacter
+      equipCharacter,
+      equipTeam
     }
   }
 }
