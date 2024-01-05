@@ -7,6 +7,8 @@
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
             <h3>{{ hero.name }}</h3>
+            <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
+            <p class="my-0">Damage: {{ hero.damage }}</p>
           </div>
         </div>
 
@@ -20,6 +22,9 @@
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
+        <!-- <div class="progress">
+          <div :class="`progress-bar`" role="progressbar" :style="`width: ${boss.health}%`"></div>
+        </div> -->
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
@@ -55,6 +60,9 @@ export default {
         return {
           name: character.name,
           img: character.img,
+          damage: character.damage,
+          health: character.health,
+          maxHealth: character.maxHealth,
         }
       })
     })

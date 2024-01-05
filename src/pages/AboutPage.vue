@@ -107,6 +107,7 @@ export default {
       const characterToUpdate = AppState.Characters.find(
         character => character.name == hero.name
       )
+      AppState.playerCoins -= characterToUpdate.upgradeCost
       characterToUpdate.level++
       characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * 1.5)
       characterToUpdate.health = characterToUpdate.maxHealth
