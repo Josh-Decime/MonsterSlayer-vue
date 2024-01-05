@@ -9,7 +9,8 @@
       <div v-for="hero in heroesForSale" class="col-4">
         <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="store-characters-img">
         <h3>{{ hero.name }}</h3>
-        <button v-if="hero.unlocked" class="btn btn-primary"> {{ hero.upgradeCost }} Upgrade</button>
+        <button v-if="hero.unlocked" class="btn btn-primary" @click="upgradeCharacter(hero)">
+          {{ hero.upgradeCost }} Upgrade</button>
         <button v-else="" class="btn btn-primary" @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
         <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
           @click="equipCharacter(hero)">Equip</button>
@@ -102,6 +103,16 @@ export default {
       characterToUpdate.equip = false
     }
 
+    function upgradeCharacter(hero) {
+      const characterToUpdate = AppState.Characters.find(
+        character => character.name == hero.name
+      )
+      characterToUpdate.level++
+      characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * 1.5)
+      characterToUpdate.health = characterToUpdate.maxHealth
+      characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
+      characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
+    }
 
     console.log('hero for sale', heroesForSale)
     return {
@@ -111,6 +122,7 @@ export default {
       yourCoins,
       equipCharacter,
       unEquipCharacter,
+      upgradeCharacter,
     }
   }
 }
