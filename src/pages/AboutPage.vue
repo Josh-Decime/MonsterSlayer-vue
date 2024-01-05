@@ -107,12 +107,16 @@ export default {
       const characterToUpdate = AppState.Characters.find(
         character => character.name == hero.name
       )
-      AppState.playerCoins -= characterToUpdate.upgradeCost
-      characterToUpdate.level++
-      characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * 1.5)
-      characterToUpdate.health = characterToUpdate.maxHealth
-      characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
-      characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
+      if (AppState.playerCoins >= characterToUpdate.upgradeCost) {
+        AppState.playerCoins -= characterToUpdate.upgradeCost
+        characterToUpdate.level++
+        characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * 1.5)
+        characterToUpdate.health = characterToUpdate.maxHealth
+        characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
+        characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
+      } else {
+        Pop.error('You need more coins to upgrade that character!')
+      }
     }
 
     console.log('hero for sale', heroesForSale)

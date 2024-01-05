@@ -140,6 +140,8 @@ export const AppState = reactive({
 
 
   playerCoins: 250,
+  playerPower: 0,
+
 
 
 

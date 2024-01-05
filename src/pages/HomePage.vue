@@ -8,7 +8,8 @@
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
             <h3>{{ hero.name }}</h3>
             <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
-            <p class="my-0">Damage: {{ hero.damage }}</p>
+            <!-- <p class="my-0">Damage: {{ hero.damage }}</p> -->
+            <button class="btn btn-danger" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
           </div>
         </div>
 
@@ -87,6 +88,10 @@ export default {
       AppState.activeMonster.health -= damage
     }
 
+    function heroAttack(hero) {
+      AppState.activeMonster.health -= hero.damage
+    }
+
     function payPlayer() {
       console.log('player coins before:', AppState.playerCoins)
       console.log('boss coins:', boss.coins)
@@ -136,6 +141,7 @@ export default {
 
     return {
       attacks,
+      heroAttack,
       damageBoss,
       boss,
       equipTeam,
