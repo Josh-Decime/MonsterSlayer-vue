@@ -72,6 +72,7 @@ export const AppState = reactive({
       unlocked: true,
       equip: true,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
     new Character({
       name: 'Bell',
@@ -84,6 +85,7 @@ export const AppState = reactive({
       unlocked: false,
       equip: false,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
     new Character({
       name: 'Dorthy',
@@ -96,6 +98,7 @@ export const AppState = reactive({
       unlocked: false,
       equip: false,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
     new Character({
       name: 'Jack',
@@ -108,6 +111,7 @@ export const AppState = reactive({
       unlocked: true,
       equip: false,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
     new Character({
       name: 'Monii',
@@ -120,6 +124,7 @@ export const AppState = reactive({
       unlocked: false,
       equip: false,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
     new Character({
       name: 'Walter',
@@ -132,6 +137,7 @@ export const AppState = reactive({
       unlocked: false,
       equip: false,
       upgradeCost: 100,
+      hasAttacked: false,
     }),
   ],
 

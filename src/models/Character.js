@@ -16,5 +16,6 @@ export class Character {
         this.unlocked = data.unlocked
         this.equip = data.equip
         this.upgradeCost = data.upgradeCost
+        this.hasAttacked = data.hasAttacked
     }
 }

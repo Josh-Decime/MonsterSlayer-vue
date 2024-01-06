@@ -6,10 +6,10 @@
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
-            <h3>{{ hero.name }}</h3>
-            <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
+            <h3>{{ hero.name }}: {{ hero.health }}/{{ hero.maxHealth }}</h3>
+            <!-- <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p> -->
             <!-- <p class="my-0">Damage: {{ hero.damage }}</p> -->
-            <button class="btn btn-danger" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
+            <button class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
           </div>
         </div>
 
@@ -18,6 +18,8 @@
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
+        <button class="btn btn-secondary">End your turn</button>
+        <!-- NOTE test attacks to be removed once combat functionality works -->
         <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
           {{ attack.emoji }}{{ attack.damage }}</button>
       </div>
@@ -36,6 +38,7 @@
 <script>
 import { AppState } from '../AppState.js';
 import { computed, ref, watch, onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
 export default {
   setup() {
     AppState.activeMonster = ref(AppState.monsters.shift())
@@ -64,6 +67,7 @@ export default {
           damage: character.damage,
           health: character.health,
           maxHealth: character.maxHealth,
+          hasAttacked: character.hasAttacked,
         }
       })
     })
@@ -89,7 +93,16 @@ export default {
     }
 
     function heroAttack(hero) {
-      AppState.activeMonster.health -= hero.damage
+      if (hero.hasAttacked == false) {
+        AppState.activeMonster.health -= hero.damage
+        const characterToUpdate = AppState.Characters.find(
+          character => character.name == hero.name
+        )
+        characterToUpdate.hasAttacked = true
+      } else {
+        Pop.error('that character has already attacked this round')
+      }
+
     }
 
     function payPlayer() {
