@@ -18,7 +18,7 @@
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
-        <button class="btn btn-secondary">End your turn</button>
+        <button class="btn btn-secondary" @click="endRound">End your turn</button>
         <!-- NOTE test attacks to be removed once combat functionality works -->
         <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
           {{ attack.emoji }}{{ attack.damage }}</button>
@@ -145,6 +145,14 @@ export default {
       return areEquipped.length > 0
     })
 
+    function endRound() {
+      AppState.equippedCharacters.forEach(person => {
+        // console.log('boss damage', boss.damage)
+        person.health -= AppState.activeMonster.damage
+        person.hasAttacked = false
+      })
+    }
+
 
 
     const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
@@ -161,6 +169,7 @@ export default {
       heroes,
       yourCoins,
       equipCheck,
+      endRound,
     }
   }
 }
