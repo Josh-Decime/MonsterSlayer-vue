@@ -9,7 +9,14 @@
             <h3>{{ hero.name }}: {{ hero.health }}/{{ hero.maxHealth }}</h3>
             <!-- <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p> -->
             <!-- <p class="my-0">Damage: {{ hero.damage }}</p> -->
-            <button class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
+            <!-- <div class="progress">
+              <div :class="`progress-bar`" role="progressbar"
+                :style="{ width: `${(hero.health / hero.maxHealth) * 100}%` }">
+              </div>
+            </div> -->
+            <button v-if="hero.hasAttacked == false" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage
+            }}</button>
+            <button v-else class="btn btn-secondary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
           </div>
         </div>
 
@@ -18,17 +25,18 @@
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
-        <button class="btn btn-secondary" @click="endRound">End your turn</button>
+        <button class="btn btn-success" @click="endRound">End your turn</button>
         <!-- NOTE test attacks to be removed once combat functionality works -->
         <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
           {{ attack.emoji }}{{ attack.damage }}</button>
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
-        <!-- <div class="progress">
-          <div :class="`progress-bar`" role="progressbar" :style="`width: ${boss.health}%`"></div>
-        </div> -->
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
+        <div class="progress">
+          <div :class="`progress-bar`" role="progressbar" :style="{ width: `${(boss.health / boss.maxHealth) * 100}%` }">
+          </div>
+        </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
     </section>
@@ -149,8 +157,13 @@ export default {
       AppState.equippedCharacters.forEach(person => {
         // console.log('boss damage', boss.damage)
         person.health -= AppState.activeMonster.damage
+        // NOTE this is not working yet!
+        if (person.hasAttacked == false) {
+          Pop.confirm('Someone on your team has not attacked, are you sure you want to end your turn?')
+        }
         person.hasAttacked = false
       })
+      Pop.success('Next round')
     }
 
 
