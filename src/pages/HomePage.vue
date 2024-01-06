@@ -154,13 +154,25 @@ export default {
     })
 
     function endRound() {
+      let canStillAttack = false
       AppState.equippedCharacters.forEach(person => {
         // console.log('boss damage', boss.damage)
-        person.health -= AppState.activeMonster.damage
-        // NOTE this is not working yet!
-        if (person.hasAttacked == false) {
-          Pop.confirm('Someone on your team has not attacked, are you sure you want to end your turn?')
+
+
+        if (!person.hasAttacked) {
+          canStillAttack = true
         }
+      })
+
+      if (canStillAttack) {
+        Pop.confirm('Someone on your team has not attacked, are you sure you want to end your turn?', '')
+      } else {
+        endRoundDamageAndReset()
+      }
+    }
+    function endRoundDamageAndReset() {
+      AppState.equippedCharacters.forEach(person => {
+        person.health -= AppState.activeMonster.damage
         person.hasAttacked = false
       })
       Pop.success('Next round')
