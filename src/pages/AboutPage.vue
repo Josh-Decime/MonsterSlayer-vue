@@ -8,7 +8,9 @@
     <section class="row">
       <div v-for="hero in heroesForSale" class="col-4">
         <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="store-characters-img">
-        <h3>{{ hero.name }}</h3>
+        <h3>{{ hero.name }}: Lvl {{ hero.level }}</h3>
+        <p class="my-0">Health: {{ hero.health }}/{{ hero.maxHealth }}</p>
+        <p class="m-0">Damage: {{ hero.damage }}</p>
         <button v-if="hero.unlocked" class="btn btn-primary" @click="upgradeCharacter(hero)">
           {{ hero.upgradeCost }} Upgrade</button>
         <button v-else="" class="btn btn-primary" @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
@@ -39,6 +41,7 @@ export default {
           img: character.img,
           damage: character.damage,
           maxHealth: character.maxHealth,
+          level: character.level,
           purchasePrice: character.purchasePrice,
           unlocked: character.unlocked,
           equip: character.equip,
