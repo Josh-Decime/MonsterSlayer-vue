@@ -50,24 +50,26 @@ export default {
   setup() {
 
     // SECTION Monster
-    AppState.activeMonster = ref(AppState.monsters.shift())
-    const boss = computed(() => {
-      const monster = AppState.activeMonster
-      if (monster) {
-        return {
-          name: monster.name,
-          img: monster.img,
-          damage: monster.damage,
-          health: monster.health,
-          maxHealth: monster.maxHealth,
-          level: monster.level,
-          coins: monster.coins
-        }
-      } else {
-        console.log('Boss not found')
-      }
-    })
-    console.log('👹 active monster:', AppState.activeMonster)
+    // AppState.activeMonster = ref(AppState.monsters.shift())
+    // const boss = computed(() => {
+    //   const monster = AppState.activeMonster
+    //   if (monster) {
+    //     return {
+    //       name: monster.name,
+    //       img: monster.img,
+    //       damage: monster.damage,
+    //       health: monster.health,
+    //       maxHealth: monster.maxHealth,
+    //       level: monster.level,
+    //       coins: monster.coins
+    //     }
+    //   } else {
+    //     console.log('Boss not found')
+    //   }
+    // })
+    // console.log('👹 active monster:', AppState.activeMonster)
+
+    const boss = computed(() => AppState.activeMonster)
 
 
     watch(() => AppState.activeMonster.health, (theirHealth) => {
@@ -91,19 +93,21 @@ export default {
 
 
     // SECTION character
-    const heroes = computed(() => {
-      return AppState.equippedCharacters.map(character => {
-        return {
-          name: character.name,
-          img: character.img,
-          damage: character.damage,
-          level: character.level,
-          health: character.health,
-          maxHealth: character.maxHealth,
-          hasAttacked: character.hasAttacked,
-        }
-      })
-    })
+    // const heroes = computed(() => {
+    //   return AppState.equippedCharacters.map(character => {
+    //     return {
+    //       name: character.name,
+    //       img: character.img,
+    //       damage: character.damage,
+    //       level: character.level,
+    //       health: character.health,
+    //       maxHealth: character.maxHealth,
+    //       hasAttacked: character.hasAttacked,
+    //     }
+    //   })
+    // })
+
+    const heroes = computed(() => AppState.equippedCharacters)
 
 
     function equipTeam() {

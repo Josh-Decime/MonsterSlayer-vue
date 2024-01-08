@@ -5,7 +5,7 @@
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
+  <footer class="bg-dark text-light">
     Made with 💖 by CodeWorks
   </footer>
 </template>
@@ -13,10 +13,14 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+import { ref } from 'vue'
 import Navbar from './components/Navbar.vue'
 
 export default {
   setup() {
+    // NOTE this sets the active monster once when the application starts!
+    AppState.activeMonster = ref(AppState.monsters.shift())
+
     return {
       appState: computed(() => AppState)
     }
@@ -27,7 +31,7 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
 }
 
