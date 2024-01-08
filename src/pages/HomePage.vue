@@ -25,9 +25,7 @@
         </div>
 
         <button class="btn btn-success" @click="endRound">End your turn</button>
-        <!-- NOTE test attacks to be removed once combat functionality works -->
-        <!-- <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
-          {{ attack.emoji }}{{ attack.damage }}</button> -->
+
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
@@ -50,7 +48,8 @@ import { monsterService } from '../services/MonstersService.js';
 import { characterService } from '../services/CharactersService.js'
 export default {
   setup() {
-    // SECTION draw monster & boss values from the AppState
+
+    // SECTION Monster
     AppState.activeMonster = ref(AppState.monsters.shift())
     const boss = computed(() => {
       const monster = AppState.activeMonster
@@ -68,7 +67,30 @@ export default {
         console.log('Boss not found')
       }
     })
+    console.log('👹 active monster:', AppState.activeMonster)
 
+
+    watch(() => AppState.activeMonster.health, (theirHealth) => {
+      if (theirHealth <= 0) {
+        console.log('recognizing health is below 0');
+        killBoss();
+      }
+    })
+
+
+    function killBoss() {
+      monsterService.killBoss()
+      payPlayer()
+    }
+
+
+    function payPlayer() {
+      monsterService.payPlayer()
+    }
+
+
+
+    // SECTION character
     const heroes = computed(() => {
       return AppState.equippedCharacters.map(character => {
         return {
@@ -94,90 +116,35 @@ export default {
       equipTeam()
     })
 
-    // NOTE this was added as a test to damage before heroes could attack. Could be removed
-    function damageBoss(damage) {
-      monsterService.damageBoss(damage)
-    }
-
-    function heroAttack(hero) {
-      characterService.heroAttack(hero)
-    }
-
-    function payPlayer() {
-      monsterService.payPlayer()
-    }
-
-
-
-    function killBoss() {
-      console.log('killing the boss')
-      payPlayer()
-      AppState.activeMonster.level++
-      AppState.activeMonster.maxHealth = Math.round(AppState.activeMonster.maxHealth * 1.5)
-      AppState.activeMonster.health = AppState.activeMonster.maxHealth
-      AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * 1.5)
-      AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
-      AppState.monsters.push(AppState.activeMonster)
-      AppState.activeMonster = AppState.monsters.shift()
-      console.log('the new boss is:', AppState.activeMonster)
-    }
-
-
-
-    watch(() => AppState.activeMonster.health, (theirHealth) => {
-      if (theirHealth <= 0) {
-        console.log('recognizing health is below 0');
-        killBoss();
-      }
-    })
-
-    const yourCoins = computed(() => {
-      return AppState.playerCoins
-    })
 
     const equipCheck = computed(() => {
       const areEquipped = AppState.equippedCharacters
       return areEquipped.length > 0
     })
 
+
+    const yourCoins = computed(() => {
+      return AppState.playerCoins
+    })
+
+
+    function heroAttack(hero) {
+      characterService.heroAttack(hero)
+    }
+
+
     function endRound() {
-      let canStillAttack = false
-      AppState.equippedCharacters.forEach(person => {
-        if (!person.hasAttacked) {
-          canStillAttack = true
-        }
-      })
-
-      if (canStillAttack) {
-        Pop.confirm('Someone on your team has not attacked, are you sure you want to end your turn?', '')
-      } else {
-        endRoundDamageAndReset()
-      }
+      characterService.endRound()
     }
-    function endRoundDamageAndReset() {
-      AppState.equippedCharacters.forEach(person => {
-        person.health -= AppState.activeMonster.damage
-        person.hasAttacked = false
-      })
-      Pop.success('Next round')
-    }
-
-
-
-    const attacks = [{ emoji: '🪥', damage: 5 }, { emoji: '🧹', damage: 10 }, { emoji: '🧼', damage: 20 }]
-
-    console.log('👹 active monster:', AppState.activeMonster)
 
 
     return {
-      attacks,
-      heroAttack,
-      damageBoss,
       boss,
-      equipTeam,
       heroes,
-      yourCoins,
+      equipTeam,
       equipCheck,
+      heroAttack,
+      yourCoins,
       endRound,
     }
   }
