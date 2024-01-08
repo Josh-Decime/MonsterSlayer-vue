@@ -46,8 +46,11 @@
 import { AppState } from '../AppState.js';
 import { computed, ref, watch, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
+import { monsterService } from '../services/MonstersService.js';
+import { characterService } from '../services/CharactersService.js'
 export default {
   setup() {
+    // SECTION draw monster & boss values from the AppState
     AppState.activeMonster = ref(AppState.monsters.shift())
     const boss = computed(() => {
       const monster = AppState.activeMonster
@@ -80,13 +83,9 @@ export default {
       })
     })
 
+
     function equipTeam() {
-      AppState.equippedCharacters.length = 0
-      AppState.Characters.forEach(person => {
-        if (person.equip == true)
-          AppState.equippedCharacters.push(person)
-      })
-      console.log('Equipped characters', AppState.equippedCharacters)
+      characterService.equipTeam()
     }
     onMounted(() => {
       equipTeam()
@@ -95,29 +94,17 @@ export default {
       equipTeam()
     })
 
-
+    // NOTE this was added as a test to damage before heroes could attack. Could be removed
     function damageBoss(damage) {
-      AppState.activeMonster.health -= damage
+      monsterService.damageBoss(damage)
     }
 
     function heroAttack(hero) {
-      if (hero.hasAttacked == false) {
-        AppState.activeMonster.health -= hero.damage
-        const characterToUpdate = AppState.Characters.find(
-          character => character.name == hero.name
-        )
-        characterToUpdate.hasAttacked = true
-      } else {
-        Pop.error('that character has already attacked this round')
-      }
-
+      characterService.heroAttack(hero)
     }
 
     function payPlayer() {
-      console.log('player coins before:', AppState.playerCoins)
-      console.log('boss coins:', boss.coins)
-      AppState.playerCoins += AppState.activeMonster.coins
-      console.log('player is paid:', AppState.playerCoins)
+      monsterService.payPlayer()
     }
 
 
