@@ -8,7 +8,6 @@
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
             <h3 class="my-0">{{ hero.name }}: Lvl {{ hero.level }}</h3>
             <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
-            <!-- <p class="my-0">Damage: {{ hero.damage }}</p> -->
             <!-- <div class="progress">
               <div :class="`progress-bar`" role="progressbar"
                 :style="{ width: `${(hero.health / hero.maxHealth) * 100}%` }">
@@ -27,8 +26,8 @@
 
         <button class="btn btn-success" @click="endRound">End your turn</button>
         <!-- NOTE test attacks to be removed once combat functionality works -->
-        <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
-          {{ attack.emoji }}{{ attack.damage }}</button>
+        <!-- <button v-for="attack in attacks" class="btn btn-primary col-2" @click="damageBoss(attack.damage)">
+          {{ attack.emoji }}{{ attack.damage }}</button> -->
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
@@ -157,9 +156,6 @@ export default {
     function endRound() {
       let canStillAttack = false
       AppState.equippedCharacters.forEach(person => {
-        // console.log('boss damage', boss.damage)
-
-
         if (!person.hasAttacked) {
           canStillAttack = true
         }
