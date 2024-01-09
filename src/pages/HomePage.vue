@@ -6,7 +6,7 @@
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
-            <h3 class="my-0">{{ hero.name }}: Lvl {{ hero.level }}</h3>
+            <p class="my-0 fs-4 bold">{{ hero.name }}: Lvl {{ hero.level }}</p>
             <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
             <!-- <div class="progress">
               <div :class="`progress-bar`" role="progressbar"
@@ -50,25 +50,6 @@ export default {
   setup() {
 
     // SECTION Monster
-    // AppState.activeMonster = ref(AppState.monsters.shift())
-    // const boss = computed(() => {
-    //   const monster = AppState.activeMonster
-    //   if (monster) {
-    //     return {
-    //       name: monster.name,
-    //       img: monster.img,
-    //       damage: monster.damage,
-    //       health: monster.health,
-    //       maxHealth: monster.maxHealth,
-    //       level: monster.level,
-    //       coins: monster.coins
-    //     }
-    //   } else {
-    //     console.log('Boss not found')
-    //   }
-    // })
-    // console.log('👹 active monster:', AppState.activeMonster)
-
     const boss = computed(() => AppState.activeMonster)
 
 
@@ -93,20 +74,6 @@ export default {
 
 
     // SECTION character
-    // const heroes = computed(() => {
-    //   return AppState.equippedCharacters.map(character => {
-    //     return {
-    //       name: character.name,
-    //       img: character.img,
-    //       damage: character.damage,
-    //       level: character.level,
-    //       health: character.health,
-    //       maxHealth: character.maxHealth,
-    //       hasAttacked: character.hasAttacked,
-    //     }
-    //   })
-    // })
-
     const heroes = computed(() => AppState.equippedCharacters)
 
 

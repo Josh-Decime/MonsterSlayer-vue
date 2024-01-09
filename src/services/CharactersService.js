@@ -50,7 +50,6 @@ class CharactersService {
     }
 
     // SECTION AboutPage AKA store page
-
     buyCharacter(hero) {
         if (AppState.playerCoins >= hero.purchasePrice) {
             const characterToUpdate = AppState.Characters.find(
@@ -101,7 +100,7 @@ class CharactersService {
         }
     }
 
-
+    // NOTE build a function to quick attack, all characters attack at the same time & it auto ends round
 
 
 

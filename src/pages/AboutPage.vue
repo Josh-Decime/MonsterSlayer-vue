@@ -34,22 +34,6 @@ export default {
     HomePage,
   },
   setup() {
-    // const heroesForSale = computed(() => {
-    //   return AppState.Characters.map(character => {
-    //     console.log('character', character)
-    //     return reactive({
-    //       name: character.name,
-    //       img: character.img,
-    //       damage: character.damage,
-    //       maxHealth: character.maxHealth,
-    //       level: character.level,
-    //       purchasePrice: character.purchasePrice,
-    //       unlocked: character.unlocked,
-    //       equip: character.equip,
-    //       upgradeCost: character.upgradeCost,
-    //     })
-    //   })
-    // })
     const heroesForSale = computed(() => AppState.Characters)
 
     function equipTeam() {
