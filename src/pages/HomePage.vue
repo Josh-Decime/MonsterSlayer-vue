@@ -13,6 +13,10 @@
                 :style="{ width: `${(hero.health / hero.maxHealth) * 100}%` }">
               </div>
             </div> -->
+
+            <!-- can also just disable button, but i like my solution better -->
+            <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
+                🪥 {{ hero.damage }}</button> -->
             <button v-if="hero.hasAttacked == false" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage
             }}</button>
             <button v-else class="btn btn-secondary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
@@ -50,6 +54,7 @@ export default {
   setup() {
 
     // SECTION Monster
+    // NOTE the activeMonster is set in App.vue
     const boss = computed(() => AppState.activeMonster)
 
 
