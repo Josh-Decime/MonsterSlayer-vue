@@ -61,6 +61,9 @@ class CharactersService {
         } else {
             Pop.error('You do not have enough coins!')
         }
+        if (AppState.equippedCharacters.length < 3)
+            console.log('equip purchased character')
+        this.equipCharacter(hero)
     }
 
     equipCharacter(hero) {

@@ -18,7 +18,7 @@
             <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
                 🪥 {{ hero.damage }}</button> -->
             <button v-if="hero.hasAttacked == false" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage
-            }}</button>
+              }}</button>
             <button v-else class="btn btn-secondary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
           </div>
         </div>
@@ -28,14 +28,15 @@
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
-        <button class="btn btn-success" @click="endRound">End your turn</button>
+        <button v-if="equipCheck" class="btn btn-success" @click="endRound">End your turn</button>
 
       </div>
       <div class="col-6">
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
         <div class="progress">
-          <div :class="`progress-bar`" role="progressbar" :style="{ width: `${(boss.health / boss.maxHealth) * 100}%` }">
+          <div :class="`progress-bar`" role="progressbar"
+            :style="{ width: `${(boss.health / boss.maxHealth) * 100}%` }">
           </div>
         </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
