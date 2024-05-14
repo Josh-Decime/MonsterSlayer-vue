@@ -61,7 +61,8 @@ class CharactersService {
         } else {
             Pop.error('You do not have enough coins!')
         }
-        if (AppState.equippedCharacters.length < 3)
+        // FIXME it is equipping characters even if you dont have enough money to purchase them. i added the && line but that didnt fix it yet. Im going to disable the button if you dont have enough money, I planned on doing that anyway & it will be a simple fix. 
+        if (AppState.equippedCharacters.length < 3 && AppState.playerCoins >= hero.purchasePrice)
             console.log('equip purchased character')
         this.equipCharacter(hero)
     }
