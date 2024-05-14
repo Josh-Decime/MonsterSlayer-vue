@@ -49,6 +49,24 @@ class CharactersService {
         }
     }
 
+    quickAttack() {
+        // let canStillAttack = false
+        // AppState.equippedCharacters.forEach(person => {
+        //     if(!person.hasAttacked){
+        //         canStillAttack = true
+        //     }
+        // })
+        AppState.equippedCharacters.forEach(person => {
+            if (!person.hasAttacked) {
+                this.heroAttack(person)
+                console.log('this hero attacked:', person)
+                // person.health -= AppState.activeMonster.damage
+                // person.hasAttacked = false
+            }
+        })
+        this.endRound()
+    }
+
     // SECTION AboutPage AKA store page
     buyCharacter(hero) {
         if (AppState.playerCoins >= hero.purchasePrice) {

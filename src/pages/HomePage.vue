@@ -29,6 +29,7 @@
         </div>
 
         <button v-if="equipCheck" class="btn btn-success" @click="endRound">End your turn</button>
+        <button v-if="equipCheck" class="btn btn-danger" @click="quickAttack">Quick Attack</button>
 
       </div>
       <div class="col-6">
@@ -114,6 +115,10 @@ export default {
       characterService.endRound()
     }
 
+    function quickAttack() {
+      characterService.quickAttack()
+    }
+
 
     return {
       boss,
@@ -123,6 +128,7 @@ export default {
       heroAttack,
       yourCoins,
       endRound,
+      quickAttack,
     }
   }
 }
