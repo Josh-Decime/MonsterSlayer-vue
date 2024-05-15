@@ -17,7 +17,7 @@ class CharactersService {
 
 
     heroAttack(hero) {
-        if (hero.hasAttacked == false) {
+        if (!hero.hasAttacked && !hero.dead) {
             AppState.activeMonster.health -= hero.damage
             const characterToUpdate = AppState.Characters.find(
                 character => character.name == hero.name
@@ -43,6 +43,7 @@ class CharactersService {
             AppState.equippedCharacters.forEach(person => {
                 person.health -= AppState.activeMonster.damage
                 person.hasAttacked = false
+                // NOTE check health & if they died set dead to true
             })
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
             Pop.success('Next round')
@@ -50,18 +51,10 @@ class CharactersService {
     }
 
     quickAttack() {
-        // let canStillAttack = false
-        // AppState.equippedCharacters.forEach(person => {
-        //     if(!person.hasAttacked){
-        //         canStillAttack = true
-        //     }
-        // })
         AppState.equippedCharacters.forEach(person => {
             if (!person.hasAttacked) {
                 this.heroAttack(person)
-                console.log('this hero attacked:', person)
-                // person.health -= AppState.activeMonster.damage
-                // person.hasAttacked = false
+                // console.log('this hero attacked:', person)
             }
         })
         this.endRound()

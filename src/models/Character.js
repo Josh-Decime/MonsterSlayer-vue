@@ -17,5 +17,6 @@ export class Character {
         this.equip = data.equip
         this.upgradeCost = data.upgradeCost
         this.hasAttacked = data.hasAttacked
+        this.dead = data.dead || false
     }
 }
