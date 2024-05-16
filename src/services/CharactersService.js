@@ -24,7 +24,7 @@ class CharactersService {
             )
             characterToUpdate.hasAttacked = true
         } else {
-            Pop.error('that character has already attacked this round')
+            Pop.error('Can not attack')
         }
     }
 
@@ -32,7 +32,7 @@ class CharactersService {
     endRound() {
         let canStillAttack = false
         AppState.equippedCharacters.forEach(person => {
-            if (!person.hasAttacked) {
+            if (!person.hasAttacked && !person.dead) {
                 canStillAttack = true
             }
         })
@@ -41,8 +41,15 @@ class CharactersService {
             Pop.error('Someone on your team has not attacked')
         } else {
             AppState.equippedCharacters.forEach(person => {
-                person.health -= AppState.activeMonster.damage
+                if (!person.dead) {
+                    person.health -= AppState.activeMonster.damage
+                }
                 person.hasAttacked = false
+                if (person.health <= 0) {
+                    person.dead = true
+                    person.health = 0
+                    console.log('died:', person)
+                }
                 // NOTE check health & if they died set dead to true
             })
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder

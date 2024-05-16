@@ -17,9 +17,12 @@
             <!-- can also just disable button, but i like my solution better -->
             <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
                 🪥 {{ hero.damage }}</button> -->
-            <button v-if="hero.hasAttacked == false" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{ hero.damage
-              }}</button>
-            <button v-else class="btn btn-secondary" @click="heroAttack(hero)">🪥 {{ hero.damage }}</button>
+            <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{
+          hero.damage
+        }}</button>
+            <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
+              attacked this round</button>
+            <button v-if="hero.dead" class="btn btn-secondary">Revive for (insert) coins</button>
           </div>
         </div>
 
