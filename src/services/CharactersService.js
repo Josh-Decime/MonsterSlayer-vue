@@ -120,6 +120,7 @@ class CharactersService {
             characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
             characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * 2)
+            characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * 1.5)
         } else {
             Pop.error('You need more coins to upgrade that character!')
         }
@@ -138,7 +139,21 @@ class CharactersService {
     }
 
     specialMoveHeal(hero) {
-        // NOTE heal all equipped characters with this heroes healAmount & subtract AppState.playerPower by healCost
+        // TODO heal all equipped characters with this heroes healAmount & subtract AppState.playerPower by healCost
+        const characterToUpdate = AppState.Characters.find(
+            character => character.name == hero.name
+        )
+        if (AppState.playerPower >= characterToUpdate.healCost) {
+            AppState.playerPower -= characterToUpdate.healCost
+            AppState.equippedCharacters.forEach(person => {
+                if (!person.dead) {
+                    person.health += characterToUpdate.healAmount
+                }
+            })
+            characterToUpdate.hasAttacked = true
+        } else {
+            Pop.error('Not enough power')
+        }
     }
 
 
