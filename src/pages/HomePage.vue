@@ -22,7 +22,7 @@
         }}</button>
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               attacked this round</button>
-            <button v-if="hero.dead" class="btn btn-secondary" @click="reviveCharacter(hero)">Revive for {{
+            <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
           hero.reviveCost }} coins</button>
           </div>
         </div>
@@ -68,6 +68,7 @@ export default {
       if (theirHealth <= 0) {
         console.log('recognizing health is below 0');
         killBoss();
+        // NOTE reset hero.hasAttacked after boss dies? maybe not, this way you strategically choose who to have finish off the boss instead of just over-killing them
       }
     })
 
