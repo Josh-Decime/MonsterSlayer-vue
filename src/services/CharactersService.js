@@ -117,14 +117,21 @@ class CharactersService {
             characterToUpdate.health = characterToUpdate.maxHealth
             characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
             characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
+            characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * 2)
         } else {
             Pop.error('You need more coins to upgrade that character!')
         }
     }
 
     reviveCharacter(hero) {
-        if (hero.dead) {
+        const characterToUpdate = AppState.Characters.find(
+            character => character.name == hero.name
+        )
 
+        if (AppState.playerCoins >= characterToUpdate.reviveCost) {
+            AppState.playerCoins -= characterToUpdate.reviveCost
+            characterToUpdate.health = characterToUpdate.maxHealth
+            characterToUpdate.dead = false
         }
     }
 

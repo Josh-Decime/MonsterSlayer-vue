@@ -73,8 +73,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
-      // NOTE decided to calculate revive cost based on level
-      // reviveCost: 250,
+      reviveCost: 100,
     }),
     new Character({
       name: 'Bell',
@@ -88,6 +87,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      reviveCost: 100,
     }),
     new Character({
       name: 'Dorthy',
@@ -101,6 +101,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      reviveCost: 100,
     }),
     new Character({
       name: 'Jack',
@@ -114,6 +115,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      reviveCost: 100,
     }),
     new Character({
       name: 'Monii',
@@ -127,6 +129,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      reviveCost: 100,
     }),
     new Character({
       name: 'Walter',
@@ -140,6 +143,7 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      reviveCost: 100,
     }),
   ],
 

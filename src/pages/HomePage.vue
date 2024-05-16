@@ -22,7 +22,8 @@
         }}</button>
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               attacked this round</button>
-            <button v-if="hero.dead" class="btn btn-secondary">Revive for (insert) coins</button>
+            <button v-if="hero.dead" class="btn btn-secondary" @click="reviveCharacter(hero)">Revive for {{
+          hero.reviveCost }} coins</button>
           </div>
         </div>
 
@@ -121,6 +122,9 @@ export default {
     function quickAttack() {
       characterService.quickAttack()
     }
+    function reviveCharacter(hero) {
+      characterService.reviveCharacter(hero)
+    }
 
 
     return {
@@ -132,6 +136,7 @@ export default {
       yourCoins,
       endRound,
       quickAttack,
+      reviveCharacter
     }
   }
 }

@@ -18,7 +18,7 @@ export class Character {
         this.upgradeCost = data.upgradeCost
         this.hasAttacked = data.hasAttacked
         this.dead = data.dead || false
-        // NOTE decided to calculate revive cost based on level
-        // this.reviveCost = data.reviveCost
+        // NOTE decided it is easier to display & calculate if its here, its also more flexible if certain units cost more
+        this.reviveCost = data.reviveCost
     }
 }
