@@ -55,6 +55,9 @@ class CharactersService {
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
             Pop.success('Next round')
         }
+        if (AppState.playerPower < 100) {
+            AppState.playerPower += 10
+        }
     }
 
     quickAttack() {

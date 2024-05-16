@@ -2,7 +2,8 @@
   <section class="container-fluid">
     <section class="row">
       <div class="col-6">
-        <h3>Your Coins: {{ yourCoins }}</h3>
+        <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
+        <span class="fs-3 mx-5">Your Power: {{ yourPower }}💪</span>
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
@@ -17,11 +18,11 @@
             <!-- can also just disable button, but i like my solution better -->
             <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
                 🪥 {{ hero.damage }}</button> -->
-            <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">🪥 {{
-          hero.damage
-        }}</button>
+            <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">
+              🪥 {{ hero.damage }}</button>
+
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
-              attacked this round</button>
+              used their turn this round</button>
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
           hero.reviveCost }} coins</button>
           </div>
@@ -109,6 +110,9 @@ export default {
     const yourCoins = computed(() => {
       return AppState.playerCoins
     })
+    const yourPower = computed(() => {
+      return AppState.playerPower
+    })
 
 
     function heroAttack(hero) {
@@ -138,6 +142,7 @@ export default {
       endRound,
       quickAttack,
       reviveCharacter,
+      yourPower,
     }
   }
 }
