@@ -73,6 +73,8 @@ export const AppState = reactive({
       equip: false,
       upgradeCost: 100,
       hasAttacked: false,
+      // NOTE decided to calculate revive cost based on level
+      // reviveCost: 250,
     }),
     new Character({
       name: 'Bell',

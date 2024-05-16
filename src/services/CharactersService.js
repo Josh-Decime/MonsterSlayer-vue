@@ -122,6 +122,12 @@ class CharactersService {
         }
     }
 
+    reviveCharacter(hero) {
+        if (hero.dead) {
+
+        }
+    }
+
     // NOTE build a function to quick attack, all characters attack at the same time & it auto ends round
 
 
