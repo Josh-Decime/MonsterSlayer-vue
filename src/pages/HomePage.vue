@@ -136,7 +136,7 @@ export default {
       yourCoins,
       endRound,
       quickAttack,
-      reviveCharacter
+      reviveCharacter,
     }
   }
 }

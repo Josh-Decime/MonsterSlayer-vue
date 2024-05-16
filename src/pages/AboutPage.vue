@@ -12,13 +12,19 @@
         <p class="my-0">Health: {{ hero.health }}/{{ hero.maxHealth }}</p>
         <p class="m-0">Damage: {{ hero.damage }}</p>
         <!-- NOTE I purposefully wrote the :class disable 2 different ways to reference that it can be achieved both ways -->
-        <button v-if="hero.unlocked" class="btn btn-primary" :class="{ 'disabled': yourCoins < hero.upgradeCost }"
-          @click="upgradeCharacter(hero)">
+        <button v-if="hero.unlocked && !hero.dead" class="btn btn-primary"
+          :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="upgradeCharacter(hero)">
           {{ hero.upgradeCost }} Upgrade</button>
-        <button v-else="" :class="{ 'btn btn-primary': true, 'disabled': yourCoins < hero.purchasePrice }"
+
+        <button v-if="!hero.unlocked" :class="{ 'btn btn-primary': true, 'disabled': yourCoins < hero.purchasePrice }"
           @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
+
+        <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
+      hero.reviveCost }} coins</button>
+
         <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
           @click="equipCharacter(hero)">Equip</button>
+
         <button v-if="hero.unlocked && hero.equip" class="btn btn-secondary"
           @click="unEquipCharacter(hero)">Un-equip</button>
       </div>
@@ -71,6 +77,10 @@ export default {
       characterService.upgradeCharacter(hero)
     }
 
+    function reviveCharacter(hero) {
+      characterService.reviveCharacter(hero)
+    }
+
     console.log('hero for sale', heroesForSale)
     return {
       heroesForSale,
@@ -80,6 +90,7 @@ export default {
       equipCharacter,
       unEquipCharacter,
       upgradeCharacter,
+      reviveCharacter,
     }
   }
 }
