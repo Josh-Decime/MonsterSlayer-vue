@@ -19,5 +19,10 @@ export class Character {
         this.hasAttacked = data.hasAttacked
         this.dead = data.dead || false
         this.reviveCost = data.reviveCost
+
+        // SECTION special moves
+        this.healer = data.healer || false
+        this.healAmount = data.healAmount || null
+        this.healCost = data.healCost || null
     }
 }

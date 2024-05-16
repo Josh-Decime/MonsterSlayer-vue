@@ -21,6 +21,9 @@
             <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">
               🪥 {{ hero.damage }}</button>
 
+            <button v-if="hero.healer" class="btn btn-secondary">Pay 💪{{ hero.healCost }} to heal ➕{{ hero.healAmount
+              }}</button>
+
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{

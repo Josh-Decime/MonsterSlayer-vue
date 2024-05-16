@@ -88,6 +88,9 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      healer: true,
+      healAmount: 5,
+      healCost: 50,
     }),
     new Character({
       name: 'Dorthy',
@@ -102,6 +105,9 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      healer: true,
+      healAmount: 3,
+      healCost: 30,
     }),
     new Character({
       name: 'Jack',

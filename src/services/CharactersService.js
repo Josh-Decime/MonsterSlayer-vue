@@ -50,7 +50,6 @@ class CharactersService {
                     person.health = 0
                     console.log('died:', person)
                 }
-                // NOTE check health & if they died set dead to true
             })
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
             Pop.success('Next round')
@@ -138,7 +137,10 @@ class CharactersService {
         }
     }
 
-    // NOTE build a function to quick attack, all characters attack at the same time & it auto ends round
+    specialMoveHeal(hero) {
+        // NOTE heal all equipped characters with this heroes healAmount & subtract AppState.playerPower by healCost
+    }
+
 
 
 
