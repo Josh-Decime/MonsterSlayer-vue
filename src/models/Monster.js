@@ -13,5 +13,10 @@ export class Monster {
         this.maxHealth = data.maxHealth
         this.level = data.level
         this.coins = data.coins
+
+        // TODO % chance for critical strikes
+
+
+        // NOTE special moves for bosses, chosen the round before & gives warning that it will activate after the round ends
     }
 }
