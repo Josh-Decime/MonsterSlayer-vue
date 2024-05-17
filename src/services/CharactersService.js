@@ -101,11 +101,16 @@ class CharactersService {
         }
     }
 
+    // TODO stop people from un equipping their character if they .hasAttacked so they cant un equip to avoid taking damage on characters after they made their move
     unEquipCharacter(hero) {
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name
         )
-        characterToUpdate.equip = false
+        if (!characterToUpdate.hasAttacked) {
+            characterToUpdate.equip = false
+        } else {
+            Pop.error('This character made their move this turn & cant be unequipped until next round')
+        }
     }
 
     upgradeCharacter(hero) {
