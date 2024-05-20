@@ -168,6 +168,7 @@ class CharactersService {
                 character => character.name == hero.name
             )
             characterToUpdate.hasAttacked = true
+            AppState.playerPower -= hero.strikeCost
         } else {
             Pop.error('Can not attack')
         }
