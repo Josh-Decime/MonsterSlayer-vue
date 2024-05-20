@@ -136,6 +136,9 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      striker: true,
+      strikeAmount: 17,
+      strikeCost: 50,
     }),
     new Character({
       name: 'Walter',
@@ -150,6 +153,9 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      striker: true,
+      strikeAmount: 15,
+      strikeCost: 30,
     }),
   ],
 

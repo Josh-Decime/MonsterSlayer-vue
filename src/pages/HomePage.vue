@@ -24,6 +24,9 @@
             <button v-if="hero.healer && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="specialMoveHeal(hero)">Pay 💪{{ hero.healCost }} to heal ➕{{ hero.healAmount }}</button>
 
+            <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
+              @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
+
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
@@ -139,6 +142,10 @@ export default {
       characterService.specialMoveHeal(hero)
     }
 
+    function strikeAttack(hero) {
+      characterService.strikeAttack(hero)
+    }
+
 
     return {
       boss,
@@ -152,6 +159,7 @@ export default {
       reviveCharacter,
       yourPower,
       specialMoveHeal,
+      strikeAttack,
     }
   }
 }

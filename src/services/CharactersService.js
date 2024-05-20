@@ -125,6 +125,7 @@ class CharactersService {
             characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * 2)
             characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * 1.5)
+            characterToUpdate.strikeAmount = Math.round(characterToUpdate.strikeAmount * 1.5)
         } else {
             Pop.error('You need more coins to upgrade that character!')
         }
@@ -157,6 +158,18 @@ class CharactersService {
             characterToUpdate.hasAttacked = true
         } else {
             Pop.error('Not enough power')
+        }
+    }
+
+    strikeAttack(hero) {
+        if (!hero.hasAttacked && !hero.dead && AppState.playerPower >= hero.strikeCost) {
+            AppState.activeMonster.health -= hero.strikeAmount
+            const characterToUpdate = AppState.Characters.find(
+                character => character.name == hero.name
+            )
+            characterToUpdate.hasAttacked = true
+        } else {
+            Pop.error('Can not attack')
         }
     }
 
