@@ -105,9 +105,10 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
-      healer: true,
-      healAmount: 3,
-      healCost: 30,
+      healerOverTime: true,
+      healOverTimeAmount: 2,
+      healOverTimeCost: 60,
+      healOverTimeDuration: 3,
     }),
     new Character({
       name: 'Jack',

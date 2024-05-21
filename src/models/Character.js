@@ -21,11 +21,19 @@ export class Character {
         this.reviveCost = data.reviveCost
 
         // SECTION special moves
+
+        // NOTE I was thinking of just having one countdown for simplicity but these will have to be unique for every condition or it will be impossible to have multiple count down effects
+        this.effectTurnCount = data.effectTurnCount || 0
+
         this.healer = data.healer || false
         this.healAmount = data.healAmount || null
         this.healCost = data.healCost || null
 
-        // TODO striker- small damage boost for one attack
+        this.healerOverTime = data.healerOverTime || false
+        this.healOverTimeAmount = data.healOverTimeAmount || null
+        this.healOverTimeCost = data.healOverTimeCost || null
+        this.healOverTimeDuration = data.healOverTimeDuration || null
+
         this.striker = data.striker || false
         this.strikeAmount = data.strikeAmount || null
         this.strikeCost = data.strikeCost || null

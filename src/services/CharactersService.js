@@ -5,7 +5,7 @@ import Pop from "../utils/Pop.js";
 
 class CharactersService {
 
-    // SECTION HomePage AKA battle page
+    // NOTE some of these should be moved to a new service for game controls, so the character service is not so full of functions that are about game functionality rather than the characters
     equipTeam() {
         AppState.equippedCharacters.length = 0
         AppState.Characters.forEach(person => {
@@ -49,6 +49,10 @@ class CharactersService {
                     person.dead = true
                     person.health = 0
                     console.log('died:', person)
+                }
+                // NOTE this was a good test & it works, these will have to be unique to each move that wants a counter & maybe this should be another function that handles all of that, which just gets evoked here
+                if (person.effectTurnCount >= 1) {
+                    person.effectTurnCount--
                 }
             })
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
