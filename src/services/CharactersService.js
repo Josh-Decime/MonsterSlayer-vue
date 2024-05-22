@@ -50,10 +50,8 @@ class CharactersService {
                     person.health = 0
                     console.log('died:', person)
                 }
-                // NOTE this was a good test & it works, these will have to be unique to each move that wants a counter & maybe this should be another function that handles all of that, which just gets evoked here
-                if (person.effectTurnCount >= 1) {
-                    person.effectTurnCount--
-                }
+
+                this.turnCounterHandler()
             })
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
             Pop.success('Next round')
@@ -61,6 +59,15 @@ class CharactersService {
         if (AppState.playerPower < 100) {
             AppState.playerPower += 10
         }
+    }
+
+    turnCounterHandler() {
+        // console.log('handling turn counter')
+        AppState.equippedCharacters.forEach(hero => {
+            if (hero.healOverTimeCounter >= 1) {
+                hero.healOverTimeCounter--
+            }
+        })
     }
 
     quickAttack() {
@@ -148,7 +155,6 @@ class CharactersService {
     }
 
     specialMoveHeal(hero) {
-        // TODO heal all equipped characters with this heroes healAmount & subtract AppState.playerPower by healCost
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name
         )
@@ -162,6 +168,12 @@ class CharactersService {
             characterToUpdate.hasAttacked = true
         } else {
             Pop.error('Not enough power')
+        }
+    }
+
+    setHealOverTime(hero) {
+        if (AppState.playerPower >= hero.healOverTimeCost) {
+            console.log('test')
         }
     }
 

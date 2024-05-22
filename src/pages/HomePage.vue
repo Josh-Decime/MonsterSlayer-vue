@@ -24,6 +24,10 @@
             <button v-if="hero.healer && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="specialMoveHeal(hero)">Pay 💪{{ hero.healCost }} to heal ➕{{ hero.healAmount }}</button>
 
+            <button v-if="hero.healerOverTime && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
+              @click="setHealOverTime(hero)">Pay 💪{{ hero.healOverTimeCost }} to heal ➕{{ hero.healOverTimeAmount }}
+              for {{ hero.healOverTimeDuration }} rounds</button>
+
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
 
@@ -146,6 +150,10 @@ export default {
       characterService.strikeAttack(hero)
     }
 
+    function setHealOverTime(hero) {
+      characterService.setHealOverTime(hero)
+    }
+
 
     return {
       boss,
@@ -160,6 +168,7 @@ export default {
       yourPower,
       specialMoveHeal,
       strikeAttack,
+      setHealOverTime,
     }
   }
 }

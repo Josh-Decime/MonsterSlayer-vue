@@ -33,6 +33,8 @@ export class Character {
         this.healOverTimeAmount = data.healOverTimeAmount || null
         this.healOverTimeCost = data.healOverTimeCost || null
         this.healOverTimeDuration = data.healOverTimeDuration || null
+        this.healOverTimeCounter = data.healOverTimeCounter || 0
+        this.healOverTimeBy = this.healOverTimeBy || null
 
         this.striker = data.striker || false
         this.strikeAmount = data.strikeAmount || null
