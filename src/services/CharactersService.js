@@ -173,7 +173,17 @@ class CharactersService {
 
     setHealOverTime(hero) {
         if (AppState.playerPower >= hero.healOverTimeCost) {
-            console.log('test')
+            AppState.playerPower -= hero.healOverTimeCost
+            AppState.equippedCharacters.forEach(equippedHero => {
+                if (!equippedHero.dead) {
+                    equippedHero.healOverTimeCounter = hero.healOverTimeDuration
+                    equippedHero.healOverTimeBy = hero.name
+                    equippedHero.healOverTimeCounter--
+                    equippedHero.health += hero.healOverTimeAmount
+                    console.log('hero effected by heal over time', equippedHero)
+                }
+            })
+            hero.hasAttacked = true
         }
     }
 

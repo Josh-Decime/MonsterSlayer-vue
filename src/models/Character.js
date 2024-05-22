@@ -34,6 +34,7 @@ export class Character {
         this.healOverTimeCost = data.healOverTimeCost || null
         this.healOverTimeDuration = data.healOverTimeDuration || null
         this.healOverTimeCounter = data.healOverTimeCounter || 0
+        // NOTE i set it to save who is healing them to pull the healOverTimeAmount from them instead of just setting the healOverTimeAmount on all the characters to the amount because that would change that value on any other healerOverTime. Would have been an easier solution if i thought there would only ever be one character that can heal over time.
         this.healOverTimeBy = this.healOverTimeBy || null
 
         this.striker = data.striker || false
