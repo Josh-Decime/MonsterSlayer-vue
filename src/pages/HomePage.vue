@@ -8,7 +8,11 @@
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
             <p class="my-0 fs-4 bold">{{ hero.name }}: Lvl {{ hero.level }}</p>
-            <p class="my-0">Health: {{ hero.health }} / {{ hero.maxHealth }}</p>
+            <div>
+              <span class="my-0">Health: {{ hero.health }}/{{ hero.maxHealth }}</span>
+              <span v-if="hero.healOverTimeCounter"> Healing ➕{{ hero.healOverTimeAmountHolder }} for
+                {{ hero.healOverTimeCounter }} more rounds</span>
+            </div>
             <!-- <div class="progress">
               <div :class="`progress-bar`" role="progressbar"
                 :style="{ width: `${(hero.health / hero.maxHealth) * 100}%` }">

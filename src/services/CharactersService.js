@@ -181,6 +181,7 @@ class CharactersService {
                 if (!equippedHero.dead) {
                     equippedHero.healOverTimeCounter = hero.healOverTimeDuration
                     equippedHero.healOverTimeBy = hero.name
+                    equippedHero.healOverTimeAmountHolder = hero.healOverTimeAmount
                     equippedHero.healOverTimeCounter--
                     equippedHero.health += hero.healOverTimeAmount
                     console.log('hero effected by heal over time', equippedHero)
@@ -198,12 +199,13 @@ class CharactersService {
     // NOTE this is triggered by turnCounterHandler()
     healOverTimeContinuousEffect(hero) {
         hero.healOverTimeCounter--
-        const healer = AppState.Characters.find(
-            // NOTE when comparing it is important to use == not = ..wow that was a lot harder to troubleshoot than it should have been because after this happens it never put the other heroes into the console since they were all named Dorothy. I could have caught that if I used a unique ID instead of using names.. price of straying from convention I suppose
-            character => character.name == hero.healOverTimeBy
-        )
-        hero.health += healer.healOverTimeAmount
-        Pop.success(`${hero.name} was healed ➕${healer.healOverTimeAmount}`)
+        // NOTE this way works but it was an overcomplicated way of doing this, when I wanted to display the amount they will be healed by & for how many rounds I realized that I couldn't display this number the way that I had it & laughed to myself that there was a much easier way to do this
+        // const healer = AppState.Characters.find(
+        //     character => character.name == hero.healOverTimeBy
+        // )
+        // hero.health += healer.healOverTimeAmount
+        hero.health += hero.healOverTimeAmountHolder
+        // Pop.success(`${hero.name} was healed ➕${healer.healOverTimeAmount}`)
         console.log('healing:', hero)
     }
 
