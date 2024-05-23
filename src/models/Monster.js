@@ -15,10 +15,11 @@ export class Monster {
         this.maxHealth = data.maxHealth
         this.level = data.level
         this.coins = data.coins
-
-        // TODO % chance for critical strikes
-
+        this.specialActivated = data.specialActivated || false
 
         // NOTE special moves for bosses, chosen the round before & gives warning that it will activate after the round ends
+        this.striker = data.striker || false
+        this.strikerAmount = data.strikerAmount || null
+        this.strikeCost = data.strikeCost || null
     }
 }

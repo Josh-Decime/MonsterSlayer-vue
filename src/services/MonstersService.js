@@ -35,8 +35,9 @@ class MonstersService {
                     damage = Math.round(damage)
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
-
+                // TODO add special effect if it was activated last round
                 person.health -= damage
+                // TODO decide if they will have a special effect active next round
             }
         })
     }
