@@ -23,6 +23,7 @@ class CharactersService {
                 character => character.name == hero.name
             )
             characterToUpdate.hasAttacked = true
+            console.log('attacking hero:', hero)
         } else {
             Pop.error('Can not attack')
         }
@@ -50,9 +51,10 @@ class CharactersService {
                     person.health = 0
                     console.log('died:', person)
                 }
-
-                this.turnCounterHandler()
+                console.log('hero:', person)
             })
+            this.turnCounterHandler()
+
             // NOTE I need a better way to represent the round successfully ended. This is a placeholder
             Pop.success('Next round')
         }
@@ -66,10 +68,7 @@ class CharactersService {
         AppState.equippedCharacters.forEach(hero => {
             console.log('hero healOverTimeCounter', hero.healOverTimeCounter)
             if (hero.healOverTimeCounter >= 1) {
-                // this.healOverTimeContinuousEffect()
-                console.log('yes')
-            } else {
-                console.log('no')
+                this.healOverTimeContinuousEffect(hero)
             }
         })
     }
@@ -188,6 +187,10 @@ class CharactersService {
                 }
             })
             hero.hasAttacked = true
+            // const characterToUpdate = AppState.Characters.find(
+            //     character => character.name == hero.name
+            // )
+            // characterToUpdate.hasAttacked = true
         } else {
             Pop.error('Not enough power')
         }
@@ -196,9 +199,11 @@ class CharactersService {
     healOverTimeContinuousEffect(hero) {
         hero.healOverTimeCounter--
         const healer = AppState.Characters.find(
-            character => character.name = hero.healOverTimeBy
+            // NOTE when comparing it is important to use == not = ..wow that was a lot harder to troubleshoot than it should have been because after this happens it never put the other heroes into the console since they were all named Dorothy. I could have caught that if I used a unique ID instead of using names.. price of straying from convention I suppose
+            character => character.name == hero.healOverTimeBy
         )
         hero.health += healer.healOverTimeAmount
+        Pop.success(`${hero.name} was healed ➕${healer.healOverTimeAmount}`)
         console.log('healing:', hero)
     }
 
