@@ -62,10 +62,14 @@ class CharactersService {
     }
 
     turnCounterHandler() {
-        // console.log('handling turn counter')
+        console.log('handling turn counter')
         AppState.equippedCharacters.forEach(hero => {
+            console.log('hero healOverTimeCounter', hero.healOverTimeCounter)
             if (hero.healOverTimeCounter >= 1) {
-                hero.healOverTimeCounter--
+                // this.healOverTimeContinuousEffect()
+                console.log('yes')
+            } else {
+                console.log('no')
             }
         })
     }
@@ -184,7 +188,18 @@ class CharactersService {
                 }
             })
             hero.hasAttacked = true
+        } else {
+            Pop.error('Not enough power')
         }
+    }
+    // NOTE this is triggered by turnCounterHandler()
+    healOverTimeContinuousEffect(hero) {
+        hero.healOverTimeCounter--
+        const healer = AppState.Characters.find(
+            character => character.name = hero.healOverTimeBy
+        )
+        hero.health += healer.healOverTimeAmount
+        console.log('healing:', hero)
     }
 
     strikeAttack(hero) {
