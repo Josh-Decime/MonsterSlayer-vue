@@ -21,6 +21,26 @@ class MonstersService {
         console.log('player is paid:', AppState.playerCoins)
     }
 
+    bossAttack() {
+        AppState.equippedCharacters.forEach(person => {
+            if (!person.dead) {
+                let damage = AppState.activeMonster.damage
+
+                const critChance = AppState.activeMonster.critChance
+                const critMultiplier = AppState.activeMonster.critMultiplier
+                const isCriticalHit = Math.random() < critChance
+
+                if (isCriticalHit) {
+                    damage *= critMultiplier
+                    damage = Math.round(damage)
+                    console.log('***Boom! Critical hit! Damage:', damage)
+                }
+
+                person.health -= damage
+            }
+        })
+    }
+
 
 
 

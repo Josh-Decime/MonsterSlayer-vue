@@ -9,6 +9,8 @@ export class Monster {
         this.name = data.name
         this.img = data.img
         this.damage = data.damage
+        this.critChance = data.critChance || 0.25
+        this.critMultiplier = data.critMultiplier || 2
         this.health = data.health
         this.maxHealth = data.maxHealth
         this.level = data.level

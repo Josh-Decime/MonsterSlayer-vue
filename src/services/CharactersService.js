@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { Character } from "../models/Character.js";
 import Pop from "../utils/Pop.js";
+import { monsterService } from "./MonstersService.js";
 
 
 class CharactersService {
@@ -41,10 +42,11 @@ class CharactersService {
             // NOTE I would like to request confirmation from player so they can end the round without attacking if they want for some reason. This works for now, not a high priority.
             Pop.error('Someone on your team has not attacked')
         } else {
+            monsterService.bossAttack()
             AppState.equippedCharacters.forEach(person => {
-                if (!person.dead) {
-                    person.health -= AppState.activeMonster.damage
-                }
+                // if (!person.dead) {
+                //     person.health -= AppState.activeMonster.damage
+                // }
                 person.hasAttacked = false
                 if (person.health <= 0) {
                     person.dead = true
