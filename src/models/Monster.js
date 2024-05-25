@@ -22,5 +22,6 @@ export class Monster {
         this.strikerDamage = data.strikerDamage || null
         this.strikerActivateChance = data.strikerActivateChance || null
         this.strikerSpecialActivated = data.strikerSpecialActivated || false
+        this.strikerAttacked = data.strikerAttacked || false
     }
 }

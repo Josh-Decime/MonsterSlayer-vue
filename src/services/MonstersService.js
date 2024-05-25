@@ -37,14 +37,20 @@ class MonstersService {
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
                 // TODO add special effect if it was activated last round
-                person.health -= damage
-                // TODO decide if they will have a special effect active next round
-                this.determineBossSpecialActivation()
+                // person.health -= damage
+                this.bossesMoveThisTurn(person, damage)
+
             }
         })
+        this.determineBossSpecialActivation()
     }
 
     determineBossSpecialActivation() {
+        // NOTE if striker attacked this last turn reset strikerSpecialActivated back to false so they don't keep using it over & over. I couldn't reset it when the attack is made because it iterates over each players character so if it reset after the attack it would only attack once
+        if (AppState.strikerAttacked) {
+            // FIXME this doesn't seem to be working, once striker activates they do 3 damage every time
+            AppState.activeMonster.strikerSpecialActivated = false
+        }
         if (AppState.activeMonster.striker) {
             const strikerActivated = Math.random() < AppState.activeMonster.strikerActivateChance
             if (strikerActivated) {
@@ -52,6 +58,21 @@ class MonstersService {
                 console.log('*** STRIKER MOVE ACTIVATED!')
             }
         }
+    }
+
+    bossesMoveThisTurn(person, damage) {
+        if (AppState.activeMonster.strikerSpecialActivated) {
+            this.bossStrikerSpecialAttack(person)
+        }
+
+        else {
+            person.health -= damage
+        }
+    }
+
+    bossStrikerSpecialAttack(person) {
+        person.health -= AppState.activeMonster.strikerDamage
+        AppState.activeMonster.strikerAttacked = true
     }
 
 
