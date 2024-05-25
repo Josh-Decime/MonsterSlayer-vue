@@ -10,6 +10,7 @@ class MonstersService {
         AppState.activeMonster.health = AppState.activeMonster.maxHealth
         AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * 1.5)
         AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
+        AppState.activeMonster.strikerDamage = Math.round(AppState.activeMonster.strikerDamage * 1.5)
         AppState.monsters.push(AppState.activeMonster)
         AppState.activeMonster = AppState.monsters.shift()
         console.log('the new boss is:', AppState.activeMonster)
@@ -47,7 +48,7 @@ class MonstersService {
 
     determineBossSpecialActivation() {
         // NOTE if striker attacked this last turn reset strikerSpecialActivated back to false so they don't keep using it over & over. I couldn't reset it when the attack is made because it iterates over each players character so if it reset after the attack it would only attack once
-        if (AppState.strikerAttacked) {
+        if (AppState.activeMonster.strikerAttacked) {
             // FIXME this doesn't seem to be working, once striker activates they do 3 damage every time
             AppState.activeMonster.strikerSpecialActivated = false
         }

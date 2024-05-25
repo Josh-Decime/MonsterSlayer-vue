@@ -23,5 +23,11 @@ export class Monster {
         this.strikerActivateChance = data.strikerActivateChance || null
         this.strikerSpecialActivated = data.strikerSpecialActivated || false
         this.strikerAttacked = data.strikerAttacked || false
+
+        this.healer = data.healer || false
+        this.healAmount = data.healAmount || null
+        this.healActivateChance = data.healActivateChance || null
+        this.healSpecialActivated = data.healSpecialActivated || false
+        this.healUsed = data.healUsed || false
     }
 }
