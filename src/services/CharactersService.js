@@ -141,6 +141,7 @@ class CharactersService {
             characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * 2)
             characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * 1.5)
+            characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * 1.5)
             characterToUpdate.strikeAmount = Math.round(characterToUpdate.strikeAmount * 1.5)
         } else {
             Pop.error('You need more coins to upgrade that character!')

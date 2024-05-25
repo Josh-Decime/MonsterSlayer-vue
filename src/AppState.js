@@ -19,6 +19,9 @@ export const AppState = reactive({
       maxHealth: 25,
       level: 1,
       coins: 100,
+      striker: true,
+      strikerDamage: 3,
+      strikerActivateChance: 0.25
     }),
     new Monster({
       name: 'Fungal Fred',

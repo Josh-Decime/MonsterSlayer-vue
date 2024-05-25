@@ -14,6 +14,7 @@ class MonstersService {
         AppState.activeMonster = AppState.monsters.shift()
         console.log('the new boss is:', AppState.activeMonster)
     }
+    // TODO I need to make it so the player can only visit the store between bosses, if they can go to the store any time & just swap out their team then I cant pre-announce boss special moves or the player can just un-equip their team & equip a low level they don't care about to take the blow... alternatively I could just make it so when the boss activates a special you cant un-equip your team.. but the first option makes more sense & makes it feel more strategic, like when you kill a boss matters. 
 
     payPlayer() {
         console.log('player coins before:', AppState.playerCoins)
@@ -38,8 +39,19 @@ class MonstersService {
                 // TODO add special effect if it was activated last round
                 person.health -= damage
                 // TODO decide if they will have a special effect active next round
+                this.determineBossSpecialActivation()
             }
         })
+    }
+
+    determineBossSpecialActivation() {
+        if (AppState.activeMonster.striker) {
+            const strikerActivated = Math.random() < AppState.activeMonster.strikerActivateChance
+            if (strikerActivated) {
+                AppState.activeMonster.strikerSpecialActivated = true
+                console.log('*** STRIKER MOVE ACTIVATED!')
+            }
+        }
     }
 
 
