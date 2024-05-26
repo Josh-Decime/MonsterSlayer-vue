@@ -59,11 +59,26 @@ class MonstersService {
                 console.log('*** STRIKER MOVE ACTIVATED!')
             }
         }
+
+        if (AppState.activeMonster.healUsed) {
+            AppState.activeMonster.healSpecialActivated = false
+        }
+        if (AppState.activeMonster.healer) {
+            const healActivated = Math.random() < AppState.activeMonster.healActivateChance
+            if (healActivated) {
+                AppState.activeMonster.healSpecialActivated = true
+                console.log('*** HEALER MOVE ACTIVATED')
+            }
+        }
     }
 
     bossesMoveThisTurn(person, damage) {
         if (AppState.activeMonster.strikerSpecialActivated) {
             this.bossStrikerSpecialAttack(person)
+        }
+
+        if (AppState.activeMonster.healSpecialActivated) {
+            this.bossHealerSpecialMove()
         }
 
         else {
@@ -74,6 +89,11 @@ class MonstersService {
     bossStrikerSpecialAttack(person) {
         person.health -= AppState.activeMonster.strikerDamage
         AppState.activeMonster.strikerAttacked = true
+    }
+
+    bossHealerSpecialMove() {
+        AppState.activeMonster.health += AppState.activeMonster.healAmount
+        AppState.activeMonster.healUsed = true
     }
 
 

@@ -21,7 +21,7 @@ export const AppState = reactive({
       coins: 100,
       striker: true,
       strikerDamage: 3,
-      strikerActivateChance: 0.25
+      strikerActivateChance: 0.25,
     }),
     new Monster({
       name: 'Fungal Fred',
@@ -31,6 +31,9 @@ export const AppState = reactive({
       maxHealth: 50,
       level: 1,
       coins: 250,
+      healer: true,
+      healAmount: 20,
+      healActivateChance: 0.15,
     }),
     new Monster({
       name: 'Cold Carl',
