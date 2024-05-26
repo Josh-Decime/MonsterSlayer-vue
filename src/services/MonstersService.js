@@ -93,6 +93,9 @@ class MonstersService {
 
     bossHealerSpecialMove() {
         AppState.activeMonster.health += AppState.activeMonster.healAmount
+        if (AppState.activeMonster.health > AppState.activeMonster.maxHealth) {
+            AppState.activeMonster.health = AppState.activeMonster.maxHealth
+        }
         AppState.activeMonster.healUsed = true
     }
 
