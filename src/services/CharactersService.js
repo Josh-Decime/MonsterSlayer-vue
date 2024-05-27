@@ -169,6 +169,7 @@ class CharactersService {
             AppState.equippedCharacters.forEach(person => {
                 if (!person.dead) {
                     person.health += characterToUpdate.healAmount
+                    this.capAtMaxHealth(person)
                 }
             })
             characterToUpdate.hasAttacked = true
@@ -187,6 +188,7 @@ class CharactersService {
                     equippedHero.healOverTimeAmountHolder = hero.healOverTimeAmount
                     equippedHero.healOverTimeCounter--
                     equippedHero.health += hero.healOverTimeAmount
+                    this.capAtMaxHealth(equippedHero)
                     console.log('hero effected by heal over time', equippedHero)
                 }
             })
@@ -209,6 +211,7 @@ class CharactersService {
         // hero.health += healer.healOverTimeAmount
         hero.health += hero.healOverTimeAmountHolder
         // Pop.success(`${hero.name} was healed ➕${healer.healOverTimeAmount}`)
+        this.capAtMaxHealth(hero)
         console.log('healing:', hero)
     }
 
@@ -222,6 +225,12 @@ class CharactersService {
             AppState.playerPower -= hero.strikeCost
         } else {
             Pop.error('Can not attack')
+        }
+    }
+
+    capAtMaxHealth(hero) {
+        if (hero.health > hero.maxHealth) {
+            hero.health = hero.maxHealth
         }
     }
 
