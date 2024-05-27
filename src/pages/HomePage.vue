@@ -59,6 +59,10 @@
             :style="{ width: `${(boss.health / boss.maxHealth) * 100}%` }">
           </div>
         </div>
+        <div>
+          <p v-if="boss.strikerSpecialActivated">Charging up to deal {{ boss.strikerDamage }} next turn</p>
+          <p v-if="boss.healSpecialActivated">Charging up to heal {{ boss.healAmount }} next turn</p>
+        </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
     </section>
