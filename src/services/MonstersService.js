@@ -37,6 +37,10 @@ class MonstersService {
                     damage = Math.round(damage)
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
+
+                if (person.shieldActive) {
+                    console.log('shield is recognized')
+                }
                 // TODO add special effect if it was activated last round
                 // person.health -= damage
                 this.bossesMoveThisTurn(person, damage)

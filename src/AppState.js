@@ -80,6 +80,8 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      shield: true,
+      shieldCost: 40,
     }),
     new Character({
       name: 'Bell',

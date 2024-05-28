@@ -41,6 +41,10 @@ export class Character {
         this.strikeAmount = data.strikeAmount || null
         this.strikeCost = data.strikeCost || null
 
+        this.shield = data.shield || false
+        this.shieldCost = data.shieldCost || null
+        this.shieldActive = data.shieldActive || false
+
         // TODO kamakazi- does very high damage at the cost of health, one attack
         // TODO berserk- increase damage & damage taken over time
         // TODO morale- small health increase over time

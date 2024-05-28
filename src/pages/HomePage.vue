@@ -32,6 +32,10 @@
               @click="setHealOverTime(hero)">Pay 💪{{ hero.healOverTimeCost }} to heal ➕{{ hero.healOverTimeAmount }}
               for {{ hero.healOverTimeDuration }} rounds</button>
 
+            <button v-if="hero.shield" class="btn btn-secondary" @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
+              }} to block all damage next
+              round</button>
+
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
 
@@ -162,6 +166,10 @@ export default {
       characterService.setHealOverTime(hero)
     }
 
+    function activateShield(hero) {
+      characterService.activateShield(hero)
+    }
+
 
     return {
       boss,
@@ -177,6 +185,7 @@ export default {
       specialMoveHeal,
       strikeAttack,
       setHealOverTime,
+      activateShield,
     }
   }
 }

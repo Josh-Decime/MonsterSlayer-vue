@@ -234,6 +234,15 @@ class CharactersService {
         }
     }
 
+    activateShield(hero) {
+        if (AppState.playerPower >= hero.shieldCost) {
+            AppState.playerPower -= hero.shieldCost
+            AppState.equippedCharacters.forEach(equippedHero => {
+                equippedHero.shieldActive = true
+            })
+        }
+    }
+
 
 
 
