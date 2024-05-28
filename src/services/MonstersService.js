@@ -38,9 +38,6 @@ class MonstersService {
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
 
-                if (person.shieldActive) {
-                    console.log('shield is recognized')
-                }
                 // TODO add special effect if it was activated last round
                 // person.health -= damage
                 this.bossesMoveThisTurn(person, damage)
@@ -83,6 +80,10 @@ class MonstersService {
 
         if (AppState.activeMonster.healSpecialActivated) {
             this.bossHealerSpecialMove()
+        }
+
+        if (person.shieldActive) {
+            person.shieldActive = false
         }
 
         // FIXME It is adding the striker damage & the regular damage together, but it doesn't deal damage when the heal is used. I actually like it working that way, but would like to find out what happened because that isn't how I intended it to be
