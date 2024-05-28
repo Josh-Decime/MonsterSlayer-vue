@@ -81,9 +81,10 @@ class MonstersService {
         if (AppState.activeMonster.healSpecialActivated) {
             this.bossHealerSpecialMove()
         }
-
+        // FIXME if they are using a special move they still deal damage
         if (person.shieldActive) {
             person.shieldActive = false
+            console.log('attack blocked')
         }
 
         // FIXME It is adding the striker damage & the regular damage together, but it doesn't deal damage when the heal is used. I actually like it working that way, but would like to find out what happened because that isn't how I intended it to be
@@ -93,7 +94,9 @@ class MonstersService {
     }
 
     bossStrikerSpecialAttack(person) {
-        person.health -= AppState.activeMonster.strikerDamage
+        if (!person.shieldActive) {
+            person.health -= AppState.activeMonster.strikerDamage
+        }
         AppState.activeMonster.strikerAttacked = true
     }
 

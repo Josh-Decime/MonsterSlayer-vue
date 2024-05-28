@@ -240,6 +240,7 @@ class CharactersService {
             AppState.equippedCharacters.forEach(equippedHero => {
                 equippedHero.shieldActive = true
             })
+            hero.hasAttacked = true
         }
     }
 

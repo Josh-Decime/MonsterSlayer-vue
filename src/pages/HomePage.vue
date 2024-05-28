@@ -32,7 +32,8 @@
               @click="setHealOverTime(hero)">Pay 💪{{ hero.healOverTimeCost }} to heal ➕{{ hero.healOverTimeAmount }}
               for {{ hero.healOverTimeDuration }} rounds</button>
 
-            <button v-if="hero.shield" class="btn btn-secondary" @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
+            <button v-if="hero.shield && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
+              @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
               }} to block all damage next
               round</button>
 
