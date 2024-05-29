@@ -85,7 +85,7 @@ class MonstersService {
         if (AppState.activeMonster.strikerSpecialActivated) {
             this.bossStrikerSpecialAttack(person)
         }
-
+        // FIXME boss is double healing
         if (AppState.activeMonster.healSpecialActivated) {
             this.bossHealerSpecialMove()
         }

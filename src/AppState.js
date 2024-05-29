@@ -133,6 +133,8 @@ export const AppState = reactive({
       upgradeCost: 100,
       hasAttacked: false,
       reviveCost: 100,
+      overcharge: true,
+      overchargeAmount: 10,
     }),
     new Character({
       name: 'Monii',

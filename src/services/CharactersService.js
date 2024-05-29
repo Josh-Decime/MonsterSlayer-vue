@@ -230,6 +230,11 @@ class CharactersService {
         }
     }
 
+    overchargeSpecialUsed(hero) {
+        AppState.playerPower += hero.overchargeAmount
+        hero.hasAttacked = true
+    }
+
 
 
 

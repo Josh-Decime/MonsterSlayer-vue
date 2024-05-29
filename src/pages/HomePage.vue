@@ -34,8 +34,10 @@
 
             <button v-if="hero.shield && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
-              }} to block all damage next
-              round</button>
+              }} to block all damage next round</button>
+
+            <button v-if="hero.overcharge && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
+              @click="overchargeSpecialUsed(hero)">Increase power by {{ hero.overchargeAmount }}</button>
 
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
@@ -172,6 +174,10 @@ export default {
       characterService.activateShield(hero)
     }
 
+    function overchargeSpecialUsed(hero) {
+      characterService.overchargeSpecialUsed(hero)
+    }
+
 
     return {
       boss,
@@ -188,6 +194,7 @@ export default {
       strikeAttack,
       setHealOverTime,
       activateShield,
+      overchargeSpecialUsed,
     }
   }
 }
