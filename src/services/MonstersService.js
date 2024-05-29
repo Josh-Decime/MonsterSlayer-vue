@@ -71,6 +71,14 @@ class MonstersService {
                 console.log('*** HEALER MOVE ACTIVATED')
             }
         }
+
+        if (AppState.activeMonster.shield) {
+            const shieldActivated = Math.random() < AppState.activeMonster.shieldActivateChance
+            if (shieldActivated) {
+                AppState.activeMonster.shieldSpecialActivated = true
+                console.log('*** SHIELD MOVE ACTIVATED!')
+            }
+        }
     }
 
     bossesMoveThisTurn(person, damage) {
@@ -81,7 +89,7 @@ class MonstersService {
         if (AppState.activeMonster.healSpecialActivated) {
             this.bossHealerSpecialMove()
         }
-        // FIXME if they are using a special move they still deal damage
+        // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
         if (person.shieldActive) {
             person.shieldActive = false
             console.log('attack blocked')

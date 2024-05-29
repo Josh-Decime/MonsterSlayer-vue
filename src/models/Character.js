@@ -47,8 +47,7 @@ export class Character {
 
         // TODO kamakazi- does very high damage at the cost of health, one attack
         // TODO berserk- increase damage & damage taken over time
-        // TODO morale- small health increase over time
-        // TODO shield- block enemy damage for all characters in one round
+        // TODO morale- adds temporary health which can boost over max health
         // TODO taunt- only that character gets attacked for X number of rounds
         // TODO protector- reduce damage to all characters for X rounds
 

@@ -29,5 +29,10 @@ export class Monster {
         this.healActivateChance = data.healActivateChance || null
         this.healSpecialActivated = data.healSpecialActivated || false
         this.healUsed = data.healUsed || false
+
+        this.shield = data.shield || false
+        this.shieldActivateChance = data.shieldActivateChance || null
+        this.shieldSpecialActivated = data.shieldSpecialActivated || false
+        this.shieldUsed = data.shieldUsed || false
     }
 }
