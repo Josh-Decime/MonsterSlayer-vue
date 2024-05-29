@@ -50,6 +50,7 @@ export class Character {
         // TODO morale- adds temporary health which can boost over max health
         // TODO taunt- only that character gets attacked for X number of rounds
         // TODO protector- reduce damage to all characters for X rounds
+        // TODO overcharge- gives up their turn to increase player power
 
 
 

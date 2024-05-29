@@ -19,11 +19,15 @@ class CharactersService {
 
     heroAttack(hero) {
         if (!hero.hasAttacked && !hero.dead) {
-            AppState.activeMonster.health -= hero.damage
-            const characterToUpdate = AppState.Characters.find(
-                character => character.name == hero.name
-            )
-            characterToUpdate.hasAttacked = true
+            // NOTE if the boss has their shield activated then the player can't deal standard attack damage. I'll allow special moves to still deal damage
+            if (!AppState.activeMonster.shieldSpecialActivated) {
+                AppState.activeMonster.health -= hero.damage
+            }
+            // const characterToUpdate = AppState.Characters.find(
+            //     character => character.name == hero.name
+            // )
+            // characterToUpdate.hasAttacked = true
+            hero.hasAttacked = true
             console.log('attacking hero:', hero)
         } else {
             Pop.error('Can not attack')

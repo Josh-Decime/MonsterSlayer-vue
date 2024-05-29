@@ -72,6 +72,9 @@ class MonstersService {
             }
         }
 
+        if (AppState.activeMonster.shieldUsed) {
+            AppState.activeMonster.shieldSpecialActivated = false
+        }
         if (AppState.activeMonster.shield) {
             const shieldActivated = Math.random() < AppState.activeMonster.shieldActivateChance
             if (shieldActivated) {
@@ -89,6 +92,11 @@ class MonstersService {
         if (AppState.activeMonster.healSpecialActivated) {
             this.bossHealerSpecialMove()
         }
+
+        if (AppState.activeMonster.shieldSpecialActivated) {
+            this.bossShieldSpecialMove()
+        }
+
         // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
         if (person.shieldActive) {
             person.shieldActive = false
@@ -114,6 +122,10 @@ class MonstersService {
             AppState.activeMonster.health = AppState.activeMonster.maxHealth
         }
         AppState.activeMonster.healUsed = true
+    }
+
+    bossShieldSpecialMove() {
+        AppState.activeMonster.shieldUsed = true
     }
 
 
