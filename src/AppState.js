@@ -44,7 +44,7 @@ export const AppState = reactive({
       level: 1,
       coins: 500,
       shield: true,
-      shieldActivateChance: .5,
+      shieldActivateChance: .2,
     }),
     new Monster({
       name: 'Tick Terry',

@@ -23,10 +23,6 @@ class CharactersService {
             if (!AppState.activeMonster.shieldSpecialActivated) {
                 AppState.activeMonster.health -= hero.damage
             }
-            // const characterToUpdate = AppState.Characters.find(
-            //     character => character.name == hero.name
-            // )
-            // characterToUpdate.hasAttacked = true
             hero.hasAttacked = true
             console.log('attacking hero:', hero)
         } else {
@@ -48,9 +44,6 @@ class CharactersService {
         } else {
             monsterService.bossAttack()
             AppState.equippedCharacters.forEach(person => {
-                // if (!person.dead) {
-                //     person.health -= AppState.activeMonster.damage
-                // }
                 person.hasAttacked = false
                 if (person.health <= 0) {
                     person.dead = true
@@ -83,7 +76,6 @@ class CharactersService {
         AppState.equippedCharacters.forEach(person => {
             if (!person.hasAttacked) {
                 this.heroAttack(person)
-                // console.log('this hero attacked:', person)
             }
         })
         this.endRound()
@@ -197,10 +189,6 @@ class CharactersService {
                 }
             })
             hero.hasAttacked = true
-            // const characterToUpdate = AppState.Characters.find(
-            //     character => character.name == hero.name
-            // )
-            // characterToUpdate.hasAttacked = true
         } else {
             Pop.error('Not enough power')
         }
@@ -208,13 +196,7 @@ class CharactersService {
     // NOTE this is triggered by turnCounterHandler()
     healOverTimeContinuousEffect(hero) {
         hero.healOverTimeCounter--
-        // NOTE this way works but it was an overcomplicated way of doing this, when I wanted to display the amount they will be healed by & for how many rounds I realized that I couldn't display this number the way that I had it & laughed to myself that there was a much easier way to do this
-        // const healer = AppState.Characters.find(
-        //     character => character.name == hero.healOverTimeBy
-        // )
-        // hero.health += healer.healOverTimeAmount
         hero.health += hero.healOverTimeAmountHolder
-        // Pop.success(`${hero.name} was healed ➕${healer.healOverTimeAmount}`)
         this.capAtMaxHealth(hero)
         console.log('healing:', hero)
     }

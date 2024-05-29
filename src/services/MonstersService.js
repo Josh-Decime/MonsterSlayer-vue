@@ -11,6 +11,7 @@ class MonstersService {
         AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * 1.5)
         AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
         AppState.activeMonster.strikerDamage = Math.round(AppState.activeMonster.strikerDamage * 1.5)
+        AppState.activeMonster.healAmount = Math.round(AppState.activeMonster.healAmount * 1.5)
         AppState.monsters.push(AppState.activeMonster)
         AppState.activeMonster = AppState.monsters.shift()
         console.log('the new boss is:', AppState.activeMonster)
@@ -38,8 +39,6 @@ class MonstersService {
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
 
-                // TODO add special effect if it was activated last round
-                // person.health -= damage
                 this.bossesMoveThisTurn(person, damage)
 
             }
@@ -48,9 +47,7 @@ class MonstersService {
     }
 
     determineBossSpecialActivation() {
-        // NOTE if striker attacked this last turn reset strikerSpecialActivated back to false so they don't keep using it over & over. I couldn't reset it when the attack is made because it iterates over each players character so if it reset after the attack it would only attack once
         if (AppState.activeMonster.strikerAttacked) {
-            // FIXME this doesn't seem to be working, once striker activates they do 3 damage every time
             AppState.activeMonster.strikerSpecialActivated = false
         }
         if (AppState.activeMonster.striker) {
@@ -103,7 +100,7 @@ class MonstersService {
             console.log('attack blocked')
         }
 
-        // FIXME It is adding the striker damage & the regular damage together, but it doesn't deal damage when the heal is used. I actually like it working that way, but would like to find out what happened because that isn't how I intended it to be
+        // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
         else {
             person.health -= damage
         }
