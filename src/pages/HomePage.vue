@@ -83,6 +83,7 @@ import { computed, ref, watch, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { monsterService } from '../services/MonstersService.js';
 import { characterService } from '../services/CharactersService.js'
+import { gameFunctionalityService } from '../services/GameFunctionalityService.js'
 export default {
   setup() {
 
@@ -145,11 +146,12 @@ export default {
       characterService.heroAttack(hero)
     }
 
-
+    // NOTE end round works after being moved to the game functionality service but it broke quick attack
     function endRound() {
-      characterService.endRound()
+      gameFunctionalityService.endRound()
     }
 
+    // FIXME 
     function quickAttack() {
       characterService.quickAttack()
     }
