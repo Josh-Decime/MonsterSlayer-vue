@@ -72,14 +72,14 @@ class CharactersService {
     //     })
     // }
 
-    quickAttack() {
-        AppState.equippedCharacters.forEach(person => {
-            if (!person.hasAttacked) {
-                this.heroAttack(person)
-            }
-        })
-        this.endRound()
-    }
+    // quickAttack() {
+    //     AppState.equippedCharacters.forEach(person => {
+    //         if (!person.hasAttacked) {
+    //             this.heroAttack(person)
+    //         }
+    //     })
+    //     this.endRound()
+    // }
 
     // SECTION AboutPage AKA store page
     buyCharacter(hero) {

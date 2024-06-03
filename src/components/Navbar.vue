@@ -18,6 +18,7 @@
           </router-link>
         </li>
       </ul>
+      <p class="text-light">Bosses defeated: {{ yourLevel }}</p>
       <!-- LOGIN COMPONENT HERE -->
       <div>
         <button class="btn text-light" @click="toggleTheme"><i class="mdi"
@@ -29,9 +30,10 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { AppState } from '../AppState.js';
 export default {
   setup() {
 
@@ -41,8 +43,13 @@ export default {
       document.documentElement.setAttribute('data-bs-theme', theme.value)
     })
 
+    const yourLevel = computed(() => {
+      return AppState.playerLevel
+    })
+
     return {
       theme,
+      yourLevel,
       toggleTheme() {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)

@@ -48,6 +48,15 @@ class GameFunctionalityService {
         })
     }
 
+    quickAttack() {
+        AppState.equippedCharacters.forEach(person => {
+            if (!person.hasAttacked) {
+                characterService.heroAttack(person)
+            }
+        })
+        this.endRound()
+    }
+
 }
 
 export const gameFunctionalityService = new GameFunctionalityService()

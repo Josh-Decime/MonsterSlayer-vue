@@ -4,7 +4,7 @@
       <div class="col-6">
         <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
         <span class="fs-3 mx-5">Your Power: {{ yourPower }}💪</span>
-        <span class="fs-3 mx-5">Your Level: {{ yourLevel }}</span>
+        <!-- <span class="fs-3 mx-5">Your Level: {{ yourLevel }}</span> -->
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
@@ -157,7 +157,7 @@ export default {
 
     // FIXME 
     function quickAttack() {
-      characterService.quickAttack()
+      gameFunctionalityService.quickAttack()
     }
 
     function reviveCharacter(hero) {
