@@ -139,6 +139,8 @@ class CharactersService {
             characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * 1.5)
             characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * 1.5)
             characterToUpdate.strikeAmount = Math.round(characterToUpdate.strikeAmount * 1.5)
+            characterToUpdate.kamikazeDamage = Math.round(characterToUpdate.kamikazeDamage * 1.5)
+            characterToUpdate.kamikazeHealthCost = Math.round(characterToUpdate.kamikazeHealthCost * 1.5)
         } else {
             Pop.error('You need more coins to upgrade that character!')
         }
@@ -220,6 +222,11 @@ class CharactersService {
             hero.health -= hero.kamikazeHealthCost
             hero.hasAttacked = true
             AppState.playerPower -= hero.kamikazePowerCost
+            if (hero.health <= 0) {
+                hero.dead = true
+                hero.health = 0
+                console.log('died:', hero)
+            }
         } else {
             Pop.error('Can not attack')
         }
