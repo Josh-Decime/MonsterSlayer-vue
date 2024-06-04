@@ -48,6 +48,11 @@ export class Character {
         this.overcharge = data.overcharge || false
         this.overchargeAmount = data.overchargeAmount || null
 
+        this.kamikaze = data.kamikaze || false
+        this.kamikazeDamage = data.kamikazeDamage || null
+        this.kamikazePowerCost = data.kamikazePowerCost || null
+        this.kamikazeHealthCost = data.kamikazeHealthCost || null
+
         // TODO kamakazi- does very high damage at the cost of health, one attack
         // TODO berserk- increase damage & damage taken over time
         // TODO morale- adds temporary health which can boost over max health

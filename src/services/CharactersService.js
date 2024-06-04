@@ -214,6 +214,17 @@ class CharactersService {
         }
     }
 
+    kamikazeAttack(hero) {
+        if (!hero.hasAttacked && !hero.dead && AppState.playerPower >= hero.kamikazePowerCost) {
+            AppState.activeMonster.health -= hero.kamikazeDamage
+            hero.health -= hero.kamikazeHealthCost
+            hero.hasAttacked = true
+            AppState.playerPower -= hero.kamikazePowerCost
+        } else {
+            Pop.error('Can not attack')
+        }
+    }
+
     capAtMaxHealth(hero) {
         if (hero.health > hero.maxHealth) {
             hero.health = hero.maxHealth
