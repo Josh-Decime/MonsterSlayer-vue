@@ -43,6 +43,10 @@
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
 
+            <button v-if="hero.kamikaze && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
+              @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} & -{{ hero.kamikazeHealthCost }} health
+              to deal {{ hero.kamikazeDamage }}</button>
+
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
@@ -184,6 +188,10 @@ export default {
       characterService.overchargeSpecialUsed(hero)
     }
 
+    function kamikazeAttack(hero) {
+      characterService.kamikazeAttack(hero)
+    }
+
 
     return {
       boss,
@@ -202,6 +210,7 @@ export default {
       activateShield,
       overchargeSpecialUsed,
       yourLevel,
+      kamikazeAttack
     }
   }
 }
