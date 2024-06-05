@@ -6,7 +6,8 @@ class MonstersService {
     // NOTE when adding a new move for the boss:
     // determineBossSpecialActivation: (if used, active = false) checks if it was used last round & resets it before checking if it should be activated this turn. If it is activated then it will be used next turn when  bossesMoveThisTurn runs
     //  bossesMoveThisTurn: does a check to see if that special is activated then runs the function that implements the special move
-    // Write your new function for the move
+    // Write your new function for the move 
+    // NOTE if the attack deals damage don't forget if(!hero.shieldActive) around the damage so it work affect shielded heros
     // Don't forget to increase any numbers that should scale in the killBoss function
     // Add UI indication for it being active, in HomePage
 
@@ -100,6 +101,7 @@ class MonstersService {
         }
     }
 
+    // TODO change person to hero & make sure nothing broke
     bossesMoveThisTurn(person, damage) {
         if (AppState.activeMonster.strikerSpecialActivated) {
             this.bossStrikerSpecialAttack(person)
@@ -117,6 +119,10 @@ class MonstersService {
         if (person.shieldActive) {
             person.shieldActive = false
             console.log('attack blocked')
+        }
+
+        if (AppState.activeMonster.kamikazeSpecialActivated) {
+            this.bossKamikazeSpecialMove()
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
@@ -142,6 +148,14 @@ class MonstersService {
 
     bossShieldSpecialMove() {
         AppState.activeMonster.shieldUsed = true
+    }
+
+    bossKamikazeSpecialMove(person) {
+        if (!person.shieldActive) {
+            person.health -= AppState.activeMonster.kamikazeDamage
+        }
+        AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
+        AppState.activeMonster.kamikazeUsed = true
     }
 
 
