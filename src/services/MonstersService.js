@@ -3,6 +3,13 @@ import { Monster } from "../models/Monster.js";
 
 class MonstersService {
 
+    // NOTE when adding a new move for the boss:
+    // determineBossSpecialActivation: (if used, active = false) checks if it was used last round & resets it before checking if it should be activated this turn. If it is activated then it will be used next turn when  bossesMoveThisTurn runs
+    //  bossesMoveThisTurn: does a check to see if that special is activated then runs the function that implements the special move
+    // Write your new function for the move
+    // Don't forget to increase any numbers that should scale in the killBoss function
+    // Add UI indication for it being active, in HomePage
+
     killBoss() {
         console.log('killing the boss')
         AppState.activeMonster.level++
@@ -78,6 +85,17 @@ class MonstersService {
             if (shieldActivated) {
                 AppState.activeMonster.shieldSpecialActivated = true
                 console.log('*** SHIELD MOVE ACTIVATED!')
+            }
+        }
+
+        if (AppState.activeMonster.kamikazeUsed) {
+            AppState.activeMonster.kamikazeSpecialActivated = false
+        }
+        if (AppState.activeMonster.kamikaze) {
+            const kamikazeActivated = Math.random() < AppState.activeMonster.kamikazeActivateChance
+            if (kamikazeActivated) {
+                AppState.activeMonster.kamikazeSpecialActivated = true
+                console.log('*** KAMIKAZE MOVE ACTIVATED')
             }
         }
     }
