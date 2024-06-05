@@ -54,6 +54,10 @@ export const AppState = reactive({
       maxHealth: 100,
       level: 1,
       coins: 750,
+      kamikaze: true,
+      kamikazeHealthCost: 20,
+      kamikazeDamage: 20,
+      kamikazeActivateChance: .05,
     }),
     new Monster({
       name: 'Influenza Phil',

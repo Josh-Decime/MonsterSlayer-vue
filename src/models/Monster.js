@@ -34,5 +34,14 @@ export class Monster {
         this.shieldActivateChance = data.shieldActivateChance || null
         this.shieldSpecialActivated = data.shieldSpecialActivated || false
         this.shieldUsed = data.shieldUsed || false
+
+        this.kamikaze = data.kamikaze || false
+        this.kamikazeDamage = data.kamikazeDamage || null
+        this.kamikazeHealthCost = data.kamikazeHealthCost || null
+        this.kamikazeActivateChance = data.kamikazeActivateChance || null
+        this.kamikazeSpecialActivated = data.kamikazeSpecialActivated || null
+        this.kamikazeUsed = data.kamikazeUsed || false
+
+
     }
 }
