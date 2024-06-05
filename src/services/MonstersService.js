@@ -20,6 +20,8 @@ class MonstersService {
         AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
         AppState.activeMonster.strikerDamage = Math.round(AppState.activeMonster.strikerDamage * 1.5)
         AppState.activeMonster.healAmount = Math.round(AppState.activeMonster.healAmount * 1.5)
+        AppState.activeMonster.kamikazeDamage = Math.round(AppState.activeMonster.kamikazeDamage * 1.5)
+        AppState.activeMonster.kamikazeHealthCost = Math.round(AppState.activeMonster.kamikazeHealthCost * 1.5)
         AppState.monsters.push(AppState.activeMonster)
         AppState.activeMonster = AppState.monsters.shift()
         AppState.playerLevel++
@@ -102,6 +104,7 @@ class MonstersService {
     }
 
     // TODO change person to hero & make sure nothing broke
+    // NOTE don't forget to pass person into your function if you need to deal damage
     bossesMoveThisTurn(person, damage) {
         if (AppState.activeMonster.strikerSpecialActivated) {
             this.bossStrikerSpecialAttack(person)
@@ -122,7 +125,7 @@ class MonstersService {
         }
 
         if (AppState.activeMonster.kamikazeSpecialActivated) {
-            this.bossKamikazeSpecialMove()
+            this.bossKamikazeSpecialMove(person)
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
@@ -151,9 +154,11 @@ class MonstersService {
     }
 
     bossKamikazeSpecialMove(person) {
+        // FIXME player still took damage even when their shield was activated
         if (!person.shieldActive) {
             person.health -= AppState.activeMonster.kamikazeDamage
         }
+        // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
         AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
         AppState.activeMonster.kamikazeUsed = true
     }

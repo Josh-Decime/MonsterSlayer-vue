@@ -23,6 +23,8 @@
             <!-- can also just disable button, but i like my solution better -->
             <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
                 🪥 {{ hero.damage }}</button> -->
+
+            <!-- SECTION hero attack & special move buttons -->
             <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">
               🪥 {{ hero.damage }}</button>
 
@@ -72,9 +74,12 @@
           </div>
         </div>
         <div>
+          <!-- SECTION boss UI indication of special moves being activated -->
           <p v-if="boss.strikerSpecialActivated">Charging up to deal +{{ boss.strikerDamage }} next turn</p>
           <p v-if="boss.healSpecialActivated">Charging up to heal {{ boss.healAmount }} next turn</p>
           <p v-if="boss.shieldSpecialActivated">Boss is immune to base attack damage</p>
+          <p v-if="boss.kamikazeSpecialActivated">Charging up to deal {{ boss.kamikazeDamage }} at the cost of
+            {{ boss.kamikazeHealthCost }} of its own life</p>
         </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>

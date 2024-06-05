@@ -57,7 +57,7 @@ export const AppState = reactive({
       kamikaze: true,
       kamikazeHealthCost: 20,
       kamikazeDamage: 20,
-      kamikazeActivateChance: .5,
+      kamikazeActivateChance: .05,
     }),
     new Monster({
       name: 'Influenza Phil',
