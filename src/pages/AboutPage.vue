@@ -11,6 +11,20 @@
         <h3>{{ hero.name }}: Lvl {{ hero.level }}</h3>
         <p class="my-0">Health: {{ hero.health }}/{{ hero.maxHealth }}</p>
         <p class="m-0">Damage: {{ hero.damage }}</p>
+
+        <div>
+          <span>Special Move: </span>
+          <span v-if="hero.striker">Striker, costs 💪{{ hero.strikeCost }} to deal {{ hero.strikeAmount }} damage</span>
+          <span v-if="hero.healer">Healer, costs 💪{{ hero.healCost }} to heal the team by +{{ hero.healAmount }}</span>
+          <span v-if="hero.healerOverTime">Heal over time, costs 💪{{ hero.healOverTimeCost }} to heal the team
+            +{{ hero.healOverTimeAmount }}/round for {{ hero.healOverTimeDuration }} rounds</span>
+          <span v-if="hero.shield">Shield, costs 💪{{ hero.shieldCost }} for the team to be immune to damage next
+            round</span>
+          <span v-if="hero.overcharge">Overcharge, use this round to increase 💪 by {{ hero.overchargeAmount }}</span>
+          <span v-if="hero.kamikaze">Kamikaze, costs 💪{{ hero.kamikazePowerCost }} & this hero loses
+            -{{ hero.kamikazeHealthCost }} health to deal {{ hero.kamikazeDamage }} damage</span>
+        </div>
+
         <!-- NOTE I purposefully wrote the :class disable 2 different ways to reference that it can be achieved both ways -->
         <button v-if="hero.unlocked && !hero.dead" class="btn btn-primary"
           :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="upgradeCharacter(hero)">
