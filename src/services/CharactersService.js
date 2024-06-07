@@ -125,22 +125,24 @@ class CharactersService {
     }
 
     upgradeCharacter(hero) {
+        // NOTE now I can easily adjust the growth rate 
+        let growth = 1.5
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name
         )
         if (AppState.playerCoins >= characterToUpdate.upgradeCost) {
             AppState.playerCoins -= characterToUpdate.upgradeCost
             characterToUpdate.level++
-            characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * 1.5)
+            characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * growth)
             characterToUpdate.health = characterToUpdate.maxHealth
-            characterToUpdate.damage = Math.round(characterToUpdate.damage * 1.5)
-            characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * 1.5)
+            characterToUpdate.damage = Math.round(characterToUpdate.damage * growth)
+            characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * growth)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * 2)
-            characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * 1.5)
-            characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * 1.5)
-            characterToUpdate.strikeAmount = Math.round(characterToUpdate.strikeAmount * 1.5)
-            characterToUpdate.kamikazeDamage = Math.round(characterToUpdate.kamikazeDamage * 1.5)
-            characterToUpdate.kamikazeHealthCost = Math.round(characterToUpdate.kamikazeHealthCost * 1.5)
+            characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * growth)
+            characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * growth)
+            characterToUpdate.strikeAmount = Math.round(characterToUpdate.strikeAmount * growth)
+            characterToUpdate.kamikazeDamage = Math.round(characterToUpdate.kamikazeDamage * growth)
+            characterToUpdate.kamikazeHealthCost = Math.round(characterToUpdate.kamikazeHealthCost * growth)
         } else {
             Pop.error('You need more coins to upgrade that character!')
         }
