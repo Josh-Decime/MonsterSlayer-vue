@@ -13,15 +13,17 @@ class MonstersService {
 
     killBoss() {
         console.log('killing the boss')
+        let slowGrowth = 1.2
+        let baseGrowth = 1.5
         AppState.activeMonster.level++
-        AppState.activeMonster.maxHealth = Math.round(AppState.activeMonster.maxHealth * 1.5)
+        AppState.activeMonster.maxHealth = Math.round(AppState.activeMonster.maxHealth * baseGrowth)
         AppState.activeMonster.health = AppState.activeMonster.maxHealth
-        AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * 1.5)
-        AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * 1.5)
-        AppState.activeMonster.strikerDamage = Math.round(AppState.activeMonster.strikerDamage * 1.5)
-        AppState.activeMonster.healAmount = Math.round(AppState.activeMonster.healAmount * 1.5)
-        AppState.activeMonster.kamikazeDamage = Math.round(AppState.activeMonster.kamikazeDamage * 1.5)
-        AppState.activeMonster.kamikazeHealthCost = Math.round(AppState.activeMonster.kamikazeHealthCost * 1.5)
+        AppState.activeMonster.damage = Math.round(AppState.activeMonster.damage * baseGrowth)
+        AppState.activeMonster.coins = Math.round(AppState.activeMonster.coins * slowGrowth)
+        AppState.activeMonster.strikerDamage = Math.round(AppState.activeMonster.strikerDamage * baseGrowth)
+        AppState.activeMonster.healAmount = Math.round(AppState.activeMonster.healAmount * baseGrowth)
+        AppState.activeMonster.kamikazeDamage = Math.round(AppState.activeMonster.kamikazeDamage * baseGrowth)
+        AppState.activeMonster.kamikazeHealthCost = Math.round(AppState.activeMonster.kamikazeHealthCost * baseGrowth)
         AppState.monsters.push(AppState.activeMonster)
         AppState.activeMonster = AppState.monsters.shift()
         AppState.playerLevel++
