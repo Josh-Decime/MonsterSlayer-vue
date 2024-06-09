@@ -126,7 +126,9 @@ class CharactersService {
 
     upgradeCharacter(hero) {
         // NOTE now I can easily adjust the growth rate 
+        let slowGrowth = 1.2
         let baseGrowth = 1.5
+        let quickGrowth = 1.7
         let fastGrowth = 2
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name
@@ -137,7 +139,8 @@ class CharactersService {
             characterToUpdate.maxHealth = Math.round(characterToUpdate.maxHealth * baseGrowth)
             characterToUpdate.health = characterToUpdate.maxHealth
             characterToUpdate.damage = Math.round(characterToUpdate.damage * baseGrowth)
-            characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * baseGrowth)
+            // NOTE maybe increase upgrade cost scaling even more & add in health potions the player can buy
+            characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * quickGrowth)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * fastGrowth)
             characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * baseGrowth)
             characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * baseGrowth)

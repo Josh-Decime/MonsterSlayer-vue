@@ -51,6 +51,20 @@ class MonstersService {
                     damage = Math.round(damage)
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
+                // NOTE boss deals more damage if player doesn't have a full team
+                if (AppState.equippedCharacters.length == 1) {
+                    console.log('recognizing only one character is equipped')
+                    console.log('damage before multiplier:', damage)
+                    damage = Math.round(damage * 1.5)
+                    console.log('damage after multiplier:', damage)
+
+                }
+                if (AppState.equippedCharacters.length == 2) {
+                    console.log('recognizing 2 characters are equipped')
+                    console.log('damage before multiplier:', damage)
+                    damage = Math.round(damage * 1.2)
+                    console.log('damage after multiplier:', damage)
+                }
 
                 this.bossesMoveThisTurn(person, damage)
 
