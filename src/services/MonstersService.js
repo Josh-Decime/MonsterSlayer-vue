@@ -51,7 +51,8 @@ class MonstersService {
                     damage = Math.round(damage)
                     console.log('***Boom! Critical hit! Damage:', damage)
                 }
-                // NOTE boss deals more damage if player doesn't have a full team
+                // NOTE I realized this previous todo didn't get committed, I just solved the problem, so I undid deleting it so it will be committed next time to show my thought process of why I added that.
+                // TODO modify damage to be increased if you don't have a full team? Right now, in the current balance just having 1 character is way more powerful. If you put all your coins into 1 character they get to the point they 1-3 shot all the bosses
                 if (AppState.equippedCharacters.length == 1) {
                     console.log('recognizing only one character is equipped')
                     console.log('damage before multiplier:', damage)
