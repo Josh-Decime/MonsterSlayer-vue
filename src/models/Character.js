@@ -18,7 +18,8 @@ export class Character {
         this.upgradeCost = data.upgradeCost
         this.hasAttacked = data.hasAttacked
         this.dead = data.dead || false
-        this.reviveCost = data.reviveCost
+        this.reviveCost = data.reviveCost || 100
+        this.potionCost = data.potionCost || 100
 
         // SECTION special moves
 

@@ -49,6 +49,9 @@
               @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} & -{{ hero.kamikazeHealthCost }} health
               to deal {{ hero.kamikazeDamage }}</button>
 
+            <!-- NOTE I was going to make it so the player can heal here but I think it would put on more strategic pressure if they can only do that in the store page, once the player can only access it between bosses -->
+            <!-- <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-success">Heal</button> -->
+
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{

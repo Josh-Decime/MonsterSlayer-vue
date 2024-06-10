@@ -57,6 +57,8 @@ class GameFunctionalityService {
         this.endRound()
     }
 
+    // NOTE once I implement it so the player can only access the store between bosses I will need something that recognizes if their full team dies. It could do let deadCharacters = 0; equippedCharacters.forEach{ if hero.dead, deadCharacters++} if equippedCharacters.length == deadCharacters, allowStoreAccess()
+
 }
 
 export const gameFunctionalityService = new GameFunctionalityService()

@@ -33,6 +33,9 @@
         <button v-if="!hero.unlocked" :class="{ 'btn btn-primary': true, 'disabled': yourCoins < hero.purchasePrice }"
           @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
 
+        <button v-if="hero.unlocked && hero.health < hero.maxHealth && !hero.dead" class="btn btn-success">{{
+      hero.healCost }} Heal</button>
+
         <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
       hero.reviveCost }} coins</button>
 
