@@ -37,8 +37,8 @@
           :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="potionHealCharacter(hero)">
           {{ hero.potionCost }} Heal</button>
 
-        <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">
-          Revive for {{ hero.reviveCost }} coins</button>
+        <button v-if="hero.dead" class="btn btn-primary" :class="{ 'disabled': yourCoins < hero.reviveCost }"
+          @click="reviveCharacter(hero)">Revive for {{ hero.reviveCost }} coins</button>
 
         <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
           @click="equipCharacter(hero)">Equip</button>

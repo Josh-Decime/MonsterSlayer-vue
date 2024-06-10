@@ -6,7 +6,7 @@ import { monsterService } from "./MonstersService.js";
 
 class CharactersService {
 
-    // NOTE some of these should be moved to a new service for game controls, so the character service is not so full of functions that are about game functionality rather than the characters
+    // SECTION base functionality
     equipTeam() {
         AppState.equippedCharacters.length = 0
         AppState.Characters.forEach(person => {
@@ -30,58 +30,13 @@ class CharactersService {
         }
     }
 
+    capAtMaxHealth(hero) {
+        if (hero.health > hero.maxHealth) {
+            hero.health = hero.maxHealth
+        }
+    }
 
-    // endRound() {
-    //     let canStillAttack = false
-    //     AppState.equippedCharacters.forEach(person => {
-    //         if (!person.hasAttacked && !person.dead) {
-    //             canStillAttack = true
-    //         }
-    //     })
-    //     if (canStillAttack) {
-    //         // NOTE I would like to request confirmation from player so they can end the round without attacking if they want for some reason. This works for now, not a high priority.
-    //         Pop.error('Someone on your team has not attacked')
-    //     } else {
-    //         monsterService.bossAttack()
-    //         AppState.equippedCharacters.forEach(person => {
-    //             person.hasAttacked = false
-    //             if (person.health <= 0) {
-    //                 person.dead = true
-    //                 person.health = 0
-    //                 console.log('died:', person)
-    //             }
-    //             console.log('hero:', person)
-    //         })
-    //         this.turnCounterHandler()
-
-    //         // NOTE I need a better way to represent the round successfully ended. This is a placeholder
-    //         Pop.success('Next round')
-    //     }
-    //     if (AppState.playerPower < 100) {
-    //         AppState.playerPower += 10
-    //     }
-    // }
-
-    // turnCounterHandler() {
-    //     console.log('handling turn counter')
-    //     AppState.equippedCharacters.forEach(hero => {
-    //         console.log('hero healOverTimeCounter', hero.healOverTimeCounter)
-    //         if (hero.healOverTimeCounter >= 1) {
-    //             this.healOverTimeContinuousEffect(hero)
-    //         }
-    //     })
-    // }
-
-    // quickAttack() {
-    //     AppState.equippedCharacters.forEach(person => {
-    //         if (!person.hasAttacked) {
-    //             this.heroAttack(person)
-    //         }
-    //     })
-    //     this.endRound()
-    // }
-
-    // SECTION AboutPage AKA store page
+    // SECTION store page functions
     buyCharacter(hero) {
         if (AppState.playerCoins >= hero.purchasePrice) {
             const characterToUpdate = AppState.Characters.find(
@@ -172,6 +127,7 @@ class CharactersService {
         }
     }
 
+    // SECTION special moves
     specialMoveHeal(hero) {
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name
@@ -246,11 +202,6 @@ class CharactersService {
         }
     }
 
-    capAtMaxHealth(hero) {
-        if (hero.health > hero.maxHealth) {
-            hero.health = hero.maxHealth
-        }
-    }
 
     activateShield(hero) {
         if (AppState.playerPower >= hero.shieldCost) {

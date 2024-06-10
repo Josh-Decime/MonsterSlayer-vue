@@ -48,6 +48,7 @@ class GameFunctionalityService {
         })
     }
 
+    // NOTE maybe quick attack belongs back in the base functionality section of the character service, since it only deals with the character. The other 2 functions I have in here can involve the characters & monsters.
     quickAttack() {
         AppState.equippedCharacters.forEach(person => {
             if (!person.hasAttacked) {
@@ -58,6 +59,7 @@ class GameFunctionalityService {
     }
 
     // NOTE once I implement it so the player can only access the store between bosses I will need something that recognizes if their full team dies. It could do let deadCharacters = 0; equippedCharacters.forEach{ if hero.dead, deadCharacters++} if equippedCharacters.length == deadCharacters, allowStoreAccess()
+    // NOTE I did a test, playing it as if this was already implemented, only accessing the store between battles & I made it to boss 19 in the current balance. It was actually pretty difficult but I felt like I had strategic options, I think this is pretty good!
 
 }
 

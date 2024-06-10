@@ -179,6 +179,8 @@ class MonstersService {
         AppState.activeMonster.kamikazeUsed = true
     }
 
+    // TODO damage over time attack
+
 
 
 
