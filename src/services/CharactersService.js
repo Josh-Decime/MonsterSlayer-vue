@@ -141,6 +141,7 @@ class CharactersService {
             characterToUpdate.damage = Math.round(characterToUpdate.damage * baseGrowth)
             // NOTE maybe increase upgrade cost scaling even more & add in health potions the player can buy
             characterToUpdate.upgradeCost = Math.round(characterToUpdate.upgradeCost * quickGrowth)
+            characterToUpdate.potionCost = Math.round(characterToUpdate.potionCost * baseGrowth)
             characterToUpdate.reviveCost = Math.round(characterToUpdate.reviveCost * fastGrowth)
             characterToUpdate.healAmount = Math.round(characterToUpdate.healAmount * baseGrowth)
             characterToUpdate.healOverTimeAmount = Math.round(characterToUpdate.healOverTimeAmount * baseGrowth)
@@ -161,6 +162,13 @@ class CharactersService {
             AppState.playerCoins -= characterToUpdate.reviveCost
             characterToUpdate.health = characterToUpdate.maxHealth
             characterToUpdate.dead = false
+        }
+    }
+
+    potionHealCharacter(hero) {
+        if (AppState.playerCoins >= hero.potionCost) {
+            AppState.playerCoins -= hero.potionCost
+            hero.health = hero.maxHealth
         }
     }
 

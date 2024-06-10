@@ -33,11 +33,12 @@
         <button v-if="!hero.unlocked" :class="{ 'btn btn-primary': true, 'disabled': yourCoins < hero.purchasePrice }"
           @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
 
-        <button v-if="hero.unlocked && hero.health < hero.maxHealth && !hero.dead" class="btn btn-success">{{
-      hero.healCost }} Heal</button>
+        <button v-if="hero.unlocked && hero.health < hero.maxHealth && !hero.dead" class="btn btn-success"
+          :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="potionHealCharacter(hero)">
+          {{ hero.potionCost }} Heal</button>
 
-        <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
-      hero.reviveCost }} coins</button>
+        <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">
+          Revive for {{ hero.reviveCost }} coins</button>
 
         <button v-if="hero.unlocked && hero.equip == false" class="btn btn-success"
           @click="equipCharacter(hero)">Equip</button>
@@ -97,6 +98,9 @@ export default {
     function reviveCharacter(hero) {
       characterService.reviveCharacter(hero)
     }
+    function potionHealCharacter(hero) {
+      characterService.potionHealCharacter(hero)
+    }
 
     console.log('hero for sale', heroesForSale)
     return {
@@ -108,6 +112,7 @@ export default {
       unEquipCharacter,
       upgradeCharacter,
       reviveCharacter,
+      potionHealCharacter,
     }
   }
 }
