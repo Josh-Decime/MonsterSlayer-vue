@@ -34,7 +34,7 @@
           @click="buyCharacter(hero)"> {{ hero.purchasePrice }} Buy</button>
 
         <button v-if="hero.unlocked && hero.health < hero.maxHealth && !hero.dead" class="btn btn-success"
-          :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="potionHealCharacter(hero)">
+          @click="potionHealCharacter(hero)">
           {{ hero.potionCost }} Heal</button>
 
         <button v-if="hero.dead" class="btn btn-primary" :class="{ 'disabled': yourCoins < hero.reviveCost }"

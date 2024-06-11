@@ -145,6 +145,7 @@ class MonstersService {
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
+        // FIXME player is still taking some damage while shield is active sometimes
         else {
             person.health -= damage
         }

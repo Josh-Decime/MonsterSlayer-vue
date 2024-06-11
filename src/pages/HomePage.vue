@@ -14,15 +14,6 @@
               <span v-if="hero.healOverTimeCounter"> Healing ➕{{ hero.healOverTimeAmountHolder }} for
                 {{ hero.healOverTimeCounter }} more rounds</span>
             </div>
-            <!-- <div class="progress">
-              <div :class="`progress-bar`" role="progressbar"
-                :style="{ width: `${(hero.health / hero.maxHealth) * 100}%` }">
-              </div>
-            </div> -->
-
-            <!-- can also just disable button, but i like my solution better -->
-            <!-- <button :disabled="hero.hasAttacked" class="btn btn-primary" @click="heroAttack(hero)">
-                🪥 {{ hero.damage }}</button> -->
 
             <!-- SECTION hero attack & special move buttons -->
             <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">
@@ -48,9 +39,6 @@
             <button v-if="hero.kamikaze && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} & -{{ hero.kamikazeHealthCost }} health
               to deal {{ hero.kamikazeDamage }}</button>
-
-            <!-- NOTE I was going to make it so the player can heal here but I think it would put on more strategic pressure if they can only do that in the store page, once the player can only access it between bosses -->
-            <!-- <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-success">Heal</button> -->
 
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
@@ -162,12 +150,10 @@ export default {
       characterService.heroAttack(hero)
     }
 
-    // NOTE end round works after being moved to the game functionality service but it broke quick attack
     function endRound() {
       gameFunctionalityService.endRound()
     }
 
-    // FIXME 
     function quickAttack() {
       gameFunctionalityService.quickAttack()
     }
