@@ -9,9 +9,9 @@ class CharactersService {
     // SECTION base functionality
     equipTeam() {
         AppState.equippedCharacters.length = 0
-        AppState.Characters.forEach(person => {
-            if (person.equip == true)
-                AppState.equippedCharacters.push(person)
+        AppState.Characters.forEach(hero => {
+            if (hero.equip == true)
+                AppState.equippedCharacters.push(hero)
         })
         console.log('Equipped characters', AppState.equippedCharacters)
     }
@@ -128,19 +128,34 @@ class CharactersService {
     }
 
     // SECTION special moves
+    // TODO I don't think this needs characterToUpdate so I should be able to rewrite this function
+    // specialMoveHeal(hero) {
+    //     const characterToUpdate = AppState.Characters.find(
+    //         character => character.name == hero.name
+    //     )
+    //     if (AppState.playerPower >= characterToUpdate.healCost) {
+    //         AppState.playerPower -= characterToUpdate.healCost
+    //         AppState.equippedCharacters.forEach(person => {
+    //             if (!person.dead) {
+    //                 person.health += characterToUpdate.healAmount
+    //                 this.capAtMaxHealth(person)
+    //             }
+    //         })
+    //         characterToUpdate.hasAttacked = true
+    //     } else {
+    //         Pop.error('Not enough power')
+    //     }
+    // }
     specialMoveHeal(hero) {
-        const characterToUpdate = AppState.Characters.find(
-            character => character.name == hero.name
-        )
-        if (AppState.playerPower >= characterToUpdate.healCost) {
-            AppState.playerPower -= characterToUpdate.healCost
-            AppState.equippedCharacters.forEach(person => {
-                if (!person.dead) {
-                    person.health += characterToUpdate.healAmount
-                    this.capAtMaxHealth(person)
+        if (AppState.playerPower >= hero.healCost) {
+            AppState.playerPower -= hero.healCost
+            AppState.equippedCharacters.forEach(heroToBeHealed => {
+                if (!heroToBeHealed.dead) {
+                    heroToBeHealed.health += hero.healAmount
+                    this.capAtMaxHealth(heroToBeHealed)
                 }
             })
-            characterToUpdate.hasAttacked = true
+            hero.hasAttacked = true
         } else {
             Pop.error('Not enough power')
         }

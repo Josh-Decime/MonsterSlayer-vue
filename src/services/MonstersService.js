@@ -38,8 +38,8 @@ class MonstersService {
     }
 
     bossAttack() {
-        AppState.equippedCharacters.forEach(person => {
-            if (!person.dead) {
+        AppState.equippedCharacters.forEach(hero => {
+            if (!hero.dead) {
                 let damage = AppState.activeMonster.damage
 
                 const critChance = AppState.activeMonster.critChance
@@ -66,7 +66,7 @@ class MonstersService {
                     console.log('damage after multiplier:', damage)
                 }
 
-                this.bossesMoveThisTurn(person, damage)
+                this.bossesMoveThisTurn(hero, damage)
 
             }
         })
@@ -119,11 +119,10 @@ class MonstersService {
         }
     }
 
-    // TODO change person to hero & make sure nothing broke
-    // NOTE don't forget to pass person into your function if you need to deal damage
-    bossesMoveThisTurn(person, damage) {
+    // NOTE don't forget to pass hero into your function if you need to deal damage
+    bossesMoveThisTurn(hero, damage) {
         if (AppState.activeMonster.strikerSpecialActivated) {
-            this.bossStrikerSpecialAttack(person)
+            this.bossStrikerSpecialAttack(hero)
         }
         // FIXME boss is double healing
         if (AppState.activeMonster.healSpecialActivated) {
@@ -135,25 +134,25 @@ class MonstersService {
         }
 
         // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
-        if (person.shieldActive) {
-            person.shieldActive = false
+        if (hero.shieldActive) {
+            hero.shieldActive = false
             console.log('attack blocked')
         }
 
         if (AppState.activeMonster.kamikazeSpecialActivated) {
-            this.bossKamikazeSpecialMove(person)
+            this.bossKamikazeSpecialMove(hero)
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
         // FIXME player is still taking some damage while shield is active sometimes
         else {
-            person.health -= damage
+            hero.health -= damage
         }
     }
 
-    bossStrikerSpecialAttack(person) {
-        if (!person.shieldActive) {
-            person.health -= AppState.activeMonster.strikerDamage
+    bossStrikerSpecialAttack(hero) {
+        if (!hero.shieldActive) {
+            hero.health -= AppState.activeMonster.strikerDamage
         }
         AppState.activeMonster.strikerAttacked = true
     }
@@ -170,10 +169,10 @@ class MonstersService {
         AppState.activeMonster.shieldUsed = true
     }
 
-    bossKamikazeSpecialMove(person) {
+    bossKamikazeSpecialMove(hero) {
         // FIXME player still took damage even when their shield was activated
-        if (!person.shieldActive) {
-            person.health -= AppState.activeMonster.kamikazeDamage
+        if (!hero.shieldActive) {
+            hero.health -= AppState.activeMonster.kamikazeDamage
         }
         // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
         AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost

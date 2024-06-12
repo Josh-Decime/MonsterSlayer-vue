@@ -9,8 +9,8 @@ class GameFunctionalityService {
 
     endRound() {
         let canStillAttack = false
-        AppState.equippedCharacters.forEach(person => {
-            if (!person.hasAttacked && !person.dead) {
+        AppState.equippedCharacters.forEach(hero => {
+            if (!hero.hasAttacked && !hero.dead) {
                 canStillAttack = true
             }
         })
@@ -19,14 +19,14 @@ class GameFunctionalityService {
             Pop.error('Someone on your team has not attacked')
         } else {
             monsterService.bossAttack()
-            AppState.equippedCharacters.forEach(person => {
-                person.hasAttacked = false
-                if (person.health <= 0) {
-                    person.dead = true
-                    person.health = 0
-                    console.log('died:', person)
+            AppState.equippedCharacters.forEach(hero => {
+                hero.hasAttacked = false
+                if (hero.health <= 0) {
+                    hero.dead = true
+                    hero.health = 0
+                    console.log('died:', hero)
                 }
-                console.log('hero:', person)
+                console.log('hero:', hero)
             })
             this.turnCounterHandler()
 
@@ -50,9 +50,9 @@ class GameFunctionalityService {
 
     // NOTE maybe quick attack belongs back in the base functionality section of the character service, since it only deals with the character. The other 2 functions I have in here can involve the characters & monsters.
     quickAttack() {
-        AppState.equippedCharacters.forEach(person => {
-            if (!person.hasAttacked) {
-                characterService.heroAttack(person)
+        AppState.equippedCharacters.forEach(hero => {
+            if (!hero.hasAttacked) {
+                characterService.heroAttack(hero)
             }
         })
         this.endRound()
