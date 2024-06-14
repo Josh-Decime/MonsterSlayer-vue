@@ -67,6 +67,7 @@ export const AppState = reactive({
       maxHealth: 150,
       level: 1,
       coins: 300,
+      sickness: true,
     }),
   ],
   /**@type{Monster} */
