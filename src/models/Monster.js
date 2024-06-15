@@ -42,12 +42,12 @@ export class Monster {
         this.kamikazeSpecialActivated = data.kamikazeSpecialActivated || null
         this.kamikazeUsed = data.kamikazeUsed || false
 
-        // NOTE damage over time attack for influenza Phil
         this.sickness = data.sickness || false
         this.sicknessDamage = data.sicknessDamage || null
         this.sicknessDuration = data.sicknessDuration || null
         this.sicknessTurnCounter = data.sicknessTurnCounter || null
-
+        this.sicknessActivationChance = data.sicknessActivationChance || null
+        this.sicknessUsed = data.sicknessUsed || false
 
 
     }

@@ -24,6 +24,7 @@ class MonstersService {
         AppState.activeMonster.healAmount = Math.round(AppState.activeMonster.healAmount * baseGrowth)
         AppState.activeMonster.kamikazeDamage = Math.round(AppState.activeMonster.kamikazeDamage * baseGrowth)
         AppState.activeMonster.kamikazeHealthCost = Math.round(AppState.activeMonster.kamikazeHealthCost * baseGrowth)
+        AppState.activeMonster.sicknessDamage = Math.round(AppState.activeMonster.sicknessDamage * baseGrowth)
         AppState.monsters.push(AppState.activeMonster)
         AppState.activeMonster = AppState.monsters.shift()
         AppState.playerLevel++

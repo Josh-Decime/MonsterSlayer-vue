@@ -68,6 +68,9 @@ export const AppState = reactive({
       level: 1,
       coins: 300,
       sickness: true,
+      sicknessDamage: 2,
+      sicknessDuration: 3,
+      sicknessActivationChance: .1,
     }),
   ],
   /**@type{Monster} */
