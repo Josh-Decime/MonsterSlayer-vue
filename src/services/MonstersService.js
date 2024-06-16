@@ -38,6 +38,7 @@ class MonstersService {
         console.log('player is paid:', AppState.playerCoins)
     }
 
+    // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
         AppState.equippedCharacters.forEach(hero => {
             if (!hero.dead) {
@@ -118,10 +119,28 @@ class MonstersService {
                 console.log('*** KAMIKAZE MOVE ACTIVATED')
             }
         }
+
+        if (AppState.activeMonster.sicknessUsed) {
+            AppState.activeMonster.sicknessSpecialActivated = false
+        }
+        if (AppState.activeMonster.sickness) {
+            const sicknessActivated = Math.random() < AppState.activeMonster.sicknessActivationChance
+            if (sicknessActivated) {
+                AppState.activeMonster.sicknessSpecialActivated = true
+                console.log('*** SICKNESS MOVE ACTIVATED!')
+            }
+        }
     }
 
     // NOTE don't forget to pass hero into your function if you need to deal damage
     bossesMoveThisTurn(hero, damage) {
+        // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
+        if (hero.shieldActive) {
+            hero.shieldActive = false
+            // NOTE if i pass damage through, like I mentioned before then I can set damage to 0
+            console.log('attack blocked')
+        }
+
         if (AppState.activeMonster.strikerSpecialActivated) {
             this.bossStrikerSpecialAttack(hero)
         }
@@ -134,15 +153,16 @@ class MonstersService {
             this.bossShieldSpecialMove()
         }
 
-        // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
-        if (hero.shieldActive) {
-            hero.shieldActive = false
-            console.log('attack blocked')
-        }
 
         if (AppState.activeMonster.kamikazeSpecialActivated) {
             this.bossKamikazeSpecialMove(hero)
         }
+
+        // TODO Implement sickness initial activation
+        if (AppState.activeMonster.sicknessSpecialActivated) {
+            console.log('implement me')
+        }
+        // TODO if sicknessDuration > 0 deal sicknessDamage to hero
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
         // FIXME player is still taking some damage while shield is active sometimes
