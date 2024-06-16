@@ -158,9 +158,8 @@ class MonstersService {
             this.bossKamikazeSpecialMove(hero)
         }
 
-        // TODO Implement sickness initial activation
         if (AppState.activeMonster.sicknessSpecialActivated) {
-            console.log('implement me')
+            this.bossSetSicknessMove(hero)
         }
         // TODO if sicknessDuration > 0 deal sicknessDamage to hero
 
@@ -198,6 +197,14 @@ class MonstersService {
         // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
         AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
         AppState.activeMonster.kamikazeUsed = true
+    }
+
+    bossSetSicknessMove(hero) {
+        if (!hero.shieldActive) {
+            hero.health -= AppState.activeMonster.sicknessDamage
+            AppState.activeMonster.sicknessTurnCounter = AppState.activeMonster.sicknessDuration
+            AppState.activeMonster.sicknessTurnCounter--
+        }
     }
 
     // TODO damage over time attack
