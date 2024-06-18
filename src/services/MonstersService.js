@@ -161,7 +161,10 @@ class MonstersService {
         if (AppState.activeMonster.sicknessSpecialActivated) {
             this.bossSetSicknessMove(hero)
         }
-        // TODO if sicknessDuration > 0 deal sicknessDamage to hero
+
+        if (AppState.activeMonster.sicknessTurnCounter > 0) {
+            this.bossSicknessContinuousEffect(hero)
+        }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
         // FIXME player is still taking some damage while shield is active sometimes
@@ -199,15 +202,27 @@ class MonstersService {
         AppState.activeMonster.kamikazeUsed = true
     }
 
+    // NOTE after it is applied then it ticks the continuous effect so I removed the damage & subtracting the turn counter because that is immediately applied from the continuous effect
+    // NOTE it is counting down properly & dealing the sickness damage, but it isn't adding the base damage ( like it usually does even when i don't want it to)
+    // TODO I need to fix when it does & doesn't add the base damage to a special attack
     bossSetSicknessMove(hero) {
         if (!hero.shieldActive) {
-            hero.health -= AppState.activeMonster.sicknessDamage
+            // hero.health -= AppState.activeMonster.sicknessDamage
             AppState.activeMonster.sicknessTurnCounter = AppState.activeMonster.sicknessDuration
-            AppState.activeMonster.sicknessTurnCounter--
+            // AppState.activeMonster.sicknessTurnCounter--
+            console.log('initial sickness is set, counter is at:', AppState.activeMonster.sicknessTurnCounter)
         }
+        AppState.activeMonster.sicknessUsed = true
     }
 
-    // TODO damage over time attack
+    // NOTE damage shouldn't affect hero if shield is active but should always tick down the turn counter 
+    bossSicknessContinuousEffect(hero) {
+        if (!hero.shieldActive) {
+            hero.health -= AppState.activeMonster.sicknessDamage
+        }
+        AppState.activeMonster.sicknessTurnCounter--
+        console.log('sickness continuous effect is applied, counter is at:', AppState.activeMonster.sicknessTurnCounter)
+    }
 
 
 
