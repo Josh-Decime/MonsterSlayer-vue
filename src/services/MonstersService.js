@@ -155,6 +155,8 @@ class MonstersService {
 
 
         if (AppState.activeMonster.kamikazeSpecialActivated) {
+            // NOTE it ran 3 times so I cant use this to deal damage from kamikaze. I don't have any more time today so I cant fix it today but at least i figured out what was wrong
+            console.log('test to see if this runs once or 3 times')
             this.bossKamikazeSpecialMove(hero)
         }
 
@@ -198,6 +200,7 @@ class MonstersService {
             hero.health -= AppState.activeMonster.kamikazeDamage
         }
         // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
+        // NOTE of course it deals more damage, it is running this for every hero
         AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
         AppState.activeMonster.kamikazeUsed = true
     }

@@ -187,8 +187,10 @@ export const AppState = reactive({
   /**@type{Character[]} */
   equippedCharacters: [],
 
-
-  playerCoins: 250,
+  // NOTE this is the coins you should have
+  // playerCoins: 250,
+  // NOTE testing coins
+  playerCoins: 2500,
   playerPower: 0,
   playerLevel: 0,
 
