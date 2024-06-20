@@ -141,36 +141,46 @@ class MonstersService {
             console.log('attack blocked')
         }
 
-        if (AppState.activeMonster.strikerSpecialActivated) {
+        let strikerActivated = AppState.activeMonster.strikerSpecialActivated
+        let healActivated = AppState.activeMonster.healSpecialActivated
+        let shieldActivated = AppState.activeMonster.shieldSpecialActivated
+        let kamikazeActivated = AppState.activeMonster.kamikazeSpecialActivated
+        let setSicknessActivated = AppState.activeMonster.sicknessSpecialActivated
+        let sicknessTurnCounter = AppState.activeMonster.sicknessTurnCounter
+
+        if (strikerActivated) {
             this.bossStrikerSpecialAttack(hero, damage)
         }
         // FIXME boss is double healing
-        if (AppState.activeMonster.healSpecialActivated) {
+        if (healActivated) {
             this.bossHealerSpecialMove()
         }
 
-        if (AppState.activeMonster.shieldSpecialActivated) {
+        if (shieldActivated) {
             this.bossShieldSpecialMove()
         }
 
 
-        if (AppState.activeMonster.kamikazeSpecialActivated) {
+        if (kamikazeActivated) {
             // NOTE it ran 3 times so I cant use this to deal damage from kamikaze. I don't have any more time today so I cant fix it today but at least i figured out what was wrong
             console.log('test to see if this runs once or 3 times')
             this.bossKamikazeSpecialMove(hero)
         }
 
-        if (AppState.activeMonster.sicknessSpecialActivated) {
+        if (setSicknessActivated) {
             this.bossSetSicknessMove(hero, damage)
         }
 
-        if (AppState.activeMonster.sicknessTurnCounter > 0) {
+        if (sicknessTurnCounter > 0) {
             this.bossSicknessContinuousEffect(hero, damage)
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
         // FIXME player is still taking some damage while shield is active sometimes
         else {
+            // NOTE I added this if statement, even though I shouldn't have needed it, just as an extra test precautionary measure. But the player STILL took damage when heal was activated even though there should be no reason for it. Looks like I will have to dig deeper to solve this
+            if (!strikerActivated, !healActivated, !shieldActivated, !kamikazeActivated, !setSicknessActivated, sicknessTurnCounter <= 0)
+                console.log('Base attack triggered!')
             hero.health -= damage
         }
     }
