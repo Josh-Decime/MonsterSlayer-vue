@@ -142,7 +142,7 @@ class MonstersService {
         }
 
         if (AppState.activeMonster.strikerSpecialActivated) {
-            this.bossStrikerSpecialAttack(hero)
+            this.bossStrikerSpecialAttack(hero, damage)
         }
         // FIXME boss is double healing
         if (AppState.activeMonster.healSpecialActivated) {
@@ -161,11 +161,11 @@ class MonstersService {
         }
 
         if (AppState.activeMonster.sicknessSpecialActivated) {
-            this.bossSetSicknessMove(hero)
+            this.bossSetSicknessMove(hero, damage)
         }
 
         if (AppState.activeMonster.sicknessTurnCounter > 0) {
-            this.bossSicknessContinuousEffect(hero)
+            this.bossSicknessContinuousEffect(hero, damage)
         }
 
         // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
@@ -194,10 +194,11 @@ class MonstersService {
         AppState.activeMonster.shieldUsed = true
     }
 
-    bossKamikazeSpecialMove(hero) {
+    bossKamikazeSpecialMove(hero, damage) {
         // FIXME player still took damage even when their shield was activated
         if (!hero.shieldActive) {
             hero.health -= AppState.activeMonster.kamikazeDamage
+            hero.health -= damage
         }
         // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
         // NOTE of course it deals more damage, it is running this for every hero
@@ -208,10 +209,11 @@ class MonstersService {
     // NOTE after it is applied then it ticks the continuous effect so I removed the damage & subtracting the turn counter because that is immediately applied from the continuous effect
     // NOTE it is counting down properly & dealing the sickness damage, but it isn't adding the base damage ( like it usually does even when i don't want it to)
     // TODO I need to fix when it does & doesn't add the base damage to a special attack
-    bossSetSicknessMove(hero) {
+    bossSetSicknessMove(hero, damage) {
         if (!hero.shieldActive) {
             // hero.health -= AppState.activeMonster.sicknessDamage
             AppState.activeMonster.sicknessTurnCounter = AppState.activeMonster.sicknessDuration
+            hero.health -= damage
             // AppState.activeMonster.sicknessTurnCounter--
             console.log('initial sickness is set, counter is at:', AppState.activeMonster.sicknessTurnCounter)
         }
@@ -219,9 +221,10 @@ class MonstersService {
     }
 
     // NOTE damage shouldn't affect hero if shield is active but should always tick down the turn counter 
-    bossSicknessContinuousEffect(hero) {
+    bossSicknessContinuousEffect(hero, damage) {
         if (!hero.shieldActive) {
             hero.health -= AppState.activeMonster.sicknessDamage
+            hero.health -= damage
         }
         AppState.activeMonster.sicknessTurnCounter--
         console.log('sickness continuous effect is applied, counter is at:', AppState.activeMonster.sicknessTurnCounter)
