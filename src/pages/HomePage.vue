@@ -71,6 +71,7 @@
           <p v-if="boss.shieldSpecialActivated">Boss is immune to base attack damage</p>
           <p v-if="boss.kamikazeSpecialActivated">Charging up to deal {{ boss.kamikazeDamage }} at the cost of
             {{ boss.kamikazeHealthCost }} of its own life</p>
+          <!-- TODO at UI indication for sickness -->
         </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>

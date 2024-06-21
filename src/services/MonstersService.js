@@ -134,11 +134,13 @@ class MonstersService {
 
     // NOTE don't forget to pass hero into your function if you need to deal damage
     bossesMoveThisTurn(hero, damage) {
-        // NOTE this is so if the player uses their shield ability the boss wont deal damage. Any damage special needs modified to not deal damage when players shield is active
+        // NOTE if the heroes shield is active this should end the bosses turn without dealing damage
+        // TODO I built in a block in each of the damage dealing specials that is supposed to make it so they don't deal damage. If this works after extensive testing then I am free to just get rid of those since they don't work anyway
+        // FIXME I don't think this will be a viable solution. It seemed to work with striker & regular attacks, but for some reason when a boss used kamikaze it wouldn't deal the damage to the boss & didn't count as the attack being used so it just delayed the attack until I was out of player power. Then when I was hit with the attack my health went to NaN which made me invincible
         if (hero.shieldActive) {
             hero.shieldActive = false
-            // NOTE if i pass damage through, like I mentioned before then I can set damage to 0
             console.log('attack blocked')
+            return
         }
 
         const strikerActivated = AppState.activeMonster.strikerSpecialActivated
