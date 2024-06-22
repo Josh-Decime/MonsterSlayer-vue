@@ -136,7 +136,7 @@ class MonstersService {
     bossesMoveThisTurn(hero, damage) {
         // NOTE if the heroes shield is active this should end the bosses turn without dealing damage
         // TODO I built in a block in each of the damage dealing specials that is supposed to make it so they don't deal damage. If this works after extensive testing then I am free to just get rid of those since they don't work anyway
-        // FIXME I don't think this will be a viable solution. It seemed to work with striker & regular attacks, but for some reason when a boss used kamikaze it wouldn't deal the damage to the boss & didn't count as the attack being used so it just delayed the attack until I was out of player power. Then when I was hit with the attack my health went to NaN which made me invincible
+        //   FIXME when I used shield against a kamikaze attack it blocked it instead of waiting till I ran out of player power. The only change I made was that it doesn't try to pass "damage" (should change that to baseDamage) through. Im not sure how that would have fixed it. Now I am having that waiting till I run out of player power on the sickness turn counter
         if (hero.shieldActive) {
             hero.shieldActive = false
             console.log('attack blocked')
@@ -169,7 +169,6 @@ class MonstersService {
 
 
         if (kamikazeActivated) {
-            // FIXME when kamikaze is used the heroes health becomes NaN which breaks it & makes them invincible. High priority bug to fis!
             // NOTE it ran 3 times so I cant use this to deal damage from kamikaze. I don't have any more time today so I cant fix it today but at least i figured out what was wrong
             console.log('test to see if this runs once or 3 times')
             this.bossKamikazeSpecialMove(hero)
@@ -186,10 +185,7 @@ class MonstersService {
             specialMoveUsed = true
         }
 
-        // FIXME it is always dealing damage even if specials are active, it is supposed to be if-else. I still want it to do damage when some of the specials are activated, but I should choose which ones can still deal damage, it shouldn't attack every time
-        // FIXME player is still taking some damage while shield is active sometimes
 
-        // NOTE I added this if statement, even though I shouldn't have needed it, just as an extra test precautionary measure. But the player STILL took damage when heal was activated even though there should be no reason for it. Looks like I will have to dig deeper to solve this
         if (!specialMoveUsed) {
             console.log('*Base attack triggered!')
             hero.health -= damage
@@ -216,14 +212,12 @@ class MonstersService {
         AppState.activeMonster.shieldUsed = true
     }
 
-    bossKamikazeSpecialMove(hero, damage) {
-        // FIXME player still took damage even when their shield was activated
+    bossKamikazeSpecialMove(hero) {
         if (!hero.shieldActive) {
             hero.health -= AppState.activeMonster.kamikazeDamage
-            hero.health -= damage
+            // NOTE fixing the health turning NaN was simple enough, I didn't pass damage through to this function so it didn't have access, oops.. this attack does so much damage tho I don't think it should deal their base damage on top of that, so I'll just remove it
         }
-        // FIXME for some reason it is dealing more damage to the boss than the cost. It seems like it adds the bosses base attack damage to it, but the hero doesn't take that base attack damage like they usually do so somehow its getting mixed up. This must be related to that bug that the hero always takes the damage but it got flipped... so bizarre 
-        // NOTE of course it deals more damage, it is running this for every hero
+        // FIXME find a solution so damage is only applied once instead of every hero
         AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
         AppState.activeMonster.kamikazeUsed = true
     }
@@ -243,6 +237,8 @@ class MonstersService {
     }
 
     // NOTE damage shouldn't affect hero if shield is active but should always tick down the turn counter 
+    // FIXME it is inconsistent of if the sickness damage is applied
+    // FIXME if the players shield is activated then it doesn't count down the turn counter, it just waits until you run out of player power & can't shield anymore
     bossSicknessContinuousEffect(hero, damage) {
         if (!hero.shieldActive) {
             hero.health -= AppState.activeMonster.sicknessDamage
