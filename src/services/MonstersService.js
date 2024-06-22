@@ -169,6 +169,7 @@ class MonstersService {
 
 
         if (kamikazeActivated) {
+            // FIXME when kamikaze is used the heroes health becomes NaN which breaks it & makes them invincible. High priority bug to fis!
             // NOTE it ran 3 times so I cant use this to deal damage from kamikaze. I don't have any more time today so I cant fix it today but at least i figured out what was wrong
             console.log('test to see if this runs once or 3 times')
             this.bossKamikazeSpecialMove(hero)
