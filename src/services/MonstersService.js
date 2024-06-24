@@ -40,6 +40,10 @@ class MonstersService {
 
     // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
+        // SECTION reset single application effects
+        AppState.activeMonster.kamikazeDamageApplied = false
+
+        // SECTION determine damage
         AppState.equippedCharacters.forEach(hero => {
             if (!hero.dead) {
                 let damage = AppState.activeMonster.damage
@@ -67,11 +71,12 @@ class MonstersService {
                     damage = Math.round(damage * 1.2)
                     console.log('damage after multiplier:', damage)
                 }
-
+                // SECTION boss makes their move
                 this.bossesMoveThisTurn(hero, damage)
 
             }
         })
+        // SECTION determines if special is activated for next round
         this.determineBossSpecialActivation()
     }
 
@@ -217,9 +222,11 @@ class MonstersService {
             hero.health -= AppState.activeMonster.kamikazeDamage
             // NOTE fixing the health turning NaN was simple enough, I didn't pass damage through to this function so it didn't have access, oops.. this attack does so much damage tho I don't think it should deal their base damage on top of that, so I'll just remove it
         }
-        // FIXME find a solution so damage is only applied once instead of every hero
-        AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
+        if (!AppState.activeMonster.kamikazeDamageApplied) {
+            AppState.activeMonster.health -= AppState.activeMonster.kamikazeHealthCost
+        }
         AppState.activeMonster.kamikazeUsed = true
+        AppState.activeMonster.kamikazeDamageApplied = true
     }
 
     // NOTE after it is applied then it ticks the continuous effect so I removed the damage & subtracting the turn counter because that is immediately applied from the continuous effect
