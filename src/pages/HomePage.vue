@@ -50,6 +50,9 @@
         <div v-else>
           <p class="fs-1 bolder">No team equipped!</p>
           <p class="fs-2 bolder">Go to store to equip your team!</p>
+          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+            <button class="btn btn-success">Store</button>
+          </router-link>
         </div>
 
         <button v-if="equipCheck" class="btn btn-success" @click="endRound">End your turn</button>
