@@ -195,8 +195,7 @@ export const AppState = reactive({
   playerLevel: 0,
 
 
-  // NOTE I might have figured out a better solution
-  // bossTurnResolved: false,
+  storeAvailable: true,
 
 
 

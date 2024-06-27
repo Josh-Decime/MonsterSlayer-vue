@@ -243,7 +243,7 @@ export default {
   height: 20vh;
 }
 
-// NOTE it was a lot more work to link that image than I expected! Its been a while since I linked up an image apparently.. sadly that ate up all the time I have for coding today
+
 .background {
   height: 100vh;
   background-image: url('src/assets/img/MessyBedroom.png');
