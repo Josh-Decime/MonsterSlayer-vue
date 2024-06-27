@@ -1,5 +1,5 @@
 <template>
-  <section class="container-fluid">
+  <section class="container-fluid background">
     <section class="row">
       <div class="col-6">
         <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
@@ -241,6 +241,14 @@ export default {
 
 .character-img {
   height: 20vh;
+}
 
+// NOTE it was a lot more work to link that image than I expected! Its been a while since I linked up an image apparently.. sadly that ate up all the time I have for coding today
+.background {
+  height: 100vh;
+  background-image: url('src/assets/img/MessyBedroom.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 </style>
