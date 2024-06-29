@@ -29,6 +29,8 @@ class MonstersService {
         AppState.activeMonster = AppState.monsters.shift()
         AppState.playerLevel++
         console.log('the new boss is:', AppState.activeMonster)
+        AppState.storeAvailable = true
+        console.log('store available:', AppState.storeAvailable)
     }
 
 
@@ -40,6 +42,9 @@ class MonstersService {
 
     // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
+        // NOTE when boss attacks player can no longer access the store until the boss is killed (or players team dies, to be added later)
+        AppState.storeAvailable = false
+        console.log('store available:', AppState.storeAvailable)
         // SECTION reset single application effects
         AppState.activeMonster.kamikazeDamageApplied = false
 

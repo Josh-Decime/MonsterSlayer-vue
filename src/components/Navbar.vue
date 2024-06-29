@@ -13,7 +13,8 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link v-if="storeAvailable" :to="{ name: 'About' }"
+            class="btn text-success lighten-30 selectable text-uppercase">
             Store
           </router-link>
         </li>
@@ -47,9 +48,14 @@ export default {
       return AppState.playerLevel
     })
 
+    const storeAvailable = computed(() => {
+      return AppState.storeAvailable
+    })
+
     return {
       theme,
       yourLevel,
+      storeAvailable,
       toggleTheme() {
         theme.value = theme.value == 'light' ? 'dark' : 'light'
         document.documentElement.setAttribute('data-bs-theme', theme.value)
