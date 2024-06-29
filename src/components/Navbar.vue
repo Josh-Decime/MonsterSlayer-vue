@@ -17,6 +17,7 @@
             class="btn text-success lighten-30 selectable text-uppercase">
             Store
           </router-link>
+          <p v-if="!storeAvailable" class="text-light">Beat the boss to reopen the store</p>
         </li>
       </ul>
       <p class="text-light">Bosses defeated: {{ yourLevel }}</p>
