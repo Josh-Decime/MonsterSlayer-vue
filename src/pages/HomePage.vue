@@ -50,16 +50,16 @@
         <div v-else>
           <p class="fs-1 bolder">No team equipped!</p>
           <p class="fs-2 bolder">Go to store to equip your team!</p>
-          <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             <button class="btn btn-success">Store</button>
-          </router-link>
+          </router-link> -->
         </div>
 
         <button v-if="equipCheck" class="btn btn-success" @click="endRound">End your turn</button>
         <button v-if="equipCheck" class="btn btn-danger" @click="quickAttack">Quick Attack</button>
 
       </div>
-      <div class="col-6">
+      <div v-if="!storeAvailable" class="col-6">
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
         <div class="progress">
@@ -80,6 +80,12 @@
             }} round(s)</p>
         </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
+      </div>
+      <div v-if="storeAvailable" class="col-6 mt-5">
+        <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <button class="btn btn-success">Store</button>
+        </router-link>
+        <button v-if="equipCheck" class="btn btn-danger" @click="fightNextBoss">Fight the next boss</button>
       </div>
     </section>
   </section>
@@ -152,6 +158,10 @@ export default {
       return AppState.playerLevel
     })
 
+    const storeAvailable = computed(() => {
+      return AppState.storeAvailable
+    })
+
 
     function heroAttack(hero) {
       characterService.heroAttack(hero)
@@ -193,6 +203,10 @@ export default {
       characterService.kamikazeAttack(hero)
     }
 
+    function fightNextBoss() {
+      gameFunctionalityService.fightNextBoss()
+    }
+
 
     return {
       boss,
@@ -211,7 +225,9 @@ export default {
       activateShield,
       overchargeSpecialUsed,
       yourLevel,
-      kamikazeAttack
+      kamikazeAttack,
+      storeAvailable,
+      fightNextBoss,
     }
   }
 }

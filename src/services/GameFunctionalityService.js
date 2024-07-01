@@ -58,6 +58,10 @@ class GameFunctionalityService {
         this.endRound()
     }
 
+    fightNextBoss() {
+        AppState.storeAvailable = false
+    }
+
     // NOTE AppState.storeAvailable
     // NOTE I could have it so after you kill a boss AppState.storeAvailable = true. Then you have a button to go to the store & another button to "fight next boss". Once you press fight next boss then AppState.storeAvailable = false. 
     // NOTE can I v-if a router push? if not, maybe i could nest it in a div that is v-if?
