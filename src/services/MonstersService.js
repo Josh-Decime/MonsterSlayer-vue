@@ -2,6 +2,8 @@ import { AppState } from "../AppState.js";
 import { Monster } from "../models/Monster.js";
 
 class MonstersService {
+    // TODO I need a check to see if all players all dead. something like if # of for each equippedHeroes .dead  == equippedHero.length
+    // TODO if all the players characters die then the store opens up again 
 
     // NOTE when adding a new move for the boss:
     // determineBossSpecialActivation: (if used, active = false) checks if it was used last round & resets it before checking if it should be activated this turn. If it is activated then it will be used next turn when  bossesMoveThisTurn runs
@@ -40,6 +42,7 @@ class MonstersService {
         console.log('player is paid:', AppState.playerCoins)
     }
 
+    // TODO check if heroes are dead, if they are don't attack
     // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
         // NOTE when boss attacks player can no longer access the store until the boss is killed (or players team dies, to be added later)
