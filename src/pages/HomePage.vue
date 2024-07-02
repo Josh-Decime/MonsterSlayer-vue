@@ -122,7 +122,7 @@ export default {
 
 
     function payPlayer() {
-      monsterService.payPlayer()
+      gameFunctionalityService.payPlayer()
     }
 
 

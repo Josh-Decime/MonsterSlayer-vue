@@ -61,6 +61,11 @@ class GameFunctionalityService {
     fightNextBoss() {
         AppState.storeAvailable = false
     }
+    payPlayer() {
+        console.log('player coins before:', AppState.playerCoins)
+        AppState.playerCoins += AppState.activeMonster.coins
+        console.log('player is paid:', AppState.playerCoins)
+    }
 
     // NOTE AppState.storeAvailable
     // NOTE I could have it so after you kill a boss AppState.storeAvailable = true. Then you have a button to go to the store & another button to "fight next boss". Once you press fight next boss then AppState.storeAvailable = false. 

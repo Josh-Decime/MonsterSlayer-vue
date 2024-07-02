@@ -36,12 +36,6 @@ class MonstersService {
     }
 
 
-    payPlayer() {
-        console.log('player coins before:', AppState.playerCoins)
-        AppState.playerCoins += AppState.activeMonster.coins
-        console.log('player is paid:', AppState.playerCoins)
-    }
-
     // TODO check if heroes are dead, if they are don't attack
     // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
