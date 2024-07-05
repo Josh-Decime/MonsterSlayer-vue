@@ -198,6 +198,11 @@ export const AppState = reactive({
   storeAvailable: true,
 
 
+  // SECTION player special moves
+  skipBossUnlocked: false,
+  skipBossCost: 100,
+
+  // HAPPY 4TH OF JULY!!!
 
 
 
