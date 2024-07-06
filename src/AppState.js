@@ -196,6 +196,7 @@ export const AppState = reactive({
 
 
   storeAvailable: true,
+  teamDied: false,
 
 
   // SECTION player special moves

@@ -2,8 +2,6 @@ import { AppState } from "../AppState.js";
 import { Monster } from "../models/Monster.js";
 
 class MonstersService {
-    // TODO I need a check to see if all players all dead. something like if # of for each equippedHeroes .dead  == equippedHero.length
-    // TODO if all the players characters die then the store opens up again 
 
     // NOTE when adding a new move for the boss:
     // determineBossSpecialActivation: (if used, active = false) checks if it was used last round & resets it before checking if it should be activated this turn. If it is activated then it will be used next turn when  bossesMoveThisTurn runs

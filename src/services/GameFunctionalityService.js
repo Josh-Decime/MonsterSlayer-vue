@@ -67,6 +67,20 @@ class GameFunctionalityService {
         console.log('player is paid:', AppState.playerCoins)
     }
 
+    // TODO I need a check to see if all players all dead. something like if # of for each equippedHeroes .dead  == equippedHero.length
+    // TODO if all the players characters die then the store opens up again 
+    checkIfTeamIsAlive() {
+        let deadHeroes = 0
+        AppState.equippedCharacters.forEach(hero => {
+            if (hero.dead) {
+                deadHeroes++
+            }
+        })
+        if (deadHeroes == AppState.equippedCharacters.length)
+            console.log('Your team died')
+        AppState.teamDied = true
+    }
+
     // NOTE AppState.storeAvailable
     // NOTE I could have it so after you kill a boss AppState.storeAvailable = true. Then you have a button to go to the store & another button to "fight next boss". Once you press fight next boss then AppState.storeAvailable = false. 
     // NOTE can I v-if a router push? if not, maybe i could nest it in a div that is v-if?
