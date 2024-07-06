@@ -36,6 +36,7 @@ class GameFunctionalityService {
         if (AppState.playerPower < 100) {
             AppState.playerPower += 10
         }
+        this.checkIfTeamIsAlive()
     }
 
     turnCounterHandler() {
@@ -69,6 +70,7 @@ class GameFunctionalityService {
 
     // TODO I need a check to see if all players all dead. something like if # of for each equippedHeroes .dead  == equippedHero.length
     // TODO if all the players characters die then the store opens up again 
+    // NOTE needs to be referenced
     checkIfTeamIsAlive() {
         let deadHeroes = 0
         AppState.equippedCharacters.forEach(hero => {
@@ -76,9 +78,11 @@ class GameFunctionalityService {
                 deadHeroes++
             }
         })
-        if (deadHeroes == AppState.equippedCharacters.length)
+        if (deadHeroes == AppState.equippedCharacters.length) {
             console.log('Your team died')
-        AppState.teamDied = true
+            AppState.teamDied = true
+            AppState.storeAvailable = true
+        }
     }
 
     // NOTE AppState.storeAvailable
