@@ -188,9 +188,9 @@ export const AppState = reactive({
   equippedCharacters: [],
 
   // NOTE this is the coins you should have
-  // playerCoins: 250,
+  playerCoins: 250,
   // NOTE testing coins
-  playerCoins: 2500,
+  // playerCoins: 2500,
   playerPower: 0,
   playerLevel: 0,
 
@@ -203,7 +203,7 @@ export const AppState = reactive({
   skipBossUnlocked: false,
   skipBossCost: 100,
 
-  // HAPPY 4TH OF JULY!!!
+
 
 
 

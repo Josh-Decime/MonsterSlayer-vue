@@ -108,6 +108,7 @@ class CharactersService {
         }
     }
 
+    // TODO make revival cost more when the store is unavailable. Players will have to make a tough choice of if they should revive during battle or not.
     reviveCharacter(hero) {
         const characterToUpdate = AppState.Characters.find(
             character => character.name == hero.name

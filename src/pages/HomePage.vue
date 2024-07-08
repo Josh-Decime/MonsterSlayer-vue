@@ -16,28 +16,33 @@
             </div>
 
             <!-- SECTION hero attack & special move buttons -->
-            <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary" @click="heroAttack(hero)">
+            <button v-if="!hero.hasAttacked && !hero.dead" class="btn btn-primary"
+              :class="{ 'disabled': storeAvailable }" @click="heroAttack(hero)">
               🪥 {{ hero.damage }}</button>
 
             <button v-if="hero.healer && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="specialMoveHeal(hero)">Pay 💪{{ hero.healCost }} to heal ➕{{ hero.healAmount }}</button>
+              :class="{ 'disabled': storeAvailable }" @click="specialMoveHeal(hero)">Pay 💪{{ hero.healCost }} to heal
+              ➕{{ hero.healAmount }}</button>
 
             <button v-if="hero.healerOverTime && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="setHealOverTime(hero)">Pay 💪{{ hero.healOverTimeCost }} to heal ➕{{ hero.healOverTimeAmount }}
+              :class="{ 'disabled': storeAvailable }" @click="setHealOverTime(hero)">Pay 💪{{ hero.healOverTimeCost }}
+              to heal ➕{{ hero.healOverTimeAmount }}
               for {{ hero.healOverTimeDuration }} rounds</button>
 
             <button v-if="hero.shield && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
+              :class="{ 'disabled': storeAvailable }" @click="activateShield(hero)">Pay 💪{{ hero.shieldCost
               }} to block all damage next round</button>
 
             <button v-if="hero.overcharge && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               @click="overchargeSpecialUsed(hero)">Increase power by {{ hero.overchargeAmount }}</button>
 
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{ hero.strikeAmount }} damage</button>
+              :class="{ 'disabled': storeAvailable }" @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{
+          hero.strikeAmount }} damage</button>
 
             <button v-if="hero.kamikaze && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} & -{{ hero.kamikazeHealthCost }} health
+              :class="{ 'disabled': storeAvailable }" @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} &
+              -{{ hero.kamikazeHealthCost }} health
               to deal {{ hero.kamikazeDamage }}</button>
 
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
@@ -55,8 +60,10 @@
           </router-link> -->
         </div>
 
-        <button v-if="equipCheck" class="btn btn-success" @click="endRound">End your turn</button>
-        <button v-if="equipCheck" class="btn btn-danger" @click="quickAttack">Quick Attack</button>
+        <button v-if="equipCheck" class="btn btn-success" :class="{ 'disabled': storeAvailable }" @click="endRound">End
+          your turn</button>
+        <button v-if="equipCheck" class="btn btn-danger" :class="{ 'disabled': storeAvailable }"
+          @click="quickAttack">Quick Attack</button>
 
       </div>
       <div v-if="!storeAvailable" class="col-6">
