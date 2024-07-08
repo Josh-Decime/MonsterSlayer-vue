@@ -192,6 +192,7 @@ export const AppState = reactive({
   // NOTE testing coins
   // playerCoins: 2500,
   playerPower: 0,
+  // TODO playerLevel name should be changed to bossesDefeated
   playerLevel: 0,
 
 

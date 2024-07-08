@@ -34,10 +34,10 @@ class MonstersService {
     }
 
 
-    // TODO check if heroes are dead, if they are don't attack
+    // TODO check if heroes are dead, if they are don't attack (this is irrelevant now because when all heroes die the store becomes available so the boss is no longer displaying & attacks are disabled)
     // NOTE I could make check critical a function & I could run it through after the boss move has been decided so critical can affect special moves. I could also pass damage through them which might fix the extra damage issue Iv been having. Would be a bit of a reworking but might be a better way of doing things
     bossAttack() {
-        // NOTE when boss attacks player can no longer access the store until the boss is killed (or players team dies, to be added later)
+        // NOTE when boss attacks player can no longer access the store until the boss is killed or players team dies
         AppState.storeAvailable = false
         console.log('store available:', AppState.storeAvailable)
         // SECTION reset single application effects

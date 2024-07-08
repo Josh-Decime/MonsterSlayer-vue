@@ -4,7 +4,6 @@
       <div class="col-6">
         <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
         <span class="fs-3 mx-5">Your Power: {{ yourPower }}💪</span>
-        <!-- <span class="fs-3 mx-5">Your Level: {{ yourLevel }}</span> -->
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
@@ -55,9 +54,6 @@
         <div v-else>
           <p class="fs-1 bolder">No team equipped!</p>
           <p class="fs-2 bolder">Go to store to equip your team!</p>
-          <!-- <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-            <button class="btn btn-success">Store</button>
-          </router-link> -->
         </div>
 
         <button v-if="equipCheck" class="btn btn-success" :class="{ 'disabled': storeAvailable }" @click="endRound">End
@@ -90,9 +86,9 @@
       </div>
       <div v-if="storeAvailable" class="col-6 mt-5">
         <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-          <button class="btn btn-success">Store</button>
+          <button class="btn btn-success fs-1">Store</button>
         </router-link>
-        <button v-if="equipCheck" class="btn btn-danger" @click="fightNextBoss">Fight the next boss</button>
+        <button v-if="equipCheck" class="btn btn-danger fs-1" @click="fightNextBoss">Fight the next boss</button>
       </div>
     </section>
   </section>
@@ -161,9 +157,6 @@ export default {
     const yourPower = computed(() => {
       return AppState.playerPower
     })
-    const yourLevel = computed(() => {
-      return AppState.playerLevel
-    })
 
     const storeAvailable = computed(() => {
       return AppState.storeAvailable
@@ -231,7 +224,6 @@ export default {
       setHealOverTime,
       activateShield,
       overchargeSpecialUsed,
-      yourLevel,
       kamikazeAttack,
       storeAvailable,
       fightNextBoss,
