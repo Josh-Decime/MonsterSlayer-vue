@@ -188,9 +188,9 @@ export const AppState = reactive({
   equippedCharacters: [],
 
   // NOTE this is the coins you should have
-  playerCoins: 250,
+  // playerCoins: 250,
   // NOTE testing coins
-  // playerCoins: 2500,
+  playerCoins: 2500,
   playerPower: 0,
   // TODO playerLevel name should be changed to bossesDefeated
   playerLevel: 0,

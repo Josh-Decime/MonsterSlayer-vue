@@ -260,11 +260,27 @@ export default {
 
 
 .background {
-  height: 100vh;
+  height: 120vh;
   background-image: url('src/assets/img/MessyBedroom.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: white;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 10;
+  left: 0;
+  width: 100%;
+  height: 120vh;
+  background: rgba(150, 149, 149, 0.5);
+  z-index: 1;
+}
+
+.background>* {
+  position: relative;
+  z-index: 2;
 }
 </style>
