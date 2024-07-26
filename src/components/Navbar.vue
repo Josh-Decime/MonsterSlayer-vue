@@ -23,10 +23,10 @@
       <p class="text-light">Bosses defeated: {{ yourLevel }}</p>
       <!-- LOGIN COMPONENT HERE -->
       <div>
-        <button class="btn text-light" @click="toggleTheme"><i class="mdi"
-            :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i></button>
+        <!-- <button class="btn text-light" @click="toggleTheme"><i class="mdi"
+            :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i></button> -->
       </div>
-      <Login />
+      <!-- <Login /> -->
     </div>
   </nav>
 </template>

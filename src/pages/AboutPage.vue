@@ -51,7 +51,7 @@
 
   <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
     <div class="d-flex flex-column align-items-center">
-      <button class="fs-3 btn btn-success">Get back to cleaning</button>
+      <button class="fs-3 btn btn-success mt-3">Get back to cleaning</button>
     </div>
   </router-link>
 </template>

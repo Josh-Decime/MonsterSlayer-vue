@@ -33,7 +33,8 @@
               }} to block all damage next round</button>
 
             <button v-if="hero.overcharge && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
-              @click="overchargeSpecialUsed(hero)">Increase power by {{ hero.overchargeAmount }}</button>
+              :class="{ 'disabled': storeAvailable }" @click="overchargeSpecialUsed(hero)">Increase power by {{
+          hero.overchargeAmount }}</button>
 
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               :class="{ 'disabled': storeAvailable }" @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{
@@ -56,9 +57,10 @@
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
-        <button v-if="equipCheck" class="btn btn-success" :class="{ 'disabled': storeAvailable }" @click="endRound">End
+        <button v-if="equipCheck" class="btn btn-success mt-2" :class="{ 'disabled': storeAvailable }"
+          @click="endRound">End
           your turn</button>
-        <button v-if="equipCheck" class="btn btn-danger" :class="{ 'disabled': storeAvailable }"
+        <button v-if="equipCheck" class="btn btn-danger mt-2" :class="{ 'disabled': storeAvailable }"
           @click="quickAttack">Quick Attack</button>
 
       </div>
