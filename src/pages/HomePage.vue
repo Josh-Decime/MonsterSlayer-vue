@@ -2,8 +2,12 @@
   <section class="container-fluid background">
     <section class="row">
       <div class="col-6">
+
+        <!-- SECTION coins & power counters -->
         <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
         <span class="fs-3 mx-5">Your Power: {{ yourPower }}💪</span>
+
+        <!-- SECTION heroes displayed -->
         <div v-if="equipCheck">
           <div v-for="hero in heroes">
             <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="character-img">
@@ -52,11 +56,13 @@
           </div>
         </div>
 
+        <!-- SECTION no team equipped notification -->
         <div v-else>
           <p class="fs-1 bolder">No team equipped!</p>
           <p class="fs-2 bolder">Go to store to equip your team!</p>
         </div>
 
+        <!-- SECTION end round & quick attack -->
         <button v-if="equipCheck" class="btn btn-success mt-2" :class="{ 'disabled': storeAvailable }"
           @click="endRound">End
           your turn</button>
@@ -64,6 +70,7 @@
           @click="quickAttack">Quick Attack</button>
 
       </div>
+      <!-- SECTION boss display -->
       <div v-if="!storeAvailable" class="col-6">
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
