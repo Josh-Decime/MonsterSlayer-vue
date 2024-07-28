@@ -93,6 +93,8 @@
         </div>
         <img v-if="boss.img" :src="boss.img" :alt="boss.name">
       </div>
+
+      <!-- SECTION between boss fight buttons -->
       <div v-if="storeAvailable" class="col-6 mt-5">
         <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
           <button class="btn btn-success fs-1">Store</button>

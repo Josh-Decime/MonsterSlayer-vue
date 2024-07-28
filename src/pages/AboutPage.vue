@@ -6,12 +6,15 @@
 
   <section class="container-fluid">
     <section class="row">
+
+      <!-- SECTION display all heroes -->
       <div v-for="hero in heroesForSale" class="col-4">
         <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="store-characters-img">
         <h3>{{ hero.name }}: Lvl {{ hero.level }}</h3>
         <p class="my-0">Health: {{ hero.health }}/{{ hero.maxHealth }}</p>
         <p class="m-0">Damage: {{ hero.damage }}</p>
 
+        <!-- SECTION explain heroes special moves -->
         <div>
           <span>Special Move: </span>
           <span v-if="hero.striker">Striker, costs 💪{{ hero.strikeCost }} to deal {{ hero.strikeAmount }} damage</span>
@@ -25,7 +28,7 @@
             -{{ hero.kamikazeHealthCost }} health to deal {{ hero.kamikazeDamage }} damage</span>
         </div>
 
-        <!-- NOTE I purposefully wrote the :class disable 2 different ways to reference that it can be achieved both ways -->
+        <!-- SECTION Buy, equip, upgrade, heal heroes -->
         <button v-if="hero.unlocked && !hero.dead" class="btn btn-primary"
           :class="{ 'disabled': yourCoins < hero.upgradeCost }" @click="upgradeCharacter(hero)">
           {{ hero.upgradeCost }} Upgrade</button>
@@ -49,6 +52,7 @@
     </section>
   </section>
 
+  <!-- SECTION return to battle button -->
   <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
     <div class="d-flex flex-column align-items-center">
       <button class="fs-3 btn btn-success mt-3">Get back to cleaning</button>
