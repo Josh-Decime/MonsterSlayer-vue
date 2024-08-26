@@ -1,3 +1,5 @@
+<!-- TODO I need to work on the styling & make it mobile friendly so I can wrap up this project & move onto the next -->
+<!-- TODO I would love to have a forfeit button to restart the game & a locally stored leaderboard, then the game would be essentially finished -->
 <template>
   <section class="container-fluid background">
     <section class="row">
@@ -99,6 +101,7 @@
         <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
           <button class="btn btn-success fs-1">Store</button>
         </router-link>
+        <!-- TODO If all heroes are still dead this button should not be visible.. I need to re-familiarize myself with the code again since I took a break. This isn't as straight forward as I thought because visibility for the boss is determined based on store availability which doesn't recognize if the heroes are dead, it just toggles when they all die -->
         <button v-if="equipCheck" class="btn btn-danger fs-1" @click="fightNextBoss">Fight the next boss</button>
       </div>
     </section>
