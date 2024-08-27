@@ -117,6 +117,7 @@ class CharactersService {
             AppState.playerCoins -= characterToUpdate.reviveCost
             characterToUpdate.health = characterToUpdate.maxHealth
             characterToUpdate.dead = false
+            AppState.teamDied = false
         }
     }
 

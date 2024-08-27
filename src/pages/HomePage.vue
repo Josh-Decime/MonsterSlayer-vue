@@ -101,8 +101,9 @@
         <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
           <button class="btn btn-success fs-1">Store</button>
         </router-link>
-        <!-- TODO If all heroes are still dead this button should not be visible.. I need to re-familiarize myself with the code again since I took a break. This isn't as straight forward as I thought because visibility for the boss is determined based on store availability which doesn't recognize if the heroes are dead, it just toggles when they all die -->
-        <button v-if="equipCheck" class="btn btn-danger fs-1" @click="fightNextBoss">Fight the next boss</button>
+        <button v-if="equipCheck && !teamDied" class="btn btn-danger fs-1" @click="fightNextBoss">Fight the next
+          boss</button>
+        <button v-if="teamDied" class="disabled btn btn-danger fs-1">No one alive to fight the boss</button>
       </div>
     </section>
   </section>
@@ -176,6 +177,10 @@ export default {
       return AppState.storeAvailable
     })
 
+    const teamDied = computed(() => {
+      return AppState.teamDied
+    })
+
 
     function heroAttack(hero) {
       characterService.heroAttack(hero)
@@ -241,6 +246,7 @@ export default {
       kamikazeAttack,
       storeAvailable,
       fightNextBoss,
+      teamDied,
     }
   }
 }
