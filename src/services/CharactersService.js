@@ -113,8 +113,15 @@ class CharactersService {
             character => character.name == hero.name
         )
 
-        if (AppState.playerCoins >= characterToUpdate.reviveCost) {
-            AppState.playerCoins -= characterToUpdate.reviveCost
+        let reviveCost = characterToUpdate.reviveCost
+
+        // NOTE if the reviveCost multiplier is changed, it needs to be changed on the revive button on the HomePage too because that doesn't update automatically 
+        if (!AppState.storeAvailable) {
+            reviveCost = Math.round(reviveCost * 2)
+        }
+
+        if (AppState.playerCoins >= reviveCost) {
+            AppState.playerCoins -= reviveCost
             characterToUpdate.health = characterToUpdate.maxHealth
             characterToUpdate.dead = false
             AppState.teamDied = false

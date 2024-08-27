@@ -53,8 +53,15 @@
 
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
-            <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for {{
-          hero.reviveCost }} coins</button>
+            <!-- <button v-if="hero.dead && storeAvailable" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for
+              {{ hero.reviveCost }} coins</button>
+            <button v-if="hero.dead && !storeAvailable" class="btn btn-primary" @click="reviveCharacter(hero)">Revive
+              for
+              {{ hero.reviveCost * 3 }}</button> -->
+            <!-- NOTE if revive cost multiplier is changed, it needs to be manually updated to reflect here too or the amount charged will be different than what is displayed -->
+            <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">
+              Revive for {{ storeAvailable ? hero.reviveCost : hero.reviveCost * 2 }} coins
+            </button>
           </div>
         </div>
 
