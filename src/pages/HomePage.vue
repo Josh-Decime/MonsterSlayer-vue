@@ -1,9 +1,11 @@
+<!-- I haven't been as active with coding lately because I have been doing Hack the Box to learn about cybersecurity -->
+
 <!-- TODO I need to work on the styling & make it mobile friendly so I can wrap up this project & move onto the next -->
 <!-- TODO I would love to have a forfeit button to restart the game & a locally stored leaderboard, then the game would be essentially finished -->
 <template>
   <section class="container-fluid background">
     <section class="row">
-      <div class="col-6">
+      <div class="col-12 col-md-6">
 
         <!-- SECTION coins & power counters -->
         <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
@@ -53,11 +55,7 @@
 
             <button v-if="hero.hasAttacked && !hero.dead" class="btn btn-secondary disabled">Already
               used their turn this round</button>
-            <!-- <button v-if="hero.dead && storeAvailable" class="btn btn-primary" @click="reviveCharacter(hero)">Revive for
-              {{ hero.reviveCost }} coins</button>
-            <button v-if="hero.dead && !storeAvailable" class="btn btn-primary" @click="reviveCharacter(hero)">Revive
-              for
-              {{ hero.reviveCost * 3 }}</button> -->
+
             <!-- NOTE if revive cost multiplier is changed, it needs to be manually updated to reflect here too or the amount charged will be different than what is displayed -->
             <button v-if="hero.dead" class="btn btn-primary" @click="reviveCharacter(hero)">
               Revive for {{ storeAvailable ? hero.reviveCost : hero.reviveCost * 2 }} coins
@@ -80,7 +78,7 @@
 
       </div>
       <!-- SECTION boss display -->
-      <div v-if="!storeAvailable" class="col-6">
+      <div v-if="!storeAvailable" class="col-12 col-md-6">
         <h1>{{ boss.name }}</h1>
         <h3>{{ boss.health }} / {{ boss.maxHealth }}</h3>
         <div class="progress">
@@ -100,7 +98,7 @@
           <p v-if="boss.sicknessTurnCounter > 0">Inflicting +{{ boss.sicknessDamage }} for {{ boss.sicknessTurnCounter
             }} round(s)</p>
         </div>
-        <img v-if="boss.img" :src="boss.img" :alt="boss.name">
+        <img v-if="boss.img" :src="boss.img" :alt="boss.name" class="boss-image">
       </div>
 
       <!-- SECTION between boss fight buttons -->
@@ -287,7 +285,7 @@ export default {
 
 
 .background {
-  height: 120vh;
+  min-height: 120vh;
   background-image: url('src/assets/img/MessyBedroom.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -309,5 +307,12 @@ export default {
 .background>* {
   position: relative;
   z-index: 2;
+}
+
+.boss-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 </style>

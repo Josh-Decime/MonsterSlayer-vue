@@ -139,7 +139,7 @@ export default {
 }
 
 .background {
-  height: 120vh;
+  min-height: 120vh;
   background-image: url('src/assets/img/CleaningStore.png');
   background-size: cover;
   background-repeat: no-repeat;
