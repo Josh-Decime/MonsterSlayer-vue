@@ -1,0 +1,1 @@
+// Been trying to think through how I would implement a leader board within the MVC pattern

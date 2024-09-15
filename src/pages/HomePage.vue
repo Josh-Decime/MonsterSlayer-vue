@@ -1,5 +1,3 @@
-<!-- I haven't been as active with coding lately because I have been doing Hack the Box to learn about cybersecurity -->
-
 <!-- TODO I need to work on the styling & make it mobile friendly so I can wrap up this project & move onto the next -->
 <!-- TODO I would love to have a forfeit button to restart the game & a locally stored leaderboard, then the game would be essentially finished -->
 <template>
