@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { Monster } from './models/Monster.js'
 import { Character } from './models/Character.js'
+import MoniiImage from '@/assets/img/Monii.png';
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -79,7 +80,7 @@ export const AppState = reactive({
   Characters: [
     new Character({
       name: 'Mr. Kleen',
-      img: require('@/assets/img/MrKleen.png'),
+      img: '@/assets/img/MrKleen.png',
       damage: 5,
       health: 50,
       maxHealth: 50,
@@ -146,7 +147,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Monii',
-      img: '@/assets/img/Monii.png',
+      img: MoniiImage,
       damage: 10,
       health: 25,
       maxHealth: 25,
