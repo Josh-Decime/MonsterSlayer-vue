@@ -13,7 +13,7 @@ export const AppState = reactive({
   monsters: [
     new Monster({
       name: 'Grimy Gus',
-      img: 'src/assets/img/GrimyGus.png',
+      img: '@/assets/img/GrimyGus.png',
       damage: 1,
       health: 25,
       maxHealth: 25,
@@ -25,7 +25,7 @@ export const AppState = reactive({
     }),
     new Monster({
       name: 'Fungal Fred',
-      img: 'src/assets/img/FungalFred.png',
+      img: '@/assets/img/FungalFred.png',
       damage: 2,
       health: 50,
       maxHealth: 50,
@@ -37,7 +37,7 @@ export const AppState = reactive({
     }),
     new Monster({
       name: 'Cold Carl',
-      img: 'src/assets/img/ColdCarl.png',
+      img: '@/assets/img/ColdCarl.png',
       damage: 3,
       health: 75,
       maxHealth: 75,
@@ -48,7 +48,7 @@ export const AppState = reactive({
     }),
     new Monster({
       name: 'Tick Terry',
-      img: 'src/assets/img/TickTerry.png',
+      img: '@/assets/img/TickTerry.png',
       damage: 4,
       health: 100,
       maxHealth: 100,
@@ -61,7 +61,7 @@ export const AppState = reactive({
     }),
     new Monster({
       name: 'Influenza Phil',
-      img: 'src/assets/img/InfluenzaPhil.png',
+      img: '@/assets/img/InfluenzaPhil.png',
       damage: 5,
       health: 150,
       maxHealth: 150,
@@ -79,7 +79,7 @@ export const AppState = reactive({
   Characters: [
     new Character({
       name: 'Mr. Kleen',
-      img: 'src/assets/img/MrKleen.png',
+      img: '@/assets/img/MrKleen.png',
       damage: 5,
       health: 50,
       maxHealth: 50,
@@ -95,7 +95,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Bell',
-      img: 'src/assets/img/Bell.png',
+      img: '@/assets/img/Bell.png',
       damage: 7,
       health: 38,
       maxHealth: 38,
@@ -112,7 +112,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Dorthy',
-      img: 'src/assets/img/Dorthy.png',
+      img: '@/assets/img/Dorthy.png',
       damage: 7,
       health: 38,
       maxHealth: 38,
@@ -130,7 +130,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Jack',
-      img: 'src/assets/img/Jack.png',
+      img: '@/assets/img/Jack.png',
       damage: 5,
       health: 50,
       maxHealth: 50,
@@ -146,7 +146,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Monii',
-      img: 'src/assets/img/Monii.png',
+      img: '@/assets/img/Monii.png',
       damage: 10,
       health: 25,
       maxHealth: 25,
@@ -167,7 +167,7 @@ export const AppState = reactive({
     }),
     new Character({
       name: 'Walter',
-      img: 'src/assets/img/Walter.png',
+      img: '@/assets/img/Walter.png',
       damage: 10,
       health: 25,
       maxHealth: 25,
