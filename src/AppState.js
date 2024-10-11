@@ -79,7 +79,7 @@ export const AppState = reactive({
   Characters: [
     new Character({
       name: 'Mr. Kleen',
-      img: '@/assets/img/MrKleen.png',
+      img: require('@/assets/img/MrKleen.png'),
       damage: 5,
       health: 50,
       maxHealth: 50,
