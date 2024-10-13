@@ -283,7 +283,7 @@ export default {
 
 .background {
   min-height: 120vh;
-  background-image: url('src/assets/img/MessyBedroom.png');
+  background-image: url('@/assets/img/MessyBedroom.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -140,7 +140,7 @@ export default {
 
 .background {
   min-height: 120vh;
-  background-image: url('src/assets/img/CleaningStore.png');
+  background-image: url('@/assets/img/CleaningStore.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
