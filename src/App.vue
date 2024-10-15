@@ -5,8 +5,8 @@
   <main>
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
-
+  <footer class="bg-dark text-light pt-2">
+    <p class="text-light">Bosses defeated: {{ bossesDefeated }}</p>
   </footer>
 </template>
 
@@ -21,8 +21,14 @@ export default {
     // NOTE this sets the active monster once when the application starts!
     AppState.activeMonster = ref(AppState.monsters.shift())
 
+    // FIXME player level is actually bosses defeated, chose a bad name when I wrote it previously
+    const bossesDefeated = computed(() => {
+      return AppState.playerLevel
+    })
+
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      bossesDefeated
     }
   },
   components: { Navbar }

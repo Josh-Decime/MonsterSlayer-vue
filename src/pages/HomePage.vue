@@ -5,8 +5,13 @@
       <div class="col-12 col-md-6">
 
         <!-- SECTION coins & power counters -->
-        <span class="fs-3">Your Coins: {{ yourCoins }}🪙</span>
-        <span class="fs-3 mx-5">Your Power: {{ yourPower }}💪</span>
+        <div class="col-12">
+          <span class="fs-6 d-md-none">Your Coins: {{ yourCoins }}🪙</span>
+          <span class="fs-3 d-none d-md-inline">Your Coins: {{ yourCoins }}🪙</span>
+
+          <span class="fs-6 d-md-none mx-4">Your Power: {{ yourPower }}💪</span>
+          <span class="fs-3 d-none d-md-inline mx-4">Your Power: {{ yourPower }}💪</span>
+        </div>
 
         <!-- SECTION heroes displayed -->
         <div v-if="equipCheck">
@@ -39,11 +44,11 @@
 
             <button v-if="hero.overcharge && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               :class="{ 'disabled': storeAvailable }" @click="overchargeSpecialUsed(hero)">Increase power by {{
-          hero.overchargeAmount }}</button>
+            hero.overchargeAmount }}</button>
 
             <button v-if="hero.striker && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               :class="{ 'disabled': storeAvailable }" @click="strikeAttack(hero)">Pay 💪{{ hero.strikeCost }} for 🧼{{
-          hero.strikeAmount }} damage</button>
+            hero.strikeAmount }} damage</button>
 
             <button v-if="hero.kamikaze && !hero.hasAttacked && !hero.dead" class="btn btn-secondary"
               :class="{ 'disabled': storeAvailable }" @click="kamikazeAttack(hero)">Pay 💪{{ hero.kamikazePowerCost }} &

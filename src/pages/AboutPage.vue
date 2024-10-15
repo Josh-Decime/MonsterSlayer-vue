@@ -9,6 +9,7 @@
       <section class="row">
 
         <!-- SECTION display all heroes -->
+        <!-- FIXME I removed character-card because they were touching & I couldn't figure out how to make space between them without messing up the col. It is a minor thing & I just want to wrap up this project & move onto the next one -->
         <div v-for="hero in heroesForSale" class="col-4">
           <img v-if="hero.img" :src="hero.img" :alt="hero.name" class="store-characters-img">
           <h3>{{ hero.name }}: Lvl {{ hero.level }}</h3>
@@ -161,5 +162,14 @@ export default {
 .background>* {
   position: relative;
   z-index: 2;
+}
+
+.character-card {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  padding: 10px;
+  gap: 20px;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 </style>

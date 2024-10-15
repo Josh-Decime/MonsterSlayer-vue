@@ -43,7 +43,7 @@ export default {
     onMounted(() => {
       document.documentElement.setAttribute('data-bs-theme', theme.value)
     })
-
+    // FIXME player level is actually bosses defeated, chose a bad name when I wrote it previously
     const yourLevel = computed(() => {
       return AppState.playerLevel
     })
