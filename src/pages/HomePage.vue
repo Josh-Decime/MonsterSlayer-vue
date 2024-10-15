@@ -95,7 +95,8 @@
           <p v-if="boss.sicknessTurnCounter > 0">Inflicting +{{ boss.sicknessDamage }} for {{ boss.sicknessTurnCounter
             }} round(s)</p>
         </div>
-        <img v-if="boss.img" :src="boss.img" :alt="boss.name" class="boss-image">
+        <!-- TODO make clicking boss image quick attack -->
+        <img v-if="boss.img" :src="boss.img" :alt="boss.name" class="boss-image" @click="quickAttack">
       </div>
 
       <!-- SECTION between boss fight buttons -->
@@ -311,5 +312,6 @@ export default {
   height: auto;
   display: block;
   margin: 0 auto;
+  cursor: pointer;
 }
 </style>
